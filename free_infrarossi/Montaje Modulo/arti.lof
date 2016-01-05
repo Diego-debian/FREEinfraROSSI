@@ -1,0 +1,23 @@
+\select@language {english}
+\select@language {english}
+\select@language {spanish}
+\select@language {english}
+\select@language {spanish}
+\contentsline {figure}{\numberline {1}{\ignorespaces Figura 1.A Esquema el\IeC {\'e}ctrico de un transformador \cite {REGULADOR} de 9V a 5V, utilizando transistor lm 7805 cv, con capacitores electrol\IeC {\'\i }ticos de 10 microfaradios. Figura 1.B Montaje en protoboard del circuito.\relax }}{5}{figure.1}
+\contentsline {figure}{\numberline {2}{\ignorespaces Figura 2.A Circuito el\IeC {\'e}ctrico del bluetooth conectado a un microcontrolador atmega 328 P-PU. Figura 2.B Montaje en protoboard, los cables negros son tierra, los cables rojos son voltaje, y los cables de colores son conexiones.\relax }}{5}{figure.2}
+\contentsline {figure}{\numberline {3}{\ignorespaces Figura 3.A Esquema circuito el\IeC {\'e}ctrico cristal 16 Mhz, conectado al microcontrolador atmega 328 P-PU. Figura 3.B Montaje en protoboard, los cables negros son tierra, los cables rojos son voltaje, y los cables de colores son conexiones.\relax }}{5}{figure.3}
+\contentsline {figure}{\numberline {4}{\ignorespaces Figura 4.A Esquema conexi\IeC {\'o}n bot\IeC {\'o}n y microcontrolador atmega 328 P-PU. Figura 4.B Montaje en protoboard, los cables negros son tierra, los cables rojos son voltaje.\relax }}{5}{figure.4}
+\contentsline {figure}{\numberline {5}{\ignorespaces Motor con sistema de transmisi\IeC {\'o}n para el montaje.\relax }}{6}{figure.5}
+\contentsline {figure}{\numberline {6}{\ignorespaces Figura 6.A Montaje el\IeC {\'e}ctrico del motor conectado al microcontrolador, el tip 122, un diodo regulador, un capacitor cer\IeC {\'a}mico de 12 pF y resistencia de 1 Komhs. Figura 6.B Montaje en protoboard, los cables negros son tierra, los cables rojos son voltaje, y los cables naranjas son conexiones.\relax }}{6}{figure.6}
+\contentsline {figure}{\numberline {7}{\ignorespaces Figura 7.A Montaje el\IeC {\'e}ctrico del sensor lateral infrarrojo conectado a tarjeta atmega 328 P-PU, con una resistencia de $3 k\Omega $. Figura 7.B Montaje en protoboard, los cables negros son tierra, los cables rojos son voltaje, y los cables naranjas son conexiones.\relax }}{6}{figure.7}
+\contentsline {figure}{\numberline {8}{\ignorespaces Figura 8.A Conexiones de los diodos receptor y emisor con microcontrolador atmega328P-PU. Figura 8.B Montaje en protoboard del sistema emisor receptor infrarrojo, junto a dos resistencias, y el microcontrolador, los cables negros son tierra, los cables rojos son voltaje, el cable naranja son conexiones.\relax }}{7}{figure.8}
+\contentsline {figure}{\numberline {9}{\ignorespaces Figura 9.A Circuito el\IeC {\'e}ctrico diodo rgb con el microcontrolador atmega 328 P-PU. Figura 9.B Esquema del diodo rgb en protoboard.\relax }}{7}{figure.9}
+\select@language {english}
+\select@language {spanish}
+\contentsline {figure}{\numberline {10}{\ignorespaces Montaje el\IeC {\'e}ctrico final.\relax }}{9}{figure.10}
+\contentsline {figure}{\numberline {11}{\ignorespaces Circuito el\IeC {\'e}ctrico del proyecto.\relax }}{10}{figure.11}
+\contentsline {figure}{\numberline {12}{\ignorespaces Dimensiones del chasis o base donde reposara el circuito el\IeC {\'e}ctrico, el sistema de transmisi\IeC {\'o}n y demas elementos del vehiculo. Figura modelada en python visual.\relax }}{11}{figure.12}
+\contentsline {figure}{\numberline {13}{\ignorespaces Vista inferior del montaje del veh\IeC {\'\i }culo con la transmisi\IeC {\'o}n y el eje delantero, sin la parte el\IeC {\'e}ctrica. Figura modelada en python visual.\relax }}{12}{figure.13}
+\contentsline {figure}{\numberline {14}{\ignorespaces Vista superior del montaje del veh\IeC {\'\i }culo con la transmisi\IeC {\'o}n y el eje delantero, sin la parte el\IeC {\'e}ctrica. Figura modelada en python visual.\relax }}{12}{figure.14}
+\contentsline {figure}{\numberline {15}{\ignorespaces Vista inferior del montaje.\relax }}{13}{figure.15}
+\contentsline {figure}{\numberline {16}{\ignorespaces Vista superior del montaje.\relax }}{13}{figure.16}

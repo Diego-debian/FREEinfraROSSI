@@ -57,6 +57,25 @@ Este trabajo espera ser acogido por estudiantes y profesionales que vean en este
 {\bf{Descriptores:}} Modulo motorizado, sensores infrarrojos, microcontrolador, modulo bluetooth, ondas electromagnéticas. 
 \end{abstract}
 
+%tabla de contenido sin numeracion
+%\renewcommand\contentsname{\centering TABLA DE CONTENIDO}
+%\thispagestyle{empty}
+%\setcounter{page}{1}
+%\tableofcontents
+%\clearpage
+
+%lista de figuras
+%\renewcommand\listfigurename{\centering LISTA DE FIGURAS}
+%\listoffigures
+%\clearpage
+
+%lista de tablas
+% \renewcommand\listtablename{\centering LISTA DE TABLAS}
+% \listoftables
+% \clearpage
+
+
+
 \begin{multicols}{2}
 \section{Introducción}
 Al no poderse descartar la realidad de las tecnologías libres, su rápido crecimiento y el hecho de que sean muy sencillas de utilizar, ha sido el detonante para la realización de este proyecto; el cual pretende elaborar un sistema electrónico-mecánico que sea controlado vía bluetooth, sin necesidad de un sistema físico de cables; este debe tener la cualidad de ser lo más exacto posible en cuanto a la captura y manipulación de datos; sin dejar a un lado su bajo costo. \\\\ También tiene la pretensión de ser un modelo didáctico, que pueda ser utilizado en la enseñanza de la ciencia de una manera practica, llamativa, con la cual el estudiante pueda tener una sensación de que las ciencias son divertidas, sin dejar de lado su exactitud y su carácter de buscar el ¿por qué?,  los ¿cómo?, y la precisión al compararse la teoría con la parte experimental.
@@ -246,23 +265,40 @@ Debería haber recibido una copia de la Licencia Pública General de GNU junto c
 Si usted hace alguna modificación en esta aplicación, deberá siempre mencionar el autor original de la misma.
 
 \subsection{Instalación}
+La instalación de este software es relativamente sencilla, el proceso de instalación es el mismo para distribuciones basadas en Debian\footnote{Pagina oficial proyecto Debian https://www.debian.org/} se  explicara paso a paso el proceso de instalación:
+\begin{enumerate}
+\item[a.] Abrir una terminal\footnote{Enlace que explica ese procedimiento: http://www.comoinstalarlinux.com/como-abrir-una-terminal-en-ubuntu-linux-mint-centos-debian/} y escribir en ella lo siguiente sin comillas $"$sudo su$"$ y luego oprimir la tecla enter.
+\item[b.] Escribir la contraseña de administrador y presione enter; tenga en cuenta que la terminal no muestra la contraseña.
+\item[c.] Escriba en la terminal sin comillas $"$aptitude install -y git$"$, presione enter.
+\item[d.] Escriba en la terminal sin comillas $"$cd Documentos$"$ presione enter.
+\item[e.] Escriba en la terminal sin comillas $"$git clone https://github.com/Diego-debian/Free-infrarrosi$"$, presione enter.
+\item[f.] Escriba en la terminal sin comillas $”$chmod +777 Free-infrarrosi$”$, presione la tecla enter.
+\item[g.] Cierre la terminal y diríjase al navegador de archivos o gestor de archivos y ábralo.
+\item[h.] Diríjase a la carpeta Documentos/Free-infrarrosi/install.
+\item[j.] Hacer click derecho con el mouse en el archivo instalador.py,  dar click izquierdo en propiedades; en la pestaña de general debe decir abrir archivo con python 2.7 y en la pestaña permisos debe estar seleccionada la casilla permitir ejecutar este archivo como programa, de no ser así cambie las opciones y déjelas como se menciono antes.
+\item[k.] Cierre la ventana y abra el instalador haciendo doble click izquierdo sobre este.
+\item[l.] Una vez abierto el instalador escriba  1 y presione enter.
+\item[m.] Escriba nuevamente 1 y enter.
+\item[n.] Escriba su contraseña de super usuario y presione enter.
+\item[ñ.] Una vez finalizada la instalación se aconseja reinicie su pc.
+\end{enumerate}
 
+\subsection{Primer uso free infrarrosi}
 
 
 
 
 
 \begin{thebibliography}{99}
-\bibitem{ARDUINO} Arduino, pagina oficial, proyecto arduino. http://www.arduino.cc/
-\bibitem{REGULADOR} Hoja de datos  transistor lm 7805CV. http://pdf.datasheetcatalog.net/datasheet/fairchild/\\LM7805.pdf
-\bibitem{TIP122} Hoja de datos del transistor tip 122. http://pdf.datasheetcatalog.net/datasheet/fairchild/\\TIP122.pdf.
+\bibitem{ARDUINO} Monk, S. (2013). 30 Arduino projects for the evil genius. McGraw-Hill Professional.
+\bibitem{REGULADOR} Semiconductor, F. (2012). LM7805 Data Sheet. [Online]. Disponible en:\\ http://pdf.datasheetcatalog.net/datasheet/fairchild/\\LM7805.pdf
+\bibitem{TIP122} Semiconductor, F. (2008). Tip120/tip121/tip122 npn epitaxial darlington transistor. TIP120 datasheet, Oct. [Online]. Disponible en:\\ http://pdf.datasheetcatalog.net/datasheet/fairchild/\\TIP122.pdf.
 \bibitem{DIODO}  Hoja de datos diodo regulador 1N4001. http://pdf.datasheetcatalog.net/datasheet/lrc/\\1N4001.pdf
 \bibitem{INFRARED} Hoja de datos de los diodos led infrarrojos, emisor y receptor. \\ http://www.datasheetarchive.com/dlmain/Datasheets\\-31/DSA-617614.pdf
-\bibitem{FRITZING} Pagina oficial del proyecto fritzing http://fritzing.org/home/ 
+\bibitem{FRITZING} Knörig, A., Wettach, R., \& Cohen, J. (2009, February). Fritzing: a tool for advancing electronic prototyping for designers. In Proceedings of the 3rd International Conference on Tangible and Embedded Interaction. ACM.
 \bibitem{PYTHON} Notas del curso, python para el computo científico, curso de actualización académica de la DGAPA-UNAM, Facultad de ciencias, Dr. David P. Sanders, 5 de agosto de 2013. 
-\bibitem{CIRCUITOS} Fundamentos de circuitos eléctricos, tercera edición, editorial Mc Graw Hill, Charles K. Alexander and Matthew N. O. Sadiku. 
-\bibitem{BERKELEY} Berkeley Physics Course, volumen 3, Ondas (Crawford).
-\bibitem{HECHT} Óptica, Eugene Hecht, tercera edición
+\bibitem{CIRCUITOS} Alexander, C. K., Sadiku, M. N., Bermúdez, A. V., \& Pedraza, C. R. C. (2006). Fundamentos de circuitos eléctricos. McGraw-Hill. 
+
 \end{thebibliography}
 \end{multicols}
 

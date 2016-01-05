@@ -46,15 +46,19 @@ class Instalador:
 	Pr2 = int(raw_input(chr(27)+"[5;32m"+"Ingrese su petición : "+chr(27)+"[0m"))
 	if Pr2 == 1:
 
-	    os.system("sudo apt-get update ")
+	    os.system("apt-get update ")
 	    os.system("apt-get install xterm bluez* gcc g++ emacs gnuplot gnuplot-qt evince octave python-matplotlib python-numpy python-tk python-gnuplot python-serial python-visual* libgtkglextmm* arduino fritzing binutils")
+	    archi = open('/etc/bash.bashrc', 'a+')
+	    archi.write("\ninfrarossi='cd ~/Documentos/Free-infrarrosi/free_infrarossi && ./infrarrosi'")
+	    archi.close()
 	    print chr(27)+"[5;33m"+"INSTALACION TERMINADA "
 	    print "reinicie su pc"
 
 	elif Pr2 == 2:
-	    os.system("apt-get --purge remove emacs gnuplot gnuplot-qt evince octave python-matplotlib  python-scipy python-numpy python-tk python-gnuplot python-serial python-visual* libgtkglextmm* arduino fritzing")
-	    os.system("sudo apt-get autoremove")
-	    os.system("apt-get update && sudo apt-get upgrade")
+#	    os.system("apt-get --purge remove emacs gnuplot gnuplot-qt evince octave python-matplotlib  python-scipy python-numpy python-tk python-gnuplot python-serial python-visual* libgtkglextmm* arduino fritzing")
+#	    os.system("apt-get autoremove")
+#	    os.system("apt-get update")
+	    os.system("bash unistall.sh")
 	    print " DESINSTALACION EXITOSA "
 	    print  "Favor dirijase a la carpeta free_infrarrosi Y ELIMINELA, DE ESTA MANERA EL PROGRAMA ESTARA ELIMINADO POR COMPLETO"
 	    print "Desinstalacion completada ---"
@@ -77,6 +81,7 @@ class Instalador:
     def __del__(self):
 	print chr(27)+"[5;33m"+"FIN DEL PROGRAMA"
 	os.system("exit")
+	os.system("rm logs.txt")
 	time.sleep(4)
 
 if __name__ == "__main__":

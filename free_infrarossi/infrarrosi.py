@@ -124,7 +124,7 @@ class App:
 #--------------------------------Definiendo función Documentación---------------------------------------
 	def Documentacion():
             tkMessageBox.showinfo("Infrarrosi", message= "! Abriendo documentación, tenga pasciencia ¡")
-	    os.system("evince 'importantes/Documentación Free Pops.pdf' &")
+	    os.system("xdg-open 'importantes/Documentación Free Pops.pdf' &")
 
 
 #---------------------- Botones Presentacion -----------------------------------------------------------    	

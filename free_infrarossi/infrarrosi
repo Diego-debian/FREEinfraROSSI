@@ -16,5 +16,6 @@
 import os
 import time
 
-os.system("gksu python infrarrosi.py")
+
+os.system("sudo python ~/Documentos/Free-infrarrosi/free_infrarossi/infrarrosi.py")
 
