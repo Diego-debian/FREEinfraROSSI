@@ -1,6 +1,5 @@
 #/usr/bin/python
 #!*-* coding:utf-8 *-* 
-
 # Este script es sofware libre. Puede redistribuirlo y/o modificarlo bajo 
 # los terminos de la licencia pública general de GNU, según es publicada 
 # por la free software fundation bien la versión 3 de la misma licencia 
@@ -51,17 +50,18 @@ class Instalador:
 	    archi = open('/etc/bash.bashrc', 'a+')
 	    archi.write("\ninfrarossi='cd ~/Documentos/Free-infrarrosi/free_infrarossi && ./infrarrosi'")
 	    archi.close()
-	    print chr(27)+"[5;33m"+"INSTALACION TERMINADA "
-	    print "reinicie su pc"
+	    print chr(27)+"[5;32m"+"INSTALACION TERMINADA "
+	    print "Disfrute su software \n reinicie su pc"
 
 	elif Pr2 == 2:
-#	    os.system("apt-get --purge remove emacs gnuplot gnuplot-qt evince octave python-matplotlib  python-scipy python-numpy python-tk python-gnuplot python-serial python-visual* libgtkglextmm* arduino fritzing")
-#	    os.system("apt-get autoremove")
-#	    os.system("apt-get update")
+	    os.system("apt-get --purge remove emacs gnuplot gnuplot-qt evince octave python-matplotlib  python-scipy python-numpy python-tk python-gnuplot python-serial python-visual* libgtkglextmm* arduino fritzing")
+	    os.system("apt-get autoremove")
+	    os.system("apt-get update")
 	    os.system("bash unistall.sh")
-	    print " DESINSTALACION EXITOSA "
-	    print  "Se ha creado una copia de respaldo del archivo /etc/bash.bashrc como /etc/bash.bashrc.respaldo, si tiene algun problema con este archivo despues de la desinstalación, solamente ejecute este comando en la terminal con permisos de administrador y sin las comillas 'cp /etc/bash.bashrc.respaldo /etc/bash.bashrc'" 
-	    time.sleep(25)
+	    os.system("clear")
+	    print "\t\t\t DESINSTALACION EXITOSA "
+	    print  "Se ha creado una copia de respaldo del archivo"+chr(27)+"[3;36m"+"\n\n\n /etc/bash.bashrc como /etc/bash.bashrc.respaldo\n" + chr(27)+"[0m"+"\n\n\n si tiene algun problema con este archivo despues de la desinstalación;\n solamente ejecute este comando en la terminal con permisos\n de administrador y sin las comillas \n\n \t "+chr(27)+"[5;31m"+"ANOTELO QUE ES \n\t MUY IMPORTANTE"+chr(27)+"[0m"+"\n\n\n'"+chr(27)+"[3;33m"+"cp /etc/bash.bashrc.respaldo /etc/bash.bashrc"+chr(27)+"[0m"+"'\n\n" 
+	    time.sleep(60)
 	    print "Desinstalacion completada ---"
 	    print "reinicie su pc"
 	    self.exit()

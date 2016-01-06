@@ -13,7 +13,7 @@
 # Colombia, Bogota D.C.
 
 cp /etc/bash.bashrc /etc/bash.bashrc.respaldo
-#rm -rf ~/Documentos/Free-infrarrosi
+rm -rf ~/Documentos/Free-infrarrosi
 cat /etc/bash.bashrc | grep -n "infrarrosi" | cut -d ":" -f 1,1  > logs.txt
 NUM=`cat logs.txt`
 LET=`echo d`
