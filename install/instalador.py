@@ -60,7 +60,8 @@ class Instalador:
 #	    os.system("apt-get update")
 	    os.system("bash unistall.sh")
 	    print " DESINSTALACION EXITOSA "
-	    print  "Favor dirijase a la carpeta free_infrarrosi Y ELIMINELA, DE ESTA MANERA EL PROGRAMA ESTARA ELIMINADO POR COMPLETO"
+	    print  "Se ha creado una copia de respaldo del archivo /etc/bash.bashrc como /etc/bash.bashrc.respaldo, si tiene algun problema con este archivo despues de la desinstalación, solamente ejecute este comando en la terminal con permisos de administrador y sin las comillas 'cp /etc/bash.bashrc.respaldo /etc/bash.bashrc'" 
+	    time.sleep(25)
 	    print "Desinstalacion completada ---"
 	    print "reinicie su pc"
 	    self.exit()
