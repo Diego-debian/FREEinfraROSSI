@@ -18,7 +18,7 @@ class App():
         bicho = Tk()
         bicho.geometry("280x170+200+90")
         bicho.config(bg="white")
-        bicho.title("Infrarrosi")
+        bicho.title("Infrarossi")
         bicho.resizable(width=0, height=0)
  
 	def Salir():
@@ -28,14 +28,14 @@ class App():
 	    puerto.close()
 	    self.puerta = "/dev/"+self.puerto
 	    print self.puerta
-            tkMessageBox.showinfo("Infrarrosi", message= "Saliendo .... ")
+            tkMessageBox.showinfo("Infrarossi", message= "Saliendo .... ")
 	    arduino = serial.Serial(self.puerta, 9600)
 	    arduino.write('aa')
 	    exit()
 	    exit()
 
 	def Comenzar1():
-            tkMessageBox.showinfo("Infrarrosi", message= "Se procede a capturar datos, para detener el proceso cierre la ventana captura de datos 'color azul'")
+            tkMessageBox.showinfo("Infrarossi", message= "Se procede a capturar datos, para detener el proceso cierre la ventana captura de datos 'color azul'")
 	    os.system("xterm -T Infrarrosi -geom 50x8+185+100 +cm -bg blue -e python bin/c_p_Dif.py &")
 
 # --------------------------------CONFIGURACION DE VENTANA ------------------------------------------------------------------------------

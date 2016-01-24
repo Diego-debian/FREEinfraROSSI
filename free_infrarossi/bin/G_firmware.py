@@ -30,11 +30,11 @@ import shutil
 class G_firmware:
     def Pendulo(self):
 	def Salir():
-	    tkMessageBox.showinfo("free_pops_1.0", message= "! Cerrando el programa ¡")
+	    tkMessageBox.showinfo("Free infrarossi", message= "! Cerrando el programa ¡")
             exit() 
 	
 	def Continuar():
-	    tkMessageBox.showinfo("free_pops_1.0", message= "Cargando el firmware en la tarjeta microcontroladora. \n\n si no carga el firmware: \n\n* Revise su conexión con la tarjeta programadora arduino uno. \n\n* Revise el microcontrolador que este funcionando bien ")
+	    tkMessageBox.showinfo("Free infrarossi", message= "Cargando el firmware en la tarjeta microcontroladora. \n\n si no carga el firmware: \n\n* Revise su conexión con la tarjeta programadora arduino uno. \n\n* Revise el microcontrolador que este funcionando bien ")
 	    os.system("python bin/firmware/firmware_free_pops.py &")
 
 	bicho = Tk()
@@ -42,10 +42,10 @@ class G_firmware:
         bicho.config(bg="white")
         bicho.title("free_pops_1.0")
         bicho.resizable(width=0, height=0)
-	yn= -200
-	xn = -350
-	imgBoton2=PhotoImage(file="Imagenes/cap8.gif")
-        btnLogo= Label(bicho, image=imgBoton2,  height=150, width =180).place(x=400+xn, y=215+yn)
+	yn= 200
+	xn = 350
+#	imgBoton2=PhotoImage(file="Imagenes/cap8.gif")
+#        btnLogo= Label(bicho, image=imgBoton2,  height=150, width =180).place(x=400-xn, y=215-yn)
         lblFisinfor = Label(bicho, text=" GRUPO DE FISICA E INFORMATICA ", fg = ("black"), bg = ("white"), font = ("Century Schoolbook L",10)).place(x=360+xn, y=371+yn)
 	lblInfo = Label(bicho, text="Dr. Julian Andres Salamanca\n Diego Alberto Parra Garzón", fg = ("black"), bg = ("white"), font = ("Century Schoolbook L",10)).place(x=400+xn, y=390+yn)
         lblFisinfor = Label(bicho, text="DEBE TENER LA TARJETA \nMICROCONTROLADORA ARDUINO\n CONECTADA PARA CONTINUAR", fg = ("red"), bg = ("white"), font = ("Century Schoolbook L",11)).place(x=350+xn, y=460+yn)

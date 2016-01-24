@@ -18,21 +18,21 @@ class Gramo():
         bicho = Tk()
         bicho.geometry("280x170+200+90")
         bicho.config(bg="white")
-        bicho.title("Infrarrosi")
+        bicho.title("Infrarossi")
         bicho.resizable(width=0, height=0)
       
         def Verifica():
 	    print "ola"
 
 	def Salir():
-            tkMessageBox.showinfo("Infrarrosi", message= "Saliendo .... ")
+            tkMessageBox.showinfo("Infrarossi", message= "Saliendo .... ")
 	    arduino = serial.Serial("/dev/rfcomm0", 9600)
 	    arduino.write('aa')
 	    exit()
 	    exit()
 
 	def Comenzar1():
-            tkMessageBox.showinfo("Infrarrosi", message= "Se procede a capturar datos, para detener el proceso cierre la ventana de captura de datos 'de color azul'")
+            tkMessageBox.showinfo("Infrarossi", message= "Se procede a capturar datos, para detener el proceso cierre la ventana de captura de datos 'de color azul'")
 	    os.system("xterm -T Infrarrosi -geom 50x8+185+100 +cm -bg blue -e python bin/c_p_Ate.py &")
 
 # --------------------------------CONFIGURACION DE VENTANA ------------------------------------------------------------------------------
