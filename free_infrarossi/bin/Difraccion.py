@@ -36,7 +36,7 @@ class App():
 
 	def Comenzar1():
             tkMessageBox.showinfo("Infrarossi", message= "Se procede a capturar datos, para detener el proceso cierre la ventana captura de datos 'color azul'")
-	    os.system("xterm -T Infrarrosi -geom 50x8+185+100 +cm -bg blue -e python bin/c_p_Dif.py &")
+	    os.system("xterm -T Infrarossi -geom 50x8+185+100 +cm -bg blue -e python bin/c_p_Dif.py &")
 
 # --------------------------------CONFIGURACION DE VENTANA ------------------------------------------------------------------------------
         X=10

@@ -84,7 +84,7 @@ class App:
 
 #------------------------------------- Funcion limpiar pantalla ---------------------------------------------------
         def Reset():
-	    tkMessageBox.showinfo("Infrarrosi", message= "! Limpiando, por favor espere ¡")
+	    tkMessageBox.showinfo("Infrarossi", message= "! Limpiando, por favor espere ¡")
 	    os.system("rm MAC.txt MACD.txt puerto.txt conexion.txt direccion.txt")
 	    os.system("sh bin/d_Blu.sh &")
 	    os.system("python infrarossi.py &")
@@ -95,7 +95,7 @@ class App:
         def Difraccion():
 	    tkMessageBox.showinfo("Infrarossi", message= "Espere por favor,  Preparando todo para empezar con el experimento.")
 	    os.system("python bin/Difraccion.py &")
-#	    os.system("xterm -T Infrarrosi -geom 50x8+185+100 +cm -bg blue -e python  bin/Atenuacion.py & ")
+#	    os.system("xterm -T Infrarossi -geom 50x8+185+100 +cm -bg blue -e python  bin/Atenuacion.py & ")
 
 	def Atenuacion():
 	    tkMessageBox.showinfo("Infrarossi", message= "Espere por favor,  Preparando todo para empezar con el experimento.")

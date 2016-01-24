@@ -33,7 +33,7 @@ class Gramo():
 
 	def Comenzar1():
             tkMessageBox.showinfo("Infrarossi", message= "Se procede a capturar datos, para detener el proceso cierre la ventana de captura de datos 'de color azul'")
-	    os.system("xterm -T Infrarrosi -geom 50x8+185+100 +cm -bg blue -e python bin/c_p_Ate.py &")
+	    os.system("xterm -T Infrarossi -geom 50x8+185+100 +cm -bg blue -e python bin/c_p_Ate.py &")
 
 # --------------------------------CONFIGURACION DE VENTANA ------------------------------------------------------------------------------
         X=10

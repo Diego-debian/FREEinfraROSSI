@@ -48,7 +48,7 @@ class Instalador:
 	    os.system("apt-get update ")
 	    os.system("apt-get install xterm bluez* gcc g++ emacs gnuplot gnuplot-qt evince octave python-matplotlib python-numpy python-tk python-gnuplot python-serial python-visual* libgtkglextmm* arduino fritzing binutils")
 	    archi = open('/etc/bash.bashrc', 'a+')
-	    archi.write("\ninfrarossi='cd ~/Documentos/Free-infrarrosi/free_infrarossi && ./infrarossi'")
+	    archi.write("\nalias infrarossi='cd ~/Documentos/Free-infrarossi/free_infrarossi && ./infrarossi'")
 	    archi.close()
 	    print chr(27)+"[5;32m"+"INSTALACION TERMINADA "
 	    print "Disfrute su software \n reinicie su pc"

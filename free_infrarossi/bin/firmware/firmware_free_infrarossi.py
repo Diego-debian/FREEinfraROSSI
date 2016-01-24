@@ -42,7 +42,7 @@ class Firmware:
 	archi.write("sleep 10")
 	archi.close()
 	time.sleep(1)
-	os.system("xterm -T infrarrosi -geom 82x27+0+55 +cm -bg blue -e 'sh bin/firmware/a_carga.sh' &")
+	os.system("xterm -T infrarossi -geom 82x27+0+55 +cm -bg blue -e 'sh bin/firmware/a_carga.sh' &")
 	time.sleep(8)
 
     def limpiar(self):

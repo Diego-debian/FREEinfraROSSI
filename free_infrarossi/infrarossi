@@ -17,5 +17,5 @@ import os
 import time
 
 
-os.system("sudo python ~/Documentos/Free-infrarrosi/free_infrarossi/infrarossi.py")
+os.system("sudo python ~/Documentos/Free-infrarossi/free_infrarossi/infrarossi.py")
 
