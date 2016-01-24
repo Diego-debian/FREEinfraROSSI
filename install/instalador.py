@@ -7,7 +7,7 @@
 # Si usted hace alguna modificación en esta aplicación, deberá siempre
 # mencionar el autor original de la misma.
 # Autor: 
-# Universidad Distrital Francisco Jose  
+# Universidad  Distrital Francisco Jose  
 # Grupo de fisica e informatica
 # Dr Julian Andres Salamanca Bernal
 # Diego Alberto Parra Garzón 
