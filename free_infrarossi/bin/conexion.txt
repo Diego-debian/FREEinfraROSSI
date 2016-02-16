@@ -1,1 +1,0 @@
-rfcomm0: 00:15:83:15:A3:10 -> 20:14:10:16:05:84 channel 1 connected [reuse-dlc release-on-hup tty-attached]

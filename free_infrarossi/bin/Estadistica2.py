@@ -355,17 +355,19 @@ class Estadistica:
 	    print "Esta es la distancia para el primer orden de difraccion ", self.Xm1, "centimetros"
 	    
 	def Difraccion():
-#--------------------------- Numero de lineas por milimetro de la rejilla 670 -----------------
-#--------------------------- Distancia entre linea y linea de la rejilla 148.75^(-6) metros		    
+#--------------------------- Numero de lineas por milimetro de la rejilla 103 -----------------
+#--------------------------- Distancia entre linea y linea de la rejilla 4.81^(-6) metros		    
 # ------------------------- Distancia de separacion de la rejilla con la pantalla 40^(-2) metros
-	    d = 148.75*10**(-6)
+	    d = 4.81*10**(-6)
 	    x = self.Xm1*10**(-2)
-	    y = 40*10**(-2)
+	    y = 45*10**(-2)
 	    tetharad = math.atan(x/y)
 	    tethagra = math.degrees(tetharad)
 #	    lamda = tetharad*d
-	    self.lamda = (x*d/y)*10**(8)
-	    self.error = (self.lamda - 1000)*100/1000
+	    sintetha= math.sin(tetharad)
+	    self.lamda = round((2*d*sintetha)*10**(9),2)
+	    self.error = round(pow(pow(800-self.lamda,2),0.5), 2)
+	    print tethagra, "\n ", sintetha
 	    print "la longitud de onda aproximada para el diodo infrarrojo es",  self.lamda	, "nanometros, con un error de ", self.error , " %" 
 	
         
@@ -405,7 +407,7 @@ class Estadistica:
 #	    pl.annotate(u'Máximo', xy = (self.x13, self.y13), xycoords = 'data' ,xytext = (self.x13 - 0.005, self.y13 + 0.004),  arrowprops = dict(arrowstyle = "->"))
 #	    pl.arrow(self.x13, self.y13, 0.10, 0.010)
 	    pl.text(0.06, 0.010, r' Longitud con m=1 :  ' + str(self.Xm1/100) + '[m] ')
-	    pl.text(0.04, 0.005, r' Lamda IRE = ' +  str(self.lamda) + ' [nm}      +/- ' + str(self.error*10) + ' [nm]')
+	    pl.text(0.04, 0.005, r' Lamda IRE = ' +  str(self.lamda) + ' [nm}      +/- ' + str(self.error) + ' [nm]')
  	    pl.ylim(0, 0.036) 
 	    pl.xlabel('Distancia [m]')
 	    pl.ylabel('Voltaje [V]')

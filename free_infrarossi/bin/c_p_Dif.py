@@ -79,12 +79,13 @@ class App:
                 arduino.close()
 
     def Analisis(self):
-	os.system("python bin/Estadistica2.py")
+#	os.system("python bin/Estadistica2.py")
+	os.system("python bin/estadis2.py")
 	time.sleep(3)
 	
 	
     def Ordenar(self):
-	os.system("python bin/o_Carpetas.py")
+	os.system("python bin/o_Carpetas1.py")
 
 
                 

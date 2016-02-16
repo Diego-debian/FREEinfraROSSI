@@ -38,6 +38,7 @@ class App:
 	    tkMessageBox.showinfo("Infrarossi", message= "! Cerrando el programa ¡")
 	    os.system("rm MAC.txt MACD.txt puerto.txt conexion.txt direccion.txt dispo.txt log.txt mac.txt macd.txt texput.log x.log")
 	    os.system("rm MAC.txt MACD.txt puerto.txt")
+	    os.system("rm bin/conexion.txt bin/direccion.txt")
 	    os.system("sh bin/d_Blu.sh &")
             exit()
 
@@ -95,7 +96,8 @@ class App:
         def Difraccion():
 	    tkMessageBox.showinfo("Infrarossi", message= "Espere por favor,  Preparando todo para empezar con el experimento.")
 	    os.system("python bin/Difraccion.py &")
-#	    os.system("xterm -T Infrarossi -geom 50x8+185+100 +cm -bg blue -e python  bin/Atenuacion.py & ")
+#	    os.system("python bin/estadis2.py &")
+
 
 	def Atenuacion():
 	    tkMessageBox.showinfo("Infrarossi", message= "Espere por favor,  Preparando todo para empezar con el experimento.")
@@ -128,13 +130,6 @@ class App:
 	    os.system("xdg-open 'Montaje/Articulo_montaje_infrarossi.pdf' &")
 
 
-#---------------------- Botones Presentacion -----------------------------------------------------------    	
-#	yn = int(-210)
-#	imgBoton2=PhotoImage(file="Imagenes/cap8.gif")
-#        btnLogo= Label(bicho, image=imgBoton2,  height=150, width =180).place(x=150, y=215+yn)
-
-#        lblFisinfor = Label(bicho, text=" GRUPO DE FISICA E INFORMATICA ", fg = ("black"), bg = ("white"), font = ("Century Schoolbook L",10)).place(x=100, y=371+yn)
-#	lblInfo = Label(bicho, text="Dr. Julian Andres Salamanca \n Diego Alberto Parra Garzón", fg = ("black"), bg = ("white"), font = ("Century Schoolbook L",10)).place(x=136, y=390+yn)
 
 
 #---------------------- Botones Bluetooth -----------------------------------------------------------

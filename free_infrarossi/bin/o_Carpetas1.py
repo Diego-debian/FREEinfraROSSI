@@ -30,29 +30,15 @@ class o_Carpetas:
 	archi.close()
 	time.sleep(3)
         shutil.move("datos/dats1.dat",  self.Carpeta)
-        shutil.move("datos/marca_clase.dat",  self.Carpeta)
         shutil.move("datos/Graficas.png",  self.Carpeta)
+
+    def Llama(self):
 	os.system("sh bin/m_Carpeta1.sh")
-	os.system("rm datos/marca1.dat")
-	os.system("rm datos/marca2.dat")
-	os.system("rm datos/marca3.dat")
-	os.system("rm datos/marca4.dat")
-	os.system("rm datos/marca5.dat")
-	os.system("rm datos/marca6.dat")
-	os.system("rm datos/marca7.dat")
-	os.system("rm datos/marca8.dat")
-	os.system("rm datos/marca9.dat")
-	os.system("rm datos/marca10.dat")
-	os.system("rm datos/marca11.dat")
-	os.system("rm datos/marca12.dat")
-	os.system("rm datos/marca13.dat")
-	os.system("rm datos/marca14.dat")
-	os.system("rm datos/marca15.dat")
-	os.system("rm datos/marca16.dat")
 	
     def __init__(self):
 	self.Carpeta()
 	self.c_Carpeta()
+	self.Llama()
 	self.__del__()
 
     def __del__(self):	
