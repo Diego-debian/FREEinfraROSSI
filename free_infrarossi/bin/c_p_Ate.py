@@ -74,46 +74,34 @@ class App:
                 archi1 = open('datos/dats1.dat', 'a+')
                 archi1.write(Lectura)
                 archi1.close()
-                # os.system("gnuplot  Datos_C/dat1/agraf.gnp &")
                 arduino.write('aa')
                 arduino.close()
 
     def Analisis(self):
-	os.system("octave bin/estadistica.m")
-	f = np.loadtxt("datos/dats1.dat")
+	os.system("octave bin/estadistica1.m")
+#	os.system("octave estadistica1.m")
+	f = np.loadtxt("datos/F.dat")	
 	a = np.loadtxt("datos/a.dat")
-	A = np.loadtxt("datos/A.dat")
+	b = np.loadtxt("datos/b.dat")
+	self.Yest = np.loadtxt("datos/Yest.dat")	
+	self.Yteo = np.loadtxt("datos/Yteo.dat")	
+	self.ECM = np.loadtxt("datos/ECM.dat")
+	self.ECM1 = round(self.ECM, 3)
 	self.X = f[:,0]
 	self.V = f[:,1]
-	self.x1 = self.X/100
-	self.v1 = self.V/1000
-	self.F = [self.x1, self.v1]
-	self.a1 = round(float(a),4)
-#	A2 = A/10
-	self.A1 = round(float(A),2)
-#	self.x = np.arange(0,0.6, 0.00563)
-	self.x = np.arange(0.01,0.6, 0.00507)
-	self.y = (((self.a1)*(self.x)**(self.A1)))
-	self.yz = (((self.a1)*(self.x)**(-2)))
-#	self.Y2= self.y
-	self.Y2 = self.v1-self.y
-	self.VAR = pow(pow(self.Y2,2) , 0.5)
-	self.sum = round(np.sum(self.VAR, axis=0)/118 , 4)
-	self.yf = self.y #+ self.sum
-	self.tam = int(self.y.size)	
-	print self.x1, self.v1,"\n\n\n", self.a1," X^(",self.A1,") + ", self.sum , "\n\n\n", self.tam
+	self.a = round(a, 4)
+	self.b = round(b, 3)
+	print self.X, self.V,"\n\n\n", self.a," X^(",self.b,")  " 
 
     def Grafica(self):
 	pl.subplot(221)
-        #time.sleep(10)
         pl.title('Distancia vs Voltaje \n')
         pl.xlabel('Distancia [m]')
         pl.ylabel('Voltaje [V]')
-	pl.plot(self.x1, self.v1, 'g:x')
-        pl.plot(self.x, self.yf, 'W')
+	pl.plot(self.X, self.V, 'o --')
 	pl.axis([0, 0.6, -0.001, 5])
         pl.text(0.2, 4, r'Datos recolectados')
-#	pl.show()
+
 
 
     def Grafica1(self):
@@ -130,28 +118,29 @@ class App:
         pl.title('APROXIMACION')
         pl.xlabel('Distancia [m]')
         pl.ylabel('Voltaje [V]')
-        pl.plot(self.x, self.yf, 'B')
-        pl.plot(self.x, self.yz, 'R')
+        pl.plot(self.X, self.V, 'B')
+        pl.plot(self.X, self.Yest, 'R')
 	pl.axis([0, 0.6, -0.001, 5])
-#	self.a1," X^(",self.A1,") + ", self.sum
         pl.text(0.35, 4, r'Azul')
-        pl.text(0.25, 3.5, r'' + str(self.a1) + '*X^('+ str(self.A1)+')')
+        pl.text(0.25, 3.5, r'' + str(self.a) + '*X^('+ str(self.b)+')')
         pl.text(0.35, 2, r'Rojo')
-        pl.text(0.33, 1.5, r'' + str(self.a1) + '*X^(-2)')
+        pl.text(0.33, 1.5, r'' + str(self.a) + '*X^(-2)')
+
         
     def Grafica3(self):
         pl.subplot(212)
-	pl.plot(self.x1, self.v1, 'g:o')
-        pl.plot(self.x, self.yf, 'B')
-        pl.plot(self.x, self.yz, 'R')
+	pl.plot(self.X, self.V, 'K')
+        pl.plot(self.X, self.Yteo, 'R')
+        pl.plot(self.X, self.Yest, 'B')
         pl.subplot(212)
         pl.xlabel('Distancia [m]')
         pl.ylabel('Voltaje [V]')
         pl.title('Distancia vs Voltaje \n')
         pl.legend(loc='upper left')
 	pl.axis([0, 0.6, -0.001, 5])
-	pl.text(0.4, 4, r'Azul V=' + str(self.a1) + '*X^('+ str(self.A1)+')')
-        pl.text(0.4, 3, r'Rojo V=' + str(self.a1) + '*X^(-2)')
+	pl.text(0.4, 4, r'Azul V=' + str(self.a) + '*X^('+ str(self.b)+')')
+        pl.text(0.4, 3, r'Rojo V=' + str(self.a) + '*X^(-2)')
+        pl.text(0.4, 2, r'ECM = ' + str(self.ECM1))
         pl.savefig('datos/Atenuacion.png')
         pl.show()
 	
