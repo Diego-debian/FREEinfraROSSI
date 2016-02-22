@@ -43,12 +43,9 @@
 \maketitle
 \vspace{-0.8cm}
 \selectlanguage{english}
-
 \begin{abstract}
 The present article illustrates the attenuation due to the inverse square law of the flux of radiation emitted by a LED diode infrared emitter, using a mirror, the motor module  infrarossi and control software free infrarossi, environment GNU- linux; highlighting the functionality of this instrument  illustration attenuation because to the irradiansa in point source is proportional to the inverse of the distance squared if not consider other types of attenuation, this is a property of the electromagnetic waves and its duality wave - quantum.\\
 {\bf{Keywords:}} Motor module, infrared sensors, microcontroller module bluetooth, electromagnetic wave, attenuation, inverse square law.
-
-
 \selectlanguage{spanish}
 \begin{center}
 {\bf{Resumen}} 
@@ -56,29 +53,25 @@ The present article illustrates the attenuation due to the inverse square law of
 El presente trabajo ilustra la atenuación debido a la ley del cuadrado inverso de la densidad de flujo de radiación emitida por un diodo led emisor infrarrojo, utilizando un espejo, el modulo motorizado  infrarossi y su software de control free infrarossi, en un entorno GNU-linux; resaltando la funcionalidad de este instrumento en la ilustración de la atenuación debido a que la irradiansa de una fuente puntual es proporcional al inverso de su distancia al cuadrado si no se consideran otros tipos de atenuación, esta es una  propiedad de la ondas electromagnéticas y su dualidad onda – quantum. \\
 {\bf{Descriptores:}} Modulo motorizado, sensores infrarrojos, microcontrolador, modulo bluetooth, ondas electromagnéticas, atenuación, ley del cuadrado inverso, quantum. 
 \end{abstract}
-
 %tabla de contenido sin numeracion
 %\renewcommand\contentsname{\centering TABLA DE CONTENIDO}
 %\thispagestyle{empty}
 %\setcounter{page}{1}
 %\tableofcontents
 %\clearpage
-
 %lista de figuras
 %\renewcommand\listfigurename{\centering LISTA DE FIGURAS}
 %\listoffigures
 %\clearpage
-
 %lista de tablas
 % \renewcommand\listtablename{\centering LISTA DE TABLAS}
 % \listoftables
 % \clearpage
-
 \begin{multicols}{2}
 \section{Introducción}
 Los fenómenos de las ondas siempre han fascinado nuestros pensamientos y tratamos de acercarnos a estos fenómenos para tratar de entenderlos, es allí donde la física con ayuda de la matemática muestran su majestuosidad, al explicar de manera muy detallada estos fenómenos de transporte; la atenuación es una de estas propiedades, la cual esta muy presente en la vida diaria y con la ayuda del modulo motorizado infrarossi y su software de control free infrarossi, se ilustra este fenómeno físico y se realiza un calculo del valor exponencial de la distancia a la cual se atenua la irradiansa propia producida por un diodo infrarrojo emisor. \\ \\
-``Una fuente de luz casi siempre ilumina la superficie de los objetos desigualmente. Así, una lámpara suspendida sobre una mesa ilumina mejor el centro de ésta. Los bordes de la mesa están mucho menos iluminados. Esto no sólo se debe a que la intensidad de la luz de la lámpara eléctrica sea distinta en diferentes direcciones. Incluso en el caso un foco puntual corresponderá a la superficie del centro más potencia luminosa (flujo luminoso)  que a una superficie igual en el borde. \\ \\
-Se llama iluminación (o iluminancia ) a la razón del flujo luminoso, que incide sobre una superficie determinada, al área de dicha superficie. \\ \\
+``Una fuente de luz casi siempre ilumina la superficie de los objetos desigualmente. Así, una lámpara suspendida sobre una mesa ilumina mejor el centro de ésta. Los bordes de la mesa están mucho menos iluminados. Esto no sólo se debe a que la intensidad de la luz de la lámpara eléctrica sea distinta en diferentes direcciones. Incluso en el caso un foco puntual corresponderá a la superficie del centro más potencia luminosa (flujo luminoso)  que a una superficie igual en el borde. \\
+Se llama iluminación (o iluminancia ) a la razón del flujo luminoso, que incide sobre una superficie determinada, al área de dicha superficie. \\ 
 Como unidad de iluminación se toma el lux (lx); un lx es la iluminación con la cual sobre 1 metro cuadrado de superficie se distribuye uniformemente un flujo luminoso de un lumen. \\ \\
 La dependencia de la iluminacion respecto de la distancia a la fuente se puede determinar colocando mentalmente una fuente puntual en el centro de una esfera, la iluminación sera igual al flujo luminoso total de la fuente distribuido sobre el área de la esfera. \\ \\
 Es decir, la iluminación de una superficie es inversamente proporcional al cuadrado de su distancia a la fuente. "\cite{FISICA4}
@@ -86,12 +79,12 @@ Es decir, la iluminación de una superficie es inversamente proporcional al cuad
 \section{Marco teórico}
 Los fotones producidos por el diodo emisor de la fuente emisora de radiación infrarroja se dan debido a que “en los semiconductores, con estructura compleja de las bandas energéticas, son posibles las transiciones indirectas de los electrones de la banda de conducción  a la de valencia acompañadas de la emisión de un fotón. En este caso la recombinación del electrón libre con el hueco se desarrolla con la aparición de un fonón, lo que asegura la conservación del cuasi impulso. Lo más probable es que el fonón sea emitido. Si en el semiconductor se desarrollan procesos de recombinación entre bandas  tanto directa como indirectas, en el espectro de radiación se observan dos bandas de luminiscencia. \\ \\
 En la banda prohibida de los semiconductores reales existe una gran cantidad de estados localizados, que están ligados a los átomos de impureza, defectos de la estructura, infracciones de la periodicidad de la estructura en la superficie, etc. Estos estados localizados desempeñan un papel importante  en los procesos de luminiscencia. \\ \\
-Las transiciones de los electrones de la banda de conducción a los niveles de los pequeños donadores (o de los huecos de la banda de valencia a los niveles de los pequeños aceptores),  que hacen que estos últimos se neutralicen, pueden ser con radiación.. En este caso es de esperar la aparición de luminosidad en la región infrarroja remota del espectro. Pero los cálculos  muestran que en estas transiciones lo más probable es que sea emitido un fonón y no un fotón, es decir, que el proceso se desarrolla sin radiación. La recombinación con radiación se produce por lo general  como viene mostrado en la figura 1. Primero un electrón de la banda de conducción es capturado por un nivel local situado un poco más abajo que Ec  \footnote{Ec es el nivel de energía de conducción.}, y después se efectúa la recombinación de este electrón localizado con un hueco de la banda de valencia, la cual va acompañada de la emisión de un fotón. El electrón puede también realizar una transición con radiación de la banda de conducción y después recombinarse con un hueco. \\ \\
+Las transiciones de los electrones de la banda de conducción a los niveles de los pequeños donadores (o de los huecos de la banda de valencia a los niveles de los pequeños aceptores),  que hacen que estos últimos se neutralicen, pueden ser con radiación.. En este caso es de esperar la aparición de luminosidad en la región infrarroja remota del espectro. Pero los cálculos  muestran que en estas transiciones lo más probable es que sea emitido un fonón y no un fotón, es decir, que el proceso se desarrolla sin radiación. La recombinación con radiación se produce por lo general  como viene mostrado en la figura 1. Primero un electrón de la banda de conducción es capturado por un nivel local situado un poco más abajo que Ec  \footnote{Ec es el nivel de energía de conducción.}, y después se efectúa la recombinación de este electrón localizado con un hueco de la banda de valencia, la cual va acompañada de la emisión de un fotón. El electrón puede también realizar una transición con radiación de la banda de conducción y después recombinarse con un hueco. \\
 \begin{Figure}	
 \center
 \begin{tabular}{|l|r|}
 \hline
-\includegraphics[width=8cm, height=6cm]{img/transiciones.png} \\ \hline
+\includegraphics[width=6cm, height=6cm]{img/transiciones.png} \\ \hline
 \end{tabular}
 \captionof{figure}{Transiciones con radiación entre una banda y los estados de impureza.}
 \label{fig:g1}
@@ -102,7 +95,7 @@ Durante la absorción de la luz puede surgir en los semiconductores pares electr
 h\nu = E_g - E,
 \end{equation}
 donde E es la energía de enlace del excitón." \cite{SEMICONDUCTOR} \\ \\
-Ahora se tiene un flujo de fotones de energía $h\nu$ saliendo del diodo emisor infrarrojo,  ``como los fotones viajan a la velocidad de la luz deben, de acuerdo con la teoría de la relatividad, tener una masa en reposo igual a cero; de aquí que su energía sea completamente cinética. Si un fotón existe, entonces se mueve a la velocidad de la luz, $c$; si deja de moverse a velocidad c, deja de existir. Para $m_{0} = 0$ la relación relativista momentum – energía  se convierte en $E = pc$. \\\\
+Ahora se tiene un flujo de fotones de energía $h\nu$ saliendo del diodo emisor infrarrojo,  ``como los fotones viajan a la velocidad de la luz deben, de acuerdo con la teoría de la relatividad, tener una masa en reposo igual a cero; de aquí que su energía sea completamente cinética. Si un fotón existe, entonces se mueve a la velocidad de la luz, $c$; si deja de moverse a velocidad c, deja de existir. Para $m_{0} = 0$ la relación relativista momentum – energía  se convierte en $E = pc$.
 de esta forma, cada fotón tiene un momentum de 
 \begin{equation}
 p = \frac{E}{c} = \frac{h\nu}{c} = \frac{h}{\lambda}
@@ -121,7 +114,8 @@ Es importante destacar que no todos los portadores fotogenerados contribuyen a l
 \begin {equation}
 \Delta I_{e} = q\mu _{e}(\Delta n)ES
 \end{equation} 
-siendo $E$ el campo eléctrico aplicado, $\mu_{e}$ la movilidad de los electrones y $S$ la sección transversal del fotoconductor. En condiciones de iluminación, el estado estacionario se alcanza cuando la velocidad de generación de portadores en todo el volumen del semiconductor, $G$, se iguala a la velocidad de recombinación, $R$, es decir $R = G$. para un conductor intrínseco en el cual existe un exceso de portadores, $\Delta n = \Delta p$, la velocidad de recombinación de los portadores vendrá dada por:
+siendo $E$ el campo eléctrico aplicado, $\mu_{e}$ la movilidad de los electrones y $S$ la sección transversal del fotoconductor.\\\\
+En condiciones de iluminación, el estado estacionario se alcanza cuando la velocidad de generación de portadores en todo el volumen del semiconductor, $G$, se iguala a la velocidad de recombinación, $R$, es decir $R = G$. para un conductor intrínseco en el cual existe un exceso de portadores, $\Delta n = \Delta p$, la velocidad de recombinación de los portadores vendrá dada por:
 \begin{equation}
 R = \frac{\Delta n }{\tau} = \frac{\Delta p}{\tau}
 \end{equation}
@@ -134,7 +128,7 @@ Sabiendo que la velocidad de arrastre de los electrones por el campo eléctrico 
 \begin{equation}
 \Delta I_{e} = q\nu_{e}\eta\frac{\frac{P_{i}}{h\nu}}{L}\tau
 \end{equation}
-Si se tiene en cuenta que el cociente $t_{r} = L/v_{e}$, representa el tiempo de trásito de los electrones entre los dos electrodos, resulta para $\Delta I_{e}$:
+si se tiene en cuenta que el cociente $t_{r} = L/v_{e}$, representa el tiempo de trásito de los electrones entre los dos electrodos, resulta para $\Delta I_{e}$:
 \begin{equation}
 \Delta I_{e} = q\eta \frac{P_{i}}{h\nu}\frac{\tau}{t_{r}}
 \end{equation}
@@ -142,7 +136,7 @@ con una expresión similar para la corriente de huecos en la banda de valencia. 
 \begin{equation}
 \frac{\Delta I}{I_{fot}} = \frac{\tau}{t_{r}}
 \end{equation}
-Ahora bien un diodo operando con cierto voltaje aplicado, $V$, en presencia de radiación electromagnética  capaz de excitar portadores a través de la banda prohibida dejara pasar una intensidad I dada por:
+ahora bien un diodo operando con cierto voltaje aplicado, $V$, en presencia de radiación electromagnética  capaz de excitar portadores a través de la banda prohibida dejara pasar una intensidad I dada por:
 \begin{equation}
 I = I_{0}[e^{(qV/kT)}-1] - I_{L}
 \end{equation}
@@ -166,29 +160,34 @@ Para la realización de este montaje se utilizarón los siguientes materiales:
 \item[d.] Espejo de 10x20 $cm^{2}$.
 \item[e.] Modulo bluetooth para pc.
 \end{enumerate}
-
 \subsection{Montaje}
-Situar el vehículo motorizado infrarossi a una distancia de 24 cm del espejo, el espejo debe estar perpendicular a la parte frontal del vehículo. Abrir una terminal de GNU-Linux y escribir infrarossi, oprimir enter y la clave de superusuario, luego de abrir el programa debe oprimir el boton on, esperar que se empareje el bluetooth, una vez emparejado el bluetooth el programa desplegara un tercer menú, oprimir el botón de atenuación y esperar que el programa tome los datos necesarios.
-\\ \\
-Luego de capturar los datos aparecerá la gráfica de los datos los cuales se aprecian en la figuara 3, esta ya contiene el análisis estadístico y arroja el valor del exponente que debe tener la distancia. La gráfica de análisis y los datos capturados se almacenan dentro del archivo llamado Carpetas/Atenuacion con la fecha y hora del análisis de datos.
-
+Situar el vehículo motorizado infrarossi a una distancia de 24 cm del espejo tal como se muestra en la figura 2, el espejo debe estar perpendicular a la parte frontal del vehículo. Abrir una terminal de GNU-Linux y escribir infrarossi, oprimir enter y la clave de superusuario, luego de abrir el programa debe oprimir el boton on, esperar que se empareje el bluetooth, una vez emparejado el bluetooth el programa desplegara un tercer menú, oprimir el botón de atenuación y esperar que el programa tome los datos necesarios. 
+\begin{Figure}	
+\center
+\begin{tabular}{|l|r|}
+\hline \\
+\includegraphics[width=5cm, height=6cm]{img/mon_ate.png} \\\\ \hline
+\end{tabular}
+\captionof{figure}{Imagen del montaje para la atenuación utilizando el modulo motorizado infrarossi y un espejo.}
+\label{fig:g2}
+\end{Figure}
+Luego de capturar los datos, aparecerá la gráfica de esstos, los cuales se aprecian en la figuara 3, esta ya contiene el análisis estadístico y arroja el valor del exponente que debe tener la distancia. La gráfica de análisis y los datos capturados se almacenan dentro del archivo llamado Carpetas/Atenuacion con la fecha y hora del análisis de datos.
 \begin{Figure}	
 \center
 \begin{tabular}{|l|r|}
 \hline
-\includegraphics[width=8cm, height=6cm]{img/mon_difraccion.png} \\ \hline
+\includegraphics[width=8cm, height=6cm]{img/Atenuacion.png} \\ \hline
 \end{tabular}
-\captionof{figure}{Imagen del montaje para la difracción utilizando el modulo motorizado infrarossi.}
-\label{fig:g1}
+\captionof{figure}{Imagen generada por el programa free infrarossi, donde se aprecia la gráfica de los datos capturados en el experimento de atenuación en puntos azules, las gráficas con la linea de color azul es la gráfica estimada estadísticamente, las gráficas con las lineas de color rojo es la gráfica teórica.}
+\label{fig:g3}
 \end{Figure}
-
 \section{Análisis de resultados}
 El programa free infrarossi después de terminar de recoger los datos realiza un análisis estadístico de los mismos con un “ajuste lineal de una función exponencial de la forma $Y^{*} = aX^{b}$, siendo $Y$ la variable dependiente, $a$ la amplitud, $X$ la variable independiente,  $b$ el valor del exponente en este caso de atenuación, $Y^{*}$ es el valor esperado de la variable dependiente; aplicando logaritmo natural para linealizar se obtiene:
 \begin{equation}
 ln ( Y^{*}) = ln (a) + bln(X)  \cdots \Longrightarrow V^{*} = A + bU
 \end{equation} 
 donde $V^{*}$ es $ln(Y^{*})$, $A $ es el $ln(a)$ y $U$ es igual al $ln(X)$. \\\\
-La suma de  todos los errores debe ser diferentes a cero $\sum e \neq 0$. \\\\
+La suma de  todos los errores debe ser diferentes a cero $\sum e \neq 0$. \\
 El exponente de ajuste b se halla con la varianza de $U$ sobre $V$  dividida entre la varianza de $U$ sobre $U$, obteniendo
 \begin{equation}
 b = \frac{S_{UV}}{S^{2} _{U}} =  \frac{\frac{1}{n} \sum_{i=1}^{n} UV - \bar{U} \bar{V}}{\frac{1}{n} \sum _{i=1}^{n} U^{2} - \bar{U}^2}
@@ -197,7 +196,7 @@ ahora el valor de A sera igual al valor medio del logaritmo de la variable depen
 \begin{equation}
 A = \bar{V} -b\bar{U}
 \end{equation}
-Deshaciendo el logaritmo de $A$  se obtiene el valor de la amplitud a:
+deshaciendo el logaritmo de $A$  se obtiene el valor de la amplitud a:
 \begin{equation}
 a = antiln(A) = antiln(\bar{V} – b\bar{U})
 \end{equation}
@@ -205,29 +204,43 @@ de modo que el ajuste efectuado es:
 \begin{equation}
 Y^{*} =  aX^{b}  = [antiln(\bar{V} - b\bar{U})]*X^{ \left(\frac{\frac{1}{n} \sum_{i=1}^{n} UV - \bar{U} \bar{V}}{\frac{1}{n} \sum _{i=1}^{n} U^{2} - \bar{U}^{2}}\right)}
 \end{equation}
-La bondad del ajuste es el error cuadrático medio o $ECM$ y es igual a: 
+la bondad del ajuste es el error cuadrático medio o $ECM$ y es igual a: 
 \begin{equation}
 ECM = \frac{\sum_{i=1}^{n}e_{i}^{2}}{n}
 \end{equation}
-siendo $e_{i}$ cada una de las diferencias entre las variables dependientes y los valores estimados para las variables dependientes $e_{i} = Y_{i} - Y^{*}_{i}$; al haber transformado la variable dependiente ya no se minimiza $\sum e^{2}$ sino $\sum (ln(Y) – ln(Y^{*}))^{2}$, de ahí que $\sum e \neq 0$."\cite{ESTADISTICA}
-\begin{Figure}	
-\center
-\begin{tabular}{|l|r|}
+siendo $e_{i}$ cada una de las diferencias entre las variables dependientes y los valores estimados para las variables dependientes $e_{i} = Y_{i} - Y^{*}_{i}$; al haber transformado la variable dependiente ya no se minimiza $\sum e^{2}$ sino $\sum (ln(Y) – ln(Y^{*}))^{2}$, de ahí que $\sum e \neq 0$."\cite{ESTADISTICA}\\\\
+En la tabla 1, se muestra los resultados obtenidos después de seis pruebas del exponente de atenuación con el modulo motorizado infrarossi y su software de control free infrarossi; en ella se observa que la amplitud de la función tiene un valor medio de 0,0277, el valor medio del factor de atenuación de la distancia es -1,992; el valor obtenido en el análisis estadístico esta muy próximo al valor teórico; por lo que queda demostrado que la cantidad de energía radiada por el diodo emisor decrece con el inverso del cuadrado de la distancia. \\ \\
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|} 
 \hline
-\includegraphics[width=8cm, height=6cm]{img/Atenuacion.png} \\ \hline
+\bf{Prueba} & \bf{a} & \bf{b} & \bf{teorico} & \bf{ECM} \\
+\hline
+ 1 & 0.027 & -2,067 & -2 & 0.124\\
+\hline
+ 2 & 0.0276 & -2.081 & -2 & 0.054\\
+\hline
+ 3 & 0.0291 & -1.863 & -2 & 0.077\\
+\hline 
+ 4 & 0.0276 & -2.008 & -2 & 0.044\\
+\hline
+5 & 0.0282 & -1.939 & -2 & 0.051\\
+\hline
+6 & 0.0271 & -1.99 & -2 & 0.018\\
+\hline
 \end{tabular}
-\captionof{figure}{Imagen generada por el programa free infrarossi.}
-\label{fig:g1}
-\end{Figure}
-
+\\
+\end{center}
+\textbf{Tabla 1.} Datos obtenidos de seis pruebas para medir el exponente de atenuación, con el modulo motorizado infrarossi y su software de control free infrarossi; $a$ es la amplitud de la función, $b$ es el exponente con el que se atenúa la función, $ECM$ es el error cuadrático medio, o también llamado bondad en el ajuste. \\ \\ 
+Por tanto el Voltaje en función de la distancia tiene una ecuación estimada de:
+\begin{equation}
+V(x) = 0,0277 X^{-1,99} 
+\end{equation}
 \section{Conclusiones}
 \begin{enumerate}
-\item[*] El modulo motorizado infrarossi y su software de control ilustran de manera cuantitativa y cualitativa fenómenos ondulatorios como la difracción e interferencia de las ondas electromagnéticas y su dualidad onda – quantum.   
-
+\item[*] El modulo motorizado infrarossi y su software de control ilustran de manera cuantitativa y cualitativa fenómenos ondulatorios y corpusculares  de la radiación electromagnética como la atenuación con el inverso del cuadrado de la distancia, la radiansa, la irradiansa, fenómenos de transporte e  inyección y su análisis estadístico, calculando de una manera aproximada el exponente que acompaña a la atenuación debido a la distancia de propagación del flujo de energía radiante producida en el diodo emisor infrarrojo.   
 \item[*] El modulo motorizado infrarossi y su software de control es una herramienta fácil de usar y muy precisa, capaz de ser utilizada para diversos propósitos en el aula de clase como modelo pedagógico,  tanto de profesionales como estudiantes de ciencias exactas.
+\item[*] La física que se encuentra de manera implícita y explicita en este trabajo hace que el instrumento motorizado infrarossi y su software de control free infrarossi sea un herramienta indispensable  en el aula de clase en el momento de enseñar las  propiedades de las ondas electromagnéticas y los fenómenos físicos – cuánticos  que acompaña el mundo de los materiales  semiconductores.
 \end{enumerate}
-
-
 % ---------------------Aca empieza la bibliografia----------------------------------------------
 \begin{thebibliography}{99}
 \bibitem{FISICA4} Miákishev, G. (1995). Bujovsev. Física 4. Editorial Mir Moscú. Moscú. 198658. Frumento A. Biofísica.
@@ -237,10 +250,9 @@ siendo $e_{i}$ cada una de las diferencias entre las variables dependientes y lo
 \bibitem{ESTADISTICA} Ostle, B. (1981). Estadística aplicada. Limusa.
 \bibitem{OPTICA} Hecht, E., Dal Col, R., Talavera, R. W., \& Pérez, J. M. G. (2000). Óptica. Addison Wesley.
 \bibitem{ESTADO_SOLIDO} Pavlov, P. V., \& Jojlov, A. F. (1987). Física del estado sólido. Rubiños-1860.
-
-
+\bibitem{PYTHON} Gift, N., \& Jones, J. M. (2008). Python for Unix and Linux system administration. ``O'Reilly Media, Inc.".
+\bibitem{BASH} Álamos Zorrilla, J. (2004). Programación orientada a objetos con shell-bash. SÓLO PROGRAMADORES LINUX.
 \end{thebibliography}
 \end{multicols}
-
 \end{document}
 

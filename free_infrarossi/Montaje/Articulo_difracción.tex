@@ -87,7 +87,7 @@ En la banda prohibida de los semiconductores reales existe una gran cantidad de 
 \center
 \begin{tabular}{|l|r|}
 \hline
-\includegraphics[width=8cm, height=6cm]{img/transiciones.png} \\ \hline
+\includegraphics[width=6cm, height=6cm]{img/transiciones.png} \\ \hline
 \end{tabular}
 \captionof{figure}{Transiciones con radiación entre una banda y los estados de impureza.}
 \label{fig:g1}
@@ -159,16 +159,7 @@ La ecuación que describe el fenomeno físico se denomina ecuación de red para 
 d*sin(\theta _m)= m\lambda 
 \end{equation}
 Los valores de de m especifican el orden de diversos máximos principales. Para una fuente que tenga un espectro continuo ancho, la imagen de orden cero, $ m = 0 $, corresponde a la imagen blanca de la fuente no desviada $ \theta _0 = 0 $. La ecuación de red depende de $\lambda$ y así, para cualquier valor de m $\ne  0$, las distintas imágenes coloreadas de la fuente correspondientes a ángulos ligeramente diferentes $(\theta _m)$, se dispersa en un espectro continuo. Las regiones ocupadas por los débiles máximos secundarios aparecerán como bandas aparentemente desprovistas de luz. El espectro de primer orden $m = \frac{+}{-}1$ aparece a cada lado de $\theta = 0$ y es seguido, junto con intervalos alternados de oscuridad, por los espectros de orden superior, $m = \frac{+}{-}1, \frac{+}{-}2$, etc. "\cite{OPTICA} \\ \\
-Ahora se produce un patrón de difracción que alcanza al detector infrarrojo del modulo motorizado Free infrarossi, el cual avanza en linea recta a 45 centímetros de la fuente emisora de fotones infrarrojos, perpendicular a la incidencia de los patrones de difracción.
-\begin{Figure}	
-\center
-\begin{tabular}{|l|r|}
-\hline
-\includegraphics[width=8cm, height=6cm]{img/absorcionsemiconductor.png} \\ \hline
-\end{tabular}
-\captionof{figure}{Absorción de la luz por un semiconductor.}
-\label{fig:g2}
-\end{Figure}
+Ahora se produce un patrón de difracción que alcanza al detector infrarrojo del modulo motorizado Free infrarossi, el cual avanza en linea recta a 45 centímetros de la fuente emisora de fotones infrarrojos, perpendicular a la incidencia de los patrones de difracción. \\\\
 El detector del modulo motorizado Free infrarossi es un diodo receptor infrarrojo; “cuando un haz de radiación monocromática u homogénea traspasa una sustancia, debido a la reflexión y absorción su intensidad disminuye. Supongamos que la fracción de energía reflejada en el extremo del cuerpo sea $R$ , magnitud  que lleva el nombre de factor de reflexión. Si la intensidad de la luz incidente es $I_{0}$ y la reflejada $I_{R}$, entonces 
 \begin{equation}
 R = \frac{I_{R}}{I_{0}}
@@ -179,7 +170,15 @@ Designemos por $I$ la intensidad de la luz que incide en la capa $dx$, cómo se 
 -dI = \alpha I dx
 \end{equation}
 El coeficiente de proporcionalidad $\alpha$, que expresa la cantidad de energía absorbida del haz de intensidad unidad por la capa de espesor unidad, se llama factor de absorción.
-\\ \\
+\begin{Figure}	
+\center
+\begin{tabular}{|l|r|}
+\hline
+\includegraphics[width=5cm, height=5cm]{img/absorcionsemiconductor.png} \\ \hline
+\end{tabular}
+\captionof{figure}{Absorción de la luz por un semiconductor.}
+\label{fig:g2}
+\end{Figure}
 Integrando la ecuación 15 sin tener en cuenta la reflexión 
 \begin{equation}
 \int_{Io}^{I} \frac{dI}{I} = - \int_{0}^{d} \alpha dx 
@@ -227,27 +226,25 @@ Para la realización de este montaje se utilizarón los siguientes materiales:
 \item[c.] Software de control free infrarossi.
 \item[d.] Fuente emisora de fotones infrarrojos.
 \item[e.] Modulo bluetooth para pc.
-\item[f.] Rejilla de difracción de 670 lineas por milimetro 
+\item[f.] Rejilla de difracción de 670 lineas por milímetro 
 \end{enumerate}
 %--------------------Montaje-------------------------------------------------
 \subsection{Montaje}
 Colocar la fuente\footnote{Esta fuente se elaboro con un diodo led infrarrojo de 800 nm y un encapsulado epoxi de 3 mm.} emisora de fotones infrarrojos con la red de difración de 100 lineas por milímetro, frente a ella colocar el modulo motorizado infrarossi a 45 cm de la fuente emisora, como se muestra en la figura 3. 
-\\ \\
-Abrir una terminal de GNU-Linux y escribir infrarossi, oprimir enter y la clave de superusuario, luego de abrir el programa debe oprimir el boton on, esperar que se empareje el bluetooth, una vez emparejado el bluetooth el programa desplegara un tercer menú, oprimir el botón de difracción y esperar que el programa tome los datos necesarios.
-\\ \\
-Luego de capturar los datos aparecerá la gráfica de los datos, oprima doble click izquierdo en el máximo de interferencia y sin soltar el cursor lleve la linea al siguiente máximo de interferencia,  suelte el botón del cursor e inmediatamente  aparecerá la gráfica con el análisis de longitud de onda infrarroja del diodo, tal como se muestra en la figura 4. \\\\
-La gráfica de análisis y los datos capturados se almacenan dentro del archivo llamado Carpetas/Difraccion con la fecha y hora del análisis de datos.
 \begin{Figure}	
 \center
 \begin{tabular}{|l|r|}
 \hline
-\includegraphics[width=8cm, height=6cm]{img/mon_difraccion.png} \\ \hline
+\\
+\includegraphics[width=9cm, height=7cm]{img/mon_difraccion.png} \\\\ \hline
 \end{tabular}
-\captionof{figure}{Imagen del montaje para la difracción utilizando el modulo motorizado infrarossi.}
-\label{fig:g1}
+\captionof{figure}{Imagen del montaje para la difracción utilizando el modulo motorizado infrarossi, una fuente emisora de fotones de $\lambda = 800 nm$  y una red de difracción de 100 lineas por milímetro.}
+\label{fig:g3}
 \end{Figure}
-\section{Análisis de resultados}
-El programa free infrarossi cuando termina de recoger los datos realiza un análisis estadístico de los mismos, en una ventana aparte realiza la gráfica de los datos y predice la longitud de onda del diodo emisor infrarrojo con un error en la medida aceptable, no superior al $15\%$ dependiendo de la rigurosidad en el montaje.
+\vspace{1cm}
+Abrir una terminal de GNU-Linux y escribir infrarossi, oprimir enter y la clave de superusuario, luego de abrir el programa debe oprimir el boton on, esperar que se empareje el bluetooth, una vez emparejado el bluetooth el programa desplegara un tercer menú, oprimir el botón de difracción y esperar que el programa tome los datos necesarios.\\ \\
+Luego de capturar los datos aparecerá la gráfica de los datos, oprima doble click izquierdo en el máximo de interferencia y sin soltar el cursor lleve la linea al siguiente máximo de interferencia,  suelte el botón del cursor e inmediatamente  aparecerá la gráfica con el análisis de longitud de onda infrarroja del diodo, tal como se muestra en la figura 4. \\\\
+La gráfica de análisis y los datos capturados se almacenan dentro del archivo llamado Carpetas/Difraccion con la fecha y hora del análisis de datos.
 \begin{Figure}	
 \center
 \begin{tabular}{|l|r|}
@@ -255,8 +252,39 @@ El programa free infrarossi cuando termina de recoger los datos realiza un anál
 \includegraphics[width=8cm, height=6cm]{img/Graficas.png} \\ \hline
 \end{tabular}
 \captionof{figure}{Imagen generada por el programa free infrarossi.}
-\label{fig:g1}
+\label{fig:g4}
 \end{Figure}
+\section{Análisis de resultados}
+El programa free infrarossi cuando termina de recoger los datos realiza un análisis estadístico de los mismos, en una ventana aparte realiza la gráfica de los datos y predice la longitud de onda del diodo emisor infrarrojo con un error en la medida aceptable, no superior al $15\%$ dependiendo de la rigurosidad en el montaje.\\\\
+En la tabla 1, se muestra los resultados de nueve experimentos para calcular la longitud de onda $\lambda$ de la radiación producida por un diodo led emisor infrarrojo, fueron capturados y analizados con el modulo motorizado infrarossi y su software de control free infrarossi. $\Delta X$ es la distancia que hay entre pico y pico del patrón obtenido, esta viene en metros; $\lambda$ exp.  es la longitud de onda obtenida a través del experimento, viene en nanometros; $\lambda$ teo. Es la longitud de onda teórica del diodo emisor infrarrojo,  la cual corresponde a $800 nanometros$; el error porcentual es la ultima columna  de la tabla.
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|} 
+\hline
+\bf{Prueba} & \textbf{$\Delta$X [m]} & \bf{$\lambda$exp.[nm]} & \bf{$\lambda$teo.[nm]} & \bf{error  \%} \\
+\hline
+ 1 & 0.0393 & 836 & 800 & 4.62\\
+\hline
+ 2 & 0.0385 & 820 & 800 & 2.506\\
+\hline
+ 3 & 0.0393 & 836 & 800 & 4.62\\
+\hline 
+ 4 & 0.0341 & 727 & 800 & 9.138\\
+\hline
+5 & 0.0345 & 735 & 800 & 8.978\\
+\hline
+6 & 0.0341 & 727 & 800 & 9.138\\
+\hline
+7 & 0.0337 & 718 & 800 & 10.198\\
+\hline
+8 & 0.0333 & 709 & 800 & 11.257\\
+\hline
+9 & 0.0349 & 744 & 800 & 7.019\\
+\hline
+\end{tabular}
+\\
+\end{center}
+\textbf{Tabla 1.} Datos obtenidos de nueve pruebas para medir la longitud de onda producida por un diodo emisor infrarrojo, con el modulo motorizado infrarossi y su software de control free infrarossi. 
 \section{Conclusiones}
 \begin{enumerate}
 \item[*] El modulo motorizado infrarossi y su software de control ilustran de manera cuantitativa y cualitativa fenómenos ondulatorios como la difracción e interferencia de las ondas electromagnéticas y su dualidad onda – quantum, calculando de manera aproximada su longitud de onda $\lambda$.   
@@ -271,6 +299,7 @@ El programa free infrarossi cuando termina de recoger los datos realiza un anál
 \bibitem{ESTADO_SOLIDO} Pavlov, P. V., \& Jojlov, A. F. (1987). Física del estado sólido. Rubiños-1860.
 \bibitem{CIRCUITOS} Alexander, C. K., Sadiku, M. N., Bermúdez, A. V., \& Pedraza, C. R. C. (2006). Fundamentos de circuitos eléctricos. McGraw-Hill. 
 \bibitem{PYTHON} Gift, N., \& Jones, J. M. (2008). Python for Unix and Linux system administration. ``O'Reilly Media, Inc.".
+\bibitem{BASH} Álamos Zorrilla, J. (2004). Programación orientada a objetos con shell-bash. SÓLO PROGRAMADORES LINUX.
 \end{thebibliography}
 \end{multicols}
 \end{document}
