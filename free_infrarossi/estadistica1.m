@@ -6,18 +6,20 @@ U = log(X);
 V = log(Y);
 U2 = U .* U;
 UV = U .* V; 
+z = size(f);
+z1 = z(:,1);
 sumX = sum(X);
 sumY = sum(Y);
 sumU = sum(U);
 sumV = sum(V);
 sumU2 = sum(U2);
 sumUV = sum(UV);
-promX = sumX/117;
-promY = sumY/117;   			
-promU = sumU/117;
-promV = sumV/117;
-promU2 = sumU2/117;
-promUV = sumUV/117;
+promX = sumX/z1;
+promY = sumY/z1;   			
+promU = sumU/z1;
+promV = sumV/z1;
+promU2 = sumU2/z1;
+promUV = sumUV/z1;
 Suv = promUV - promU*promV;
 Su2 = promU2 - promU*promU;
 b = (Suv / Su2) - 0.5
@@ -26,10 +28,17 @@ a = exp(A)/5 + 0.02
 Yest = a* (X .^ b);
 Yteo= a * (X .^(-2));
 error = Y .- Yest;
-ECM = sum(error .* error) /117
+ECM = sum(error .* error) /z1
 Vteo = 0.0277 * (X .^(-2))
 Pprueba = (Y .* Y)/125
+Voltaje_entrante = 100*(Y ./ Vteo)
 Pteori = (Vteo .* Vteo)/125
+DV = Vteo .- Y;
+T = DV ./ Vteo;
+sT = sum(T);
+Tp = sT / z1
+EEp= (1 - Tp)*(0.0277)
+Voltaje_aproximado = (EEp)*(X .^(-2)); 
 save -ascii 'datos/a.dat' a;
 save -ascii 'datos/F.dat' ff;
 save -ascii 'datos/b.dat' b;
@@ -37,6 +46,10 @@ save -ascii 'datos/ECM.dat' ECM;
 save -ascii 'datos/Yest.dat' Yest;
 save -ascii 'datos/Yteo.dat' Yteo;
 save -ascii 'datos/Vteo.dat' Vteo;
-plot (X, Pprueba, '--', X, Pteori, 'o' )
-pause
+save -ascii 'datos/Amplitud.dat' EEp;
+save -ascii 'datos/Transmitancia.dat' Tp;
+save -ascii 'datos/V_aproximado.dat' Voltaje_aproximado;
+
+#plot (X, Y, '.', X, Vteo, '--', X, Voltaje_aproximado, "-" )
+#pause
 

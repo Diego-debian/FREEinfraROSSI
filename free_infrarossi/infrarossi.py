@@ -105,7 +105,8 @@ class App:
 #	    os.system("xterm -T Infrarossi -geom 50x8+185+100 +cm -bg blue -e python  bin/Atenuacion.py & ")
 
 	def Absorcion():
-	    tkMessageBox.showinfo("Infrarossi", message= "Para detener la visualización de datos, cierre la ventana de datos 'color azul' u oprima el botón reset del Dispositio ")
+	    tkMessageBox.showinfo("Infrarossi", message= "Espere por favor,  Preparando todo para empezar con el experimento.")
+	    os.system("python bin/Absorcion.py &")
 
 
 #---------------------------------- Bluetooth desconectado ----------------------------
