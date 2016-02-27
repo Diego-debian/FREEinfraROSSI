@@ -54,7 +54,7 @@ class Gramo():
 	lblTitulo = Label(bicho, text="ABSORCION", fg = ("blue"), bg = ("white"), font = ("Century Schoolbook L",23)).place(x=30, y=20)
         btnConectar1 = Button(bicho, text= " INICIAR ", width=5, height=1, command= Comenzar1).place(x=20+X, y=100+Y)               
         btnSalir = Button(bicho, text= " SALIR ", width=5, height=1, command= Salir).place(x=160+X, y=100+Y)    
-        btnGrafica = Button(bicho, text= " GRAFICA ", width=5, height=1, command= Grafica).place(x=90+X, y=100+Y)    
+      #  btnGrafica = Button(bicho, text= " GRAFICA ", width=5, height=1, command= Grafica).place(x=90+X, y=100+Y)    
 	Verifica()       
         bicho.mainloop()  	
 

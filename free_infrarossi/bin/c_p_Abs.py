@@ -88,10 +88,11 @@ class App:
                 arduino.close()
 
     def Analisis(self):
-#	os.system("octave bin/estadistica1.m")
-	os.system("octave estadistica1.m")
+	os.system("octave bin/estadistica1.m")
+#	os.system("octave estadistica1.m")
 	self.BX = np.loadtxt("datos/BX.dat")
 	self.BY = np.loadtxt("datos/BY.dat")
+	self.error_CM1 = np.loadtxt("datos/ECM1.dat")
 	self.q1 = np.loadtxt("datos/q1.dat")
 	self.Amplitud = np.loadtxt("datos/Amplitud.dat")
 	self.Ampli = round(self.Amplitud, 4)	
@@ -104,7 +105,7 @@ class App:
 	self.Yest = np.loadtxt("datos/Yest.dat")	
 	self.Yteo = np.loadtxt("datos/Yteo.dat")	
 	self.ECM = np.loadtxt("datos/ECM.dat")
-	self.ECM1 = round(self.ECM, 3)
+	self.error_CM11 = round(self.error_CM1, 5)
 	self.X = f[:,0]
 	self.V = f[:,1]
 	self.a = round(a, 4)
@@ -140,10 +141,10 @@ class App:
         pl.plot(self.X, self.A, 'B', self.q1, self.BY, 'y', self.q1, self.BX, 'b')
         pl.plot(self.X, self.V_A, 'Y', self.X, self.V, 'g:o')
 	pl.axis([0, 0.6, 0, 4])
-	pl.text(0.25, 3, r'V1  = ' + str(0.0277) + '  X^('+ str(-2)+')')
+	pl.text(0.2, 3, r'V1  = ' + str(0.0277) + '  X^('+ str(-2)+')')
 	pl.text(0.12, 3.5, r'V1' )
 	pl.text(0.01, 1, r'V2*' )
-        pl.text(0.25, 2.5, r'V2*  = ' + str(self.Ampli) + '  X^(-2)')
+        pl.text(0.2, 2.5, r'V2*  = ' + str(self.Ampli) + '  X^(-2)')
 
         
     def Grafica3(self):
@@ -160,6 +161,7 @@ class App:
 	pl.text(0.12, 3.5, r'V1' )
 	pl.text(0.01, 2, r'V2*' )
         pl.text(0.35, 2, r'Fp = ' + str(round(self.T,4)))
+        pl.text(0.35, 1.5, r'ECM = ' + str(round(self.error_CM1,7)))
         pl.savefig('datos/Absorcion.png')
         pl.show()
 	
@@ -169,14 +171,14 @@ class App:
 
                 
     def __init__(self):
-#	self.Verifica()
-#        self.Comenzar()
+	self.Verifica()
+        self.Comenzar()
 	self.Analisis()
 	self.Grafica()
 	self.Grafica1()
 	self.Grafica2()
 	self.Grafica3()
-	#self.Ordenar()
+	self.Ordenar()
         self.__del__()
             
     def __del__(self):
