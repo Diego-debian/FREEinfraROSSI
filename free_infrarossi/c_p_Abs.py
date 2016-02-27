@@ -1,7 +1,17 @@
-#!/usr/bin/python
-# -*- coding:utf-8 -*-
-#Creado por Diego Alberto Parra Garzón
-#Bogotá - Colombia 
+#/usr/bin/python
+#!*-* coding:utf-8 *-* 
+# Este script es sofware libre. Puede redistribuirlo y/o modificarlo bajo 
+# los terminos de la licencia pública general de GNU, según es publicada 
+# por la free software fundation bien la versión 3 de la misma licencia 
+# o de cualquier versión posterior. (según su elección ).
+# Si usted hace alguna modificación en esta aplicación, deberá siempre
+# mencionar el autor original de la misma.
+# Autor: 
+# Universidad  Distrital Francisco Jose  
+# Grupo de fisica e informatica
+# Dr Julian Andres Salamanca Bernal
+# Diego Alberto Parra Garzón 
+# Colombia, Bogota D.C.
 
 import numpy as np
 import os
@@ -31,13 +41,13 @@ class App:
                 
     def Comenzar(self):
         # MAXIMO n en el for 130
-        # Distancia de separacion 24 cm
-	# Distancia de recoleccion 22,5 cm
+        # Distancia de separacion 27 cm
+	# Distancia de recoleccion 25 cm
 	#Paso en centimetros pausada 1 = 0,34
         #Paso en centimetros pausada 2 = 0,30
         #Paso en centimetros pausada 3 = 0,27
         #Paso en centimetros pausada 4 = 0,213
-        #Paso en centimetros pausada 5 = 0.17
+        #Paso en centimetros pausada 5 = 0.205
         for n in range (0, 117): 
             os.system('rm datos/dat.dat')
             #time.sleep(2)
@@ -80,6 +90,10 @@ class App:
     def Analisis(self):
 #	os.system("octave bin/estadistica1.m")
 	os.system("octave estadistica1.m")
+	self.BX = np.loadtxt("datos/BX.dat")
+	self.BY = np.loadtxt("datos/BY.dat")
+	self.error_CM1 = np.loadtxt("datos/ECM1.dat")
+	self.q1 = np.loadtxt("datos/q1.dat")
 	self.Amplitud = np.loadtxt("datos/Amplitud.dat")
 	self.Ampli = round(self.Amplitud, 4)	
 	self.T = np.loadtxt("datos/Transmitancia.dat")	
@@ -91,7 +105,7 @@ class App:
 	self.Yest = np.loadtxt("datos/Yest.dat")	
 	self.Yteo = np.loadtxt("datos/Yteo.dat")	
 	self.ECM = np.loadtxt("datos/ECM.dat")
-	self.ECM1 = round(self.ECM, 3)
+	self.error_CM11 = round(self.error_CM1, 5)
 	self.X = f[:,0]
 	self.V = f[:,1]
 	self.a = round(a, 4)
@@ -103,9 +117,10 @@ class App:
         pl.title('Distancia vs Voltaje \n')
         pl.xlabel('Distancia [m]')
         pl.ylabel('Voltaje [V]')
-	pl.plot(self.X, self.V, 'o --')
-	pl.axis([0, 0.55, -0.001, 1])
+	pl.plot(self.X, self.V, 'g:o')
+	pl.axis([0, 0.6, 0, 2])
         pl.text(0.2, 4, r'Datos recolectados')
+	pl.text(0.3, 0.6, r'Datos' )
 
 
 
@@ -123,25 +138,30 @@ class App:
         pl.title('APROXIMACION')
         pl.xlabel('Distancia [m]')
         pl.ylabel('Voltaje [V]')
-        pl.plot(self.X, self.A, 'B')
-        pl.plot(self.X, self.V_A, 'R')
-	pl.axis([0, 0.65, -0.001, 1])
-	pl.text(0.25, 0.7, r'Azul V=' + str(0.0277) + '*X^('+ str(-2)+')')
-        pl.text(0.25, 0.55, r'Rojo V=' + str(self.Ampli) + '*X^(-2)')
+        pl.plot(self.X, self.A, 'B', self.q1, self.BY, 'y', self.q1, self.BX, 'b')
+        pl.plot(self.X, self.V_A, 'Y', self.X, self.V, 'g:o')
+	pl.axis([0, 0.6, 0, 4])
+	pl.text(0.2, 3, r'V1  = ' + str(0.0277) + '  X^('+ str(-2)+')')
+	pl.text(0.12, 3.5, r'V1' )
+	pl.text(0.01, 1, r'V2*' )
+        pl.text(0.2, 2.5, r'V2*  = ' + str(self.Ampli) + '  X^(-2)')
 
         
     def Grafica3(self):
         pl.subplot(212)
-	pl.plot(self.X, self.V, 'K', self.X, self.V_A, 'R', self.X, self.A, 'B')
+	pl.plot(self.X, self.V, 'g:o', self.X, self.V_A, 'Y', self.X, self.A, 'B', self.q1, self.BY, 'y', self.q1, self.BX, 'b')
         pl.subplot(212)
         pl.xlabel('Distancia [m]')
         pl.ylabel('Voltaje [V]')
         pl.title('Distancia vs Voltaje \n')
         pl.legend(loc='upper left')
-	pl.axis([0, 0.55, -0.001, 1])
-	pl.text(0.35, 0.7, r'Azul V=' + str(0.0277) + '*X^('+ str(-2)+')')
-        pl.text(0.35, 0.55, r'Rojo V=' + str(self.Ampli) + '*X^(-2)')
-        pl.text(0.35, 0.4, r'Transmitancia = ' + str(round(1-self.T,4)))
+	pl.axis([0, 0.6, 0, 4])
+	pl.text(0.35, 3, r'V1=  ' + str(0.0277) + '  X^('+ str(-2)+')')
+        pl.text(0.35, 2.5, r'V2*=  ' + str(self.Ampli) + '  X^(-2)')
+	pl.text(0.12, 3.5, r'V1' )
+	pl.text(0.01, 2, r'V2*' )
+        pl.text(0.35, 2, r'Fp = ' + str(round(self.T,4)))
+        pl.text(0.35, 1.5, r'ECM = ' + str(round(self.error_CM1,7)))
         pl.savefig('datos/Absorcion.png')
         pl.show()
 	

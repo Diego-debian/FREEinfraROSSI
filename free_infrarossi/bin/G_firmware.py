@@ -1,6 +1,5 @@
-#!/usr/bin/python
-# *-* coding:utf-8 *-*
-
+#/usr/bin/python
+#!*-* coding:utf-8 *-* 
 # Este script es sofware libre. Puede redistribuirlo y/o modificarlo bajo 
 # los terminos de la licencia pública general de GNU, según es publicada 
 # por la free software fundation bien la versión 3 de la misma licencia 
@@ -8,12 +7,11 @@
 # Si usted hace alguna modificación en esta aplicación, deberá siempre
 # mencionar el autor original de la misma.
 # Autor: 
-# Universidad Distrital Francisco Jose  
+# Universidad  Distrital Francisco Jose  
 # Grupo de fisica e informatica
 # Dr Julian Andres Salamanca Bernal
 # Diego Alberto Parra Garzón 
 # Colombia, Bogota D.C.
-
 import numpy as np
 import pylab as pl
 import serial
