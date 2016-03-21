@@ -9,15 +9,15 @@
 # Autor: 
 # Universidad Distrital Francisco Jose  
 # Grupo de fisica e informatica
-# Dr Julian Andres Salamanca Bernal
 # Diego Alberto Parra Garzón 
+# Dr Julian Andres Salamanca Bernal
 # Colombia, Bogota D.C.
 rfcomm release rfcomm0
 hcitool dev > log.txt | grep -e 'hci0' log.txt > mac.txt
 cut -d "0" -f 2,3  mac.txt > MAC.txt
 MAC=`cat MAC.txt`
 echo "La mac del dispositivo es : $MAC"
-hcitool scan > dispo.txt | grep -e "HC-05" dispo.txt > macd.txt
+hcitool scan > dispo.txt | grep -e "HC" dispo.txt > macd.txt
 cut -d "H" -f  1  macd.txt > MACD.txt
 #/etc/init.d/bluetooth status
 #/etc/init.d/bluetooth force-reload

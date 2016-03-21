@@ -9,8 +9,8 @@
 # Autor: 
 # Universidad  Distrital Francisco Jose  
 # Grupo de fisica e informatica
-# Dr Julian Andres Salamanca Bernal
 # Diego Alberto Parra Garzón 
+# Dr Julian Andres Salamanca Bernal
 # Colombia, Bogota D.C.
 import numpy as np
 import os
@@ -36,44 +36,43 @@ class App:
 	    os.system("exit")
 
     def Salir(self):
-        exit()
-                
+        exit() 
+
     def Comenzar(self):
-        # MAXIMO 130
-        # Distancia de separacion a la rejilla de difracción 40 cm
-	# Distancia de recoleccion de datos 20 cm
+        # Distancia de separacion 28 cm
+	# Distancia de recoleccion 25 cm
 	#Paso en centimetros pausada 1 = 0,34
         #Paso en centimetros pausada 2 = 0,30
         #Paso en centimetros pausada 3 = 0,27
-        #Paso en centimetros pausada 4 = 0,24 a 19 Celcius, pausada 4 = 0,180 a 10 Celcius
-        #Paso en centimetros pausada 5 = 0,18
-        for n in range (0, 111): 
+        #Paso en centimetros pausada 4 = 0,245
+        #Paso en centimetros pausada 5 = 0.213
+        for n in range (0, 117): 
             os.system('rm datos/dat.dat')
             #time.sleep(2)
             arduino= serial.Serial(self.puerta, 9600)
 	    print "aca va la lectura"
             arduino.write("aa")
             #time.sleep(1)
-            arduino.write('5')
+            arduino.write('4')
             arduino.close()
             arduino=serial.Serial(self.puerta, 9600)
             time.sleep(2)
-            arduino.write('hh')
+            arduino.write('zz')
             for i in range(0, 140):
                 arduino=serial.Serial(self.puerta, 9600)
                 archi = open('datos/dat.dat', 'a+')
-                time.sleep(0.000005)
+                time.sleep(0.00005)
                 x = arduino.readline()
-                z = 0.18*n
+                z = 0.21367*2*(140 - n)
                 xo = str(z)
                 yo = str(x)
                 print "paso numero", n
-                print "(cm) \t (mV)"
+                print "(cm) \t (microW)"
                 print('{0} {1}').format(xo, yo)
                 archi.write (xo)
                 archi.write (" ")
                 archi.write (yo)
-                archi.close()
+                archi.close()  
             else:
 		os.system("octave bin/prom1.m")
 		archi = open('datos/prom.dat', 'a+')
@@ -83,7 +82,6 @@ class App:
                 archi1 = open('datos/dats1.dat', 'a+')
                 archi1.write(Lectura)
                 archi1.close()
-                # os.system("gnuplot  Datos_C/dat1/agraf.gnp &")
                 arduino.write('aa')
                 arduino.close()
 

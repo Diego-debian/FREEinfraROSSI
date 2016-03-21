@@ -1,14 +1,14 @@
 // Este script es sofware libre. Puede redistribuirlo y/o modificarlo bajo 
-// los terminos de la licencia publica general de GNU, segun es publicada 
-// por la free software fundation bien la version 3 de la misma licencia 
-// o de cualquier version posterior. (segun su eleccion ).
-// Si usted hace alguna modificacion en esta aplicacion, debe siempre
+// los terminos de la licencia pública general de GNU, según es publicada 
+// por la free software fundation bien la versión 3 de la misma licencia 
+//o de cualquier versión posterior. (según su elección ).
+// Si usted hace alguna modificación en esta aplicación, deberá siempre
 // mencionar el autor original de la misma.
 // Autor: 
-// Universidad Distrital Francisco Jose  
+// Universidad  Distrital Francisco Jose  
 // Grupo de fisica e informatica
+// Diego Alberto Parra Garzón 
 // Dr Julian Andres Salamanca Bernal
-// Diego Alberto Parra Garzon 
 // Colombia, Bogota D.C.
 #include "Arduino.h"
 void setup();
@@ -29,8 +29,7 @@ void Inten2();
 void inicio();
 void Menu();
 void loop();
-
-//Variables 
+#line 1
 int motor = 3;
 const int sensor1 = A0;
 const int sensor2 = A5;
@@ -44,7 +43,7 @@ long miliVolts1;
 long intensidad1;
 int brillo1;
 
-//comienza funcion setup
+
 void setup()
 {
   Serial.begin(9600);
@@ -120,8 +119,8 @@ void Velo6()
 
 void Vepa1()
 {
-  analogWrite(motor, 140);
-  delay(65);
+  analogWrite(motor, 150);
+  delay(55);
   Velo0();
   delay(1000);
  // digitalWrite(resetea, HIGH);
@@ -130,63 +129,63 @@ void Vepa1()
 
 void Vepa2()
 {
-  analogWrite(motor, 140);
-  delay(60);
+  analogWrite(motor, 150);
+  delay(50);
   Velo0();
   delay(1000);
 }
 
 void Vepa3()
 {
-  analogWrite(motor, 140);
-  delay(55);
+  analogWrite(motor, 150);
+  delay(45);
   Velo0();
   delay(1000);
 }
 
 void Vepa4()
 {
-  analogWrite(motor, 140);
-  delay(50);
+  analogWrite(motor, 150);
+  delay(40);
   Velo0();
   delay(1000);
 }
 
 void Vepa5()
 {
-  analogWrite(motor, 140);
-  delay(45);
+  analogWrite(motor, 150);
+  delay(37);
   Velo0();
   delay(1000);
 }
 
 void Inten1()  
 {
-  miliVolts1 = (analogRead(sensor1) *5000L) /1023; //opteniendo el valor sensor
+  miliVolts1 = ((analogRead(sensor1) *5000L) /1023)*4; //opteniendo el valor sensor
   intensidad1 =miliVolts1;
   brillo1 = map(intensidad1, 0, 5000, 0, 255); //funcion map (mapeo) convierte la variable y le da un rango y un dominio
   brillo1 = constrain(brillo1, 0, 255); //funcion constrain o contenido en el intervalo de analogWrite (0, 255)
-  analogWrite(ledAzul, brillo1 );   //Salida del led si esta el obstaculo esta lejos
-  analogWrite(ledVerde, brillo1 - 255); //Salida del led si el obstaculo esta cerca
+  analogWrite(ledAzul, 255 - brillo1 );   //Salida del led si esta el obstaculo esta lejos
+  analogWrite(ledVerde, brillo1); //Salida del led si el obstaculo esta cerca
   Serial.print(" "); //salida al Serialporth
   Serial.print(intensidad1);
   Serial.println(" ");
-  delay (60);
+  delay (3);
 }
 
 void Inten2()
 {
-  miliVolts1 = (analogRead(sensor2) *5000L) /1023; //opteniendo el valor sensor
+  miliVolts1 = ((analogRead(sensor2) *5000L) /(1023))*4; //opteniendo el valor sensor
   intensidad1 =miliVolts1;
   brillo1 = map(intensidad1, 0, 5000, 0, 255); //funcion map (mapeo) convierte la variable y le da un rango y un dominio
   brillo1 = constrain(brillo1, 0, 255); //funcion constrain o contenido en el intervalo de analogWrite (0, 255)
   analogWrite(ledEmisor,   255);
-  analogWrite(ledAzul, brillo1 ); //Salida del led si esta el obstaculo esta lejos
-  analogWrite(ledVerde, brillo1 - 255); //Salida del led si el obstaculo esta cerca
+  analogWrite(ledAzul, 255-brillo1 ); //Salida del led si esta el obstaculo esta lejos
+  analogWrite(ledVerde, brillo1); //Salida del led si el obstaculo esta cerca
   Serial.print(" "); //salida al Serialport
   Serial.print(intensidad1);
   Serial.println(" ");
-  delay (60);
+  delay (3);
 }
 
 //void resetear()
@@ -200,13 +199,13 @@ void Inten2()
 void inicio()
 {
   digitalWrite(ledRojo, HIGH);   // turn the LED on (HIGH is the voltage level)
-  analogWrite(ledAzul, LOW);
-  analogWrite(ledVerde, LOW);
-  delay(150);               // wait for a second
-  digitalWrite(ledRojo, LOW);    // turn the LED off by making the voltage LOW
-  analogWrite(ledAzul, LOW);
-  analogWrite(ledVerde, LOW);
-  delay(150);
+  analogWrite(ledAzul, 255);
+  analogWrite(ledVerde, 255);
+  delay(100);               // wait for a second
+  analogWrite(ledRojo, LOW);    // turn the LED off by making the voltage LOW
+  analogWrite(ledAzul, 255);
+  analogWrite(ledVerde, 255);
+  delay(100);
 }
 
 void Menu()

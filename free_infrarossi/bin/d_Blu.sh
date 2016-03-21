@@ -9,7 +9,7 @@
 # Autor: 
 # Universidad  Distrital Francisco Jose  
 # Grupo de fisica e informatica
-# Dr Julian Andres Salamanca Bernal
 # Diego Alberto Parra Garzón 
+# Dr Julian Andres Salamanca Bernal
 # Colombia, Bogota D.C.
 rfcomm release rfcomm0

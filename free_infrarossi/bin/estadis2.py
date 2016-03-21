@@ -9,8 +9,8 @@
 # Autor: 
 # Universidad  Distrital Francisco Jose  
 # Grupo de fisica e informatica
-# Dr Julian Andres Salamanca Bernal
 # Diego Alberto Parra Garzón 
+# Dr Julian Andres Salamanca Bernal
 # Colombia, Bogota D.C.
 from matplotlib.widgets import  RectangleSelector
 from numpy import *
@@ -27,14 +27,15 @@ from pylab import *
 class Estadistica:
     def Cargar(self):
 #	self.f= np.loadtxt('datos/dats1.dat')
-	self.x , self.y = np.loadtxt('datos/dats1.dat', unpack=True,  usecols=[0,1])
+	self.x , self.ym = np.loadtxt('datos/dats1.dat', unpack=True,  usecols=[0,1])
 #	self.x , self.y = np.loadtxt('dats1.dat', unpack=True,  usecols=[0,1])
+	self.y = self.ym/10
 	self.n = np.size(self.x)
 	self.k = np.ceil(1 + np.log2(self.n)) # comando ceil redondea el numero al mayor entero
 	self.c = np.sort(self.y) #comando sort guarda los datos de y
-	self.lon = self.c[110]/8
-	
-	print "El tamaño de la muestra es: ", self.n , "\nEl tamaño del intervalo es ", self.k, self.lon
+#	self.lon = self.c[110]/8
+	print self.n
+#	print "El tamaño de la muestra es: ", self.n , "\nEl tamaño del intervalo es ", self.k, self.lon
 
     def Grafica(self):
 	def onselect(eclick, erelease):
@@ -42,9 +43,9 @@ class Estadistica:
 	    print(' endposition   : (%f, %f)' % (erelease.xdata, erelease.ydata))
 	    print(' used button   : ', eclick.button)  
 	    self.xinicial = round(eclick.xdata,2)
-	    self.yinicial= round(eclick.ydata,2)
+	    self.yinicial= round(eclick.ydata,11)
 	    self.xfinal = round(erelease.xdata,2)
-	    self.yfinal = round(erelease.ydata,2)
+	    self.yfinal = round(erelease.ydata,11)
 	    print self.xinicial, self.yinicial , self.xfinal, self.yfinal
 
 	def toggle_selector(event):
@@ -57,7 +58,7 @@ class Estadistica:
 	        toggle_selector.RS.set_active(True)
 
 	pl.xlabel('Distancia [m]')
-	pl.ylabel('Voltaje [V]')
+	pl.ylabel('Intensidad [microW]')
         pl.title('LONGITUD DE ONDA DIODO INFRARROJO \n')
 	fig = figure
 	ax = subplot(111)
@@ -66,6 +67,12 @@ class Estadistica:
 	cursor = Cursor(ax, useblit=True, color='red', linewidth=2)
 	toggle_selector.RS = RectangleSelector(ax, onselect, drawtype='line')
 	connect('key_press_event', toggle_selector)
+	pl.subplots_adjust(right=0.97)
+        pl.subplots_adjust(left=0.18)
+        pl.subplots_adjust(bottom=0.13)
+        pl.subplots_adjust(top=0.87)
+        pl.subplots_adjust(wspace=0.32)
+        pl.subplots_adjust(hspace=0.71)
 	pl.show()
 
     def Estadistica(self):
@@ -84,12 +91,12 @@ class Estadistica:
 
     def Grafica1(self):
 	self.x1 = self.x/100
-	self.y1 = self.y /1000
+	self.y1 = self.y/1000000
 	pl.subplot(221)
 	pl.plot(self.x1,self.y1, 'o--')
 	pl.title('Datos Capturados  \n')
 	pl.xlabel('Distancia [m]')
-	pl.ylabel('Voltaje [V]')
+	pl.ylabel('Intensidad [W]')
 #	pl.ylim(0, 0.02) 
 
     def Grafica2(self):
@@ -97,36 +104,36 @@ class Estadistica:
         pl.plot(self.x1, self.y1, 'o--')
         pl.title('Patrones de Interferencia \n')
  	pl.xlabel('Distancia [m]')
-	pl.ylabel('Voltaje [V]')
-	pl.text(0.06, 0.02, r' x1 = ' + str(self.xinicial/100))
-	pl.text(0.06, 0.018, r' x2 = ' + str(self.xfinal/100))
-	pl.text(0.06	, 0.016, r' x2-x1 = ' + str(self.distancia/100))
+	pl.ylabel('Intensidad [W]')
+	pl.text(0.001, 0.0000030, r' x1 = ' + str(self.xinicial/100))
+	pl.text(0.001, 0.0000025, r' x2 = ' + str(self.xfinal/100))
+	pl.text(0.001, 0.0000020, r' x2-x1 = ' + str(self.distancia/100))
 # 	pl.ylim(0, 0.036) 
-        pl.plot([self.xinicial/100, self.xinicial/100], [0, 0.015], '-')
-        pl.plot([self.xfinal/100, self.xfinal/100], [0, 0.015], '-')
+        pl.plot([self.xinicial/100, self.xinicial/100], [0, 0.000005], '-')
+        pl.plot([self.xfinal/100, self.xfinal/100], [0, 0.000005], '-')
         pl.plot(self.x1, self.y1, 'o--')
-	pl.ylim(0, 0.022) 
+#	pl.ylim(0, 0.022) 
 
     def Grafica3(self):
 	pl.subplot(212)
         pl.plot(self.x1, self.y1, 'o--')
-        pl.plot([self.xinicial/100, self.xinicial/100], [0, 0.015], '-')
-        pl.plot([self.xfinal/100, self.xfinal/100], [0, 0.015], '-')
-#        pl.plot([self.xinicial/100, self.xfinal/100], [0.013, 0.013], '-')
-	pl.text(0.04, 0.016, r' distancia entre asintotas '+str(self.distancia/100) + '[m] ')
-	pl.text(0.04, 0.020, r' m:1 Lamda IRE =' +  str(self.lamda) + ' [nm}      +/- ' + str(self.error) + ' [nm]')
-	pl.text(0.04, 0.018, r' Error porcentual  ' + str(self.error1) + ' %')
- 	pl.ylim(0, 0.022) 
+        pl.plot([self.xinicial/100, self.xinicial/100], [0, 0.000005], '-')
+        pl.plot([self.xfinal/100, self.xfinal/100], [0, 0.000005], '-')
+#        pl.plot([self.xinicial/100, self.xfinal/100], [0, 0.0000000001], '-')
+	pl.text(0.001, 0.0000030, r' Distancia entre asintotas '+str(self.distancia/100) + '[m] ')
+	pl.text(0.001, 0.0000025, r' m:1 Lamda IRE =' +  str(self.lamda) + ' [nm} +/- ' + str(self.error) + ' [nm]')
+	pl.text(0.001, 0.0000020, r' Error porcentual  ' + str(self.error1) + ' %')
+# 	pl.ylim(0, 0.022) 
 	pl.xlabel('Distancia [m]')
-	pl.ylabel('Voltaje [V]')
+	pl.ylabel('Intensidad [W]')
         pl.title('LONGITUD DE ONDA DIODO INFRARROJO \n')
 
     def Plotear(self):
 	pl.subplots_adjust(right=0.97)
-        pl.subplots_adjust(left=0.11)
+        pl.subplots_adjust(left=0.18)
         pl.subplots_adjust(bottom=0.13)
         pl.subplots_adjust(top=0.87)
-        pl.subplots_adjust(wspace=0.32)
+        pl.subplots_adjust(wspace=0.62)
         pl.subplots_adjust(hspace=0.71)
         pl.savefig('datos/Graficas.png')
         pl.show()
@@ -142,6 +149,6 @@ class Estadistica:
 	self.Grafica2()
 	self.Grafica3()
 	self.Plotear()
-#	self.ordena()
+	self.ordena()
 
 esto = Estadistica()

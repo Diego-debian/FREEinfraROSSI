@@ -8,8 +8,8 @@
 # Autor: 
 # Universidad  Distrital Francisco Jose  
 # Grupo de fisica e informatica
-# Dr Julian Andres Salamanca Bernal
 # Diego Alberto Parra Garzón 
+# Dr Julian Andres Salamanca Bernal
 # Colombia, Bogota D.C.
 ARCHIVO=`cat datos/name.dat`
 mv -f "$ARCHIVO" Carpetas/Difraccion

@@ -8,8 +8,8 @@
 # Autor: 
 # Universidad Distrital Francisco Jose  
 # Grupo de fisica e informatica
-# Dr Julian Andres Salamanca Bernal
 # Diego Alberto Parra Garzón 
+# Dr Julian Andres Salamanca Bernal
 # Colombia, Bogota D.C.
 
 cp /etc/bash.bashrc /etc/bash.bashrc.respaldo
