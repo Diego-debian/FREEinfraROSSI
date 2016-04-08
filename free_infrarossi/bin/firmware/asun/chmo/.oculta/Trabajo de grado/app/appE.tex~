@@ -1,0 +1,13 @@
+
+\section{Apéndice E. SOPORTE PDF}
+\label{app:appE}
+
+%se requiere para cualquier grafica que aparezca en el mismo lugar del titulo
+%del apendice
+\includegraphics[scale=0.8]{img/soporte_pdf.pdf} 
+
+%con este comando \includepdf, se forza a una pagina nueva quedando el titulo del apéndice sin figuras. 
+\includepdf[scale=0.7,pages={2,3}]{img/soporte_pdf.pdf}
+
+
+

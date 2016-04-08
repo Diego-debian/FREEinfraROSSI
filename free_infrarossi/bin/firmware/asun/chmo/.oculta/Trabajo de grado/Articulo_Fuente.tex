@@ -1,0 +1,317 @@
+% version 12
+% Autor: Julian Salamanca
+% Institución: Universidad Distrital Francisco José de Caldas
+% Fecha: 09AGO2013
+
+\documentclass[jou]{apa6} %journal stilo APA con citacion clasica (apacite.pdf)
+%\documentclass[doc]{apa6} % journal estilo latex
+%\documentclass[man]{apa6}  % manuscrito APA
+
+\usepackage[toc,page]{appendix}
+\usepackage{balance}
+\usepackage{multicol}
+\usepackage{pdfpages}
+\usepackage{afterpage}
+\usepackage{float}
+
+
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}% Tildes
+\usepackage{hyperref}
+\urlstyle{same}
+
+%====================================================================
+%Para que no parta las palabras con guiones al final de linea
+\usepackage[none]{hyphenat} 
+\tolerance=6000
+%====================================================================
+
+
+
+%Stilo citaciones APA (debe ir despues de "hyperref ")
+\usepackage{apacite} 
+
+% para compilar eps con: pdflatex -shell-escape <archivo>.tex
+\usepackage{epstopdf} 
+
+\usepackage{amsmath, amsthm, amsfonts}
+\usepackage{graphicx,wrapfig,lipsum}
+
+\usepackage{fancyhdr}%
+\pagestyle{fancy}
+\fancypagestyle{empty}{
+
+%  \setlength{\topmargin}{-0.5in}
+%  \setlength{\headheight}{1.05in}
+  \setlength{\headsep}{0.5in}
+%  \setlength{\headwidth}{\textwidth}
+%  \setlength{\footskip}{2.0in}
+
+  \renewcommand{\headrulewidth}{0pt}
+
+  % ========== EDITAR LOGO GRUPO =========================
+
+  \fancyhead[L]{
+    \includegraphics[width=2.0cm, height=2.0cm]{img/logoGI}
+    \vspace{-1.0cm}
+  }
+  % ========== FIN NO EDITAR LOGO GRUPO =================
+  
+
+  % ========== NO EDITAR LOGO UD =========================
+
+  \fancyhead[R]{
+    \includegraphics[width=5.5cm, height=1.2cm]{img/logo_UD_EXT}
+  }
+  % ========== FIN NO EDITAR ===========================
+  
+
+}
+
+
+\title{Diseño de una fuente emisora de fotones en el espectro infrarrojo para el montaje del experimento ilustrativo de la difracción con el software \texttt{FREEinfraROSSI} y el vehículo motorizado \texttt{infraROSSI}}
+
+\shorttitle{Articulo fuente FUENinfraROSSI}
+
+%==================== AUTOR (ES) ========================
+\author{Diego Alberto Parra Garzón \\ \href{mailto:diegoestudianteud1@gmail.com}{diegoestudianteud1@gmail.com}, \\ PhD. Julian Andrés Salamanca Bernal \\ \href{mailto:jasalamanca@udistrital.edu.co}{jasalamanca@udistrital.edu.co}}
+\date{\today}
+\affiliation{Universidad Distrital ``Francisco José de Caldas'', Facultad de Ciencias y Educación\\ 
+	     calle 3 No 26A-40 Bogotá-Colombia\\
+             Grupo de Física e Informáica ``FISINFOR''}
+\leftheader{Diego}
+%==================== FIN AUTOR (ES) ====================
+
+%==================== RESUMEN ========================
+\abstract{
+\begin{center}
+\textbf{Abstrac}
+\end{center}
+This writing describes in detail the design of an external source of optoelectronic type in the infrared range of the electromagnetic spectrum, which feeds the infrared emitting diode and focuses electromagnetic radiation produced by this infrared LED; decreasing the scattering angle of photonics radiansa on the diffraction grating 100 lines per millimeter, and providing a basis on which to rest the diffraction grating. \\\\
+Keywords: Diffraction grating, optoelectronics source, dispersion, electromagnetic waves, infrared photons.
+\begin{center}
+\textbf{Resumen}
+\end{center}
+El presente escrito, describe detalladamente el diseño de una fuente externa de tipo optoelectrónica en el rango infrarrojo del espectro electromagnético, la cual alimenta el diodo emisor infrarrojo y enfoca la radiación electromagnética producida por este led infrarrojo; disminuyendo el ángulo de dispersión de la radiansa fotónica sobre la rejilla de difracción de 100 lineas por milímetro, y proporcionando una base en la que repose esta rejilla de difracción.
+}
+\keywords{Rejilla de difracción, fuente optoelectrónica, dispersión, ondas electromagnéticas, infrarrojo, fotones. }
+
+%==================== FIN RESUMEN ========================
+
+\begin{document}
+
+%================  NO EDITAR =================
+\renewcommand{\tablename}{Tabla} %"Cuadro" por "Tabla"
+\renewcommand{\refname}{Referencias} %"Cuadro" por "Tabla"
+% \def\st@rtbibsection{\mspart{RReferencias}}% ``References'' por ``Referencias'
+\renewcommand{\rheadname}{Encabezado de página}% Running head (encabezado de pagina)
+\renewcommand{\acksname}{Nota de Autor}% 
+\renewcommand{\keywordname}{Palabras clave}% 
+\renewcommand{\listtablename}{Índice de tablas}% 
+\renewcommand{\BOthers}[1]{et al.\hbox{}}
+\renewcommand{\appendixname}{Ap} %"Cuadro" por "Tabla"
+\renewcommand{\appendixname}{Anexo}
+\renewcommand{\appendixname}{Anexos}
+\renewcommand{\appendixtocname}{Anexos}
+\renewcommand{\appendixpagename}{Anexos}
+\maketitle
+
+%============== TABLA DE CONTENIDO ===============
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+%==================== INTRODUCCION ==============
+\section{INTRODUCCION}
+Para el experimento de difracción se necesita una fuente emisora de fotones, que sea monocromática y que su flujo este en fase, el instrumento más utilizado para este propósito es el láser que es distribuido por fabricas que surten de instrumentos científicos a las universidades y centros de investigación, marcas como PHYWE\footnote{Enlace a la sección online de láser PHYWE \url{https://www.phywe.com/en/experimentehierarchie/physics/age-16-19/optics/laser-optics/}}, LEYBOLD\footnote{Enlace a la sección online de laser LEYBOLD \url{http://www.photonics.ld-didactic.com/}} entre otras, ofrecen estos productos de una excelente precisión en su longitud de onda, con una modulación de fase muy alta, pero también con precios no muy cómodos; por lo que este proyecto ofrece una alternativa económica para la fuente como se observa en la figura \ref{fig:fig1}, a la que se le asigno el nombre de \texttt{FUENinfraROSSI}, esta cuenta con un enfoque óptico del tipo lente doble convexa~\cite{giancoli1998physics}; la densidad de flujo fotónico irradiado por el led es de $45 mW/ \Omega$, con una longitud de onda de \texttt{850 nm} y una señal de voltaje de funcionamiento óptimo de \texttt{(1.7 a 2)V} voltaje continuo según parámetros del fabricante\footnote{Enlace a la hoja de datos del diodo led emisor infrarrojo suministrada por el fabricante online \url{http://www.betlux.com/product/LED_lamp/infrared\%20diodo/BL-L314IR.PDF}}.\\\\
+
+%================== FIGURA vista lateral fuente 
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/Fuente_emisora.png}
+  \caption{Vista lateral de la fuente emisora en infrarrojo FUENinfraROSSI.}
+  \label{fig:fig1}
+\end{figure}
+%============ Diseño Experimental 
+\section {Diseño experimental}
+La fuente \texttt{FUENinfraROSSI} tiene adaptado  un modulador de señal de \texttt{(9 a 5)V} voltaje continuo, con un sistema de modulación de señal de salida de \texttt{2V} voltaje continuo del tipo resistivo; un enfoque óptico del tipo lente doble convexa; una base para sostener firmemente la rejilla de difracción y un indicador led de encendido.
+%============ Diseño ELECTRICO
+\subsection {Diseño eléctrico}
+El diseño eléctrico consta de un sistema modulador de señal de \texttt{(9 a 5)V} voltaje continuo como se observa en las figuras \ref{fig:fig2}, \ref{fig:fig3} y \ref{fig:fig4}, compuesto por el semiconductor lm7805cv\footnote{Enlace a la hoja de datos suministrada por el fabricante para el semiconductor lm7805cv \url{http://pdf1.alldatasheet.com/datasheet-pdf/view/9048/NSC/LM7805C.html}}, dos condensadores electrolíticos de \texttt{10} $\mu F$, un interruptor, una fuente de alimentación del tipo batería de 9V, 170mAh, recargable de tipo cuadrada, un led de color rojo, una resistencia de \texttt{300} $\Omega$, un pin de salida a $+$ \texttt{5V} y otro pin a \texttt{GND}.\\\\
+%================== FIGURA sistema baquela de 9 a 5 voltios 
+\begin{figure}
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/M_S_5V.png}
+  \caption{Esquema del sistema de modulación de señal de \texttt{(9 a 5)V} de la fuente FUENinfraROSSI.}
+  \label{fig:fig2}
+\end{figure}
+%================== FIGURA sistema electrico de 9 a 5 voltios 
+\begin{figure}
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/M_E_5V.png}
+  \caption{Esquema eléctrico del sistema de modulación de señal de \texttt{(9 a 5)V} de la fuente FUENinfraROSSI.}
+  \label{fig:fig3}
+\end{figure}
+%================== FIGURA sistema circuito impreso de 9 a 5 voltios 
+\begin{figure}
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/M_b_5v.png}
+  \caption{Esquema circuito impreso del sistema de modulación de señal de \texttt{(9 a 5)V} de la fuente FUENinfraROSSI.}
+  \label{fig:fig4}
+\end{figure}
+El sistema emisor de fotones como se observa en la figura \ref{fig:fig5}, esta compuesto por un diodo led emisor infrarrojo con encapsulado epoxy de \texttt{3mm} y una longitud de onda de \texttt{850 nm}; el cual crea una radiansa de fotones infrarrojos los cuales tendrán que avanzar hasta el sistema de enfoque fotónico y de allí ha la rejilla de difracción de \texttt{100 lineas por milímetro}, para irradiarse sobre el sistema de detección de electro-recepción pasiva~\cite{pedraja2012modelo}, que posee el modulo motorizado \texttt{infraROSSI} para el estudio e ilustración del fenómeno físico  ondulatorio de la difracción de ondas electromagnéticas en el espectro infrarrojo . 
+% =============================0 FIGURA electrico emisor fotonico
+\begin{figure}
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/LED1.png}
+  \caption{Esquema eléctrico del emisor de fotones infrarrojos de la fuente FUENinfraROSSI.}
+  \label{fig:fig5}
+\end{figure}
+%============================ Subsección montaje mecanico
+\subsection{Montaje mecánico}
+El montaje de la fuente FUENinfraROSSI como se observa en las figuras \ref{fig:fig6} y \ref{fig:fig8}, tiene dimensiones de \texttt{5.5x5.5x7.5} $cm^{3}$ formando una caja hueca donde se coloca el sistema de alimentación de voltaje y sus elementos electrónicos junto a un interruptor de control de encendido y apagado , una base  soporte donde se coloca la rejilla de difracción y una base soporte cilíndrica metálica donde se coloca el sistema de emisión fotónica.
+% =============================0 FIGURA  fuente 1
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/fuente1.png}
+  \caption{Montaje mecánico, vista frontal de la fuente FUENinfraROSSI.}
+  \label{fig:fig6}
+\end{figure}
+% =============================0 FIGURA  fuente 3
+\begin{figure}
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/fuente3.png}
+  \caption{Montaje mecánico, vista superior de la fuente FUENinfraROSSI.}
+  \label{fig:fig8}
+\end{figure}
+El sistema óptico de la fuente \texttt{FUENinfraROSSI} como se muestra en la figura \ref{fig:fig7},  consta de una lente doble convexa, la cual se encarga de enfocar los fotones infrarrojos hasta llegar al obturador  que permite el paso de los fotones enfocados por la lente doble convexa y a los que no están enfocados no les permite el paso, este obturador plástico tiene también la función de fijar la lente entre la base metálica circular de \texttt{0.5 cm\,} de diámetro y el diodo emisor infrarrojo de 3 mm de diámetro.
+% =============================0 FIGURA  fuente 2
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/fuente2.png}
+  \caption{Sistema óptico de la fuente FUENinfraROSSI.}
+  \label{fig:fig7}
+\end{figure}
+% =============================0 FIGURA Analisis Físico matemático
+\section{Modelo físico matemático}
+Una vez se enciende el interruptor de la fuente como se observa en la figura \ref{fig:fig8}, el semiconductor lm7805 cv modula la señal de entrada de voltaje de \texttt{9V} voltaje continuo a una señal de \texttt{5V} voltaje continuo esto con ayuda de los dos condensadores electrolíticos de $10 \mu F$ que se encargan de filtrar el ruido de la señal tanto de entrada como de salida en el semiconductor~\cite{alexander2002fundamentos}.\\\\
+Al led\footnote{Hoja de datos del fabricante del diodo led rojo, online \url{https://www.sparkfun.com/datasheets/Components/LED/COM-09590-YSL-R531R3D-D2.pdf}} indicador de encendido como se observa en las figuras \ref{fig:fig2} y \ref{fig:fig6},  se le suministra $10 mA$ para su corriente de trabajo, y $2 V$ voltaje continuo para su voltaje de trabajo, por lo que la intensidad lumínica del led sera menor a \texttt{150 mcd.}\\\\
+El voltaje suministrado al led rojo de \texttt{2V}, lo entrega la resistencia de \texttt{300}~$\Omega$ a medio vatio como se observa en las figuras \ref{fig:fig2} y \ref{fig:fig3}. Utilizando la ley de ohm en la ecuación~\ref{eq:eq1}, en donde \texttt{V} es el voltaje disipado por la resistencia, \texttt{I} es la corriente que circula por la resistencia y el semiconductor led rojo según ~\cite{alexander2002fundamentos}; cambiando los valores de la ecuación \ref{eq:eq1}, 
+\begin{equation}
+V = R\,I \label{eq:eq1}.
+\end{equation}
+\texttt{R} toma el valor de \texttt{300} $\Omega$ e \texttt{I} toma el valor de \texttt{10 mA}, el voltaje disipado por la resistencia es de \texttt{3V}, de esta manera se obtiene el voltaje ideal para el indicador led.\\\\
+Los fotones producidos por el diodo emisor de la fuente emisora de radiación infrarroja se dan según \cite{shalimova1975fisica} (debido a que en los semiconductores, con estructura compleja de las bandas energéticas, son posibles las transiciones indirectas de los electrones de la banda de conducción  a la de valencia acompañadas de la emisión de un fotón. En este caso la recombinación del electrón libre con el hueco se desarrolla con la aparición de un fonón, lo que asegura la conservación del cuasi impulso. Lo más probable es que el fonón sea emitido. Si en el semiconductor se desarrollan procesos de recombinación entre bandas  tanto directa como indirectas, en el espectro de radiación se observan dos bandas de luminiscencia. \\ \\
+En la banda prohibida de los semiconductores reales existe una gran cantidad de estados localizados, que están ligados a los átomos de impureza, defectos de la estructura, infracciones de la periodicidad de la estructura en la superficie, entre otros. Estos estados localizados desempeñan un papel importante  en los procesos de luminiscencia. \\\\
+Las transiciones de los electrones de la banda de conducción a los niveles de los pequeños donadores (o de los huecos de la banda de valencia a los niveles de los pequeños aceptores),  que hacen que estos últimos se neutralicen, pueden ser con radiación. En este caso es de esperar la aparición de luminosidad en la región infrarroja remota del espectro. Pero los cálculos  muestran que en estas transiciones lo más probable es que sea emitido un fonón y no un fotón, es decir, que el proceso se desarrolla sin radiación. La recombinación con radiación se produce por lo general  como viene mostrado en la figura \ref{fig:fig9}.\\\\
+% =============================0 FIGURA Transiciones con radiación entre una banda y los estados de impureza.
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/transiciones.png}
+  \caption{Transiciones con radiación entre una banda y los estados de impureza.}
+  \label{fig:fig9}
+\end{figure}
+Primero un electrón de la banda de conducción es capturado por un nivel local situado un poco más abajo que Ec\footnote{Ec es el nivel de energía de conducción.}\,, y después se efectúa la recombinación de este electrón localizado con un hueco de la banda de valencia, la cual va acompañada de la emisión de un fotón. El electrón puede también realizar una transición con radiación de la banda de conducción y después recombinarse con un hueco. El estudio de los espectros de luminiscencia relacionados a diversas impurezas y defectos permite obtener información sobre estas infracciones de la estructura. En los semiconductores se pueden producir pares \texttt{electrón-hueco} ligados por la atracción coulombiana, es decir, excitones. Si uno de estos pares se aniquila, se produce la emisión de un fotón. La energía de esta radiación esta dada por la ecuación~\ref{eq:eq2}, 
+\begin{equation}
+h\nu = E_{g} - E\label{eq:eq2}.
+\end{equation}
+donde E es la energía de enlace del excitón.)\\\\
+Ahora se tiene un flujo de fotones de energía $h\nu$ saliendo del diodo emisor infrarrojo,  según~\cite{gautreau2001fisica} (como los fotones viajan a la velocidad de la luz deben, de acuerdo con la teoría de la relatividad, tener una masa en reposo igual a cero; de aquí que su energía sea completamente cinética. Si un fotón existe, entonces se mueve a la velocidad de la luz, $c$; si deja de moverse a velocidad c, deja de existir. Para $m_{0} = 0$ la relación relativista \texttt{momentum-energía}  se convierte en $E = pc$.
+de esta forma, cada fotón tiene un momentum como se muestra en la ecuación~\ref{eq:eq3}
+\begin{equation}
+p = \frac{E}{c} = \frac{h\nu}{c} = \frac{h}{\lambda}\label{eq:eq3}.
+\end{equation}
+Desde el punto de vista cuántico, un haz de energía electromagnética se compone de fotones que se desplazan a la velocidad $c$. La intensidad del haz será proporcional al número de fotones que cruza un área unitaria por unidad de tiempo. Entonces, si el haz es monocromático (de una frecuencia), la intensidad $I$ se obtendrá de la ecuación \ref{eq:eq4}
+\begin{equation}
+I = (h\nu)\times \left ( \frac{N}{A\times t } \right)\label{eq:eq4}.
+\end{equation}
+$h$ es la constante de Plank que tiene un valor de $6.626 \times 10^{-34} (J * s)$; $N$ es el número de fotones que pasan por segundo a través de la superficie; $A$ es la superficie; $t$ es el tiempo en segundos).\\\\
+Ahora los fotones salen del diodo led emisor infrarrojo y avanzan hacia el sistema óptico el cual consiste en una lente doble convexa, la fuente emisora se coloca en el foco de la lente, pues como se muestra en la figura \ref{fig:fig10},  cuando la fuente emite los fotones infrarrojos desde el punto focal, estos pasan por la lente y salen en forma paralela con menor dispersión que si no tuviera el sistema óptico.\\\\
+% =============================0 kente doble convexa
+\begin{figure}
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/lenteconvexa.png}
+  \caption{Lente doble convexa~\protect\cite{serway1997fisica}.}
+  \label{fig:fig10}
+\end{figure}
+%=================================TEST DEL INSTRUMENTO 
+\section{Test del instrumento}
+Colocar el sensor de electro-recepción pasiva junto con el control de avance y el control de hardware en el vehículo motorizado \texttt{infraROSSI} como se observa en la figura \ref{fig:fig11}.
+%========================== Montaje difraccion 
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/ch,ca,ep.png}
+  \caption{Montaje del modulo motorizado \texttt{infraROSSI}.}
+  \label{fig:fig11}
+\end{figure}
+Los esquemas de pines de las partes utilizadas para el montaje se muestran en las figuras \ref{fig:fig12}, \ref{fig:fig13}  y \ref{fig:fig14}; se debe conectar el pin  ch2 con el pin  ep5, el pin  ch3 con el pin  ca9, el pin de ch5 con el pin  ep2, el pin de ch6 con el pin ep3, el pin ch7 con el pin ca2, el pin ch8 con el pin ca1, el pin ca4 con el pin ep4, el pin ca3 con el pin ep1, por ultimo el pin ca7 y el pin ca8 son las conexiones al motor.\\\\
+%========================== Montaje esq1
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/ESQ_1.png}
+  \caption{Esquema de pines del sistema de control de hardware.}
+  \label{fig:fig12}
+\end{figure}
+%========================== Montaje esq2
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/ESQ_2.png}
+  \caption{Esquema de pines del sistema de control de avance.}
+  \label{fig:fig13}
+\end{figure}
+%========================== Montaje esq3
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/ESQ_3.png}
+  \caption{Esquema de pines del sensor de electro-recepción pasiva en infrarrojo.}
+  \label{fig:fig14}
+\end{figure}
+Se coloca el vehículo motorizado \texttt{infraROSSI} como se muestra en la figura \ref{fig:fig15}, a \texttt{30 cm} de la fuente \texttt{FUENinfraROSSI} sin el sistema óptico, abrir una terminal de GNU-Linux y escribir en ella \texttt{infrarossi}, una vez abierta la ventana principal, dar click izquierdo en el botón \texttt{on},  una vez se establece la conexión bluetooth entre el ordenador y el vehículo \texttt{infraROSSI}, dar click izquierdo en el botón difracción, ahora el vehículo avanza hacia delante con un paso de \texttt{2 mm}, recolectando datos con el sensor de electro-recepción pasiva; este paso lo realiza durante \texttt{20 cm}.\\\\
+Una vez termina de recoger los datos aparece una gráfica, no cerrar la gráfica, ni la ventana de color azul del programa, abrir el navegador de archivos y dirigirse a la carpeta \url{Documentos/Free-infrarossi/free\_infrarossi/datos}; donde aparece un archivo con el nombre de dats1.dat, cambiar el nombre de este archivo a \texttt{dater.dat} y copiarlo a la carpeta \url{Documentos/Free-infrarossi/free\_infrarossi/Carpetas/FUENTE/}.\\\\
+%============ MONTAJE  FUENTE 
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/testfuente.png}
+  \caption{Montaje test fuente FUENinfraROSSI.}
+  \label{fig:fig15}
+\end{figure}
+Se coloca nuevamente el vehículo en la  posición de captura de datos como se muestra en la figura \ref{fig:fig15}  pero esta vez con el sistema óptico;  oprimir nuevamente el botón de difracción del software de control \texttt{FREEinfraROSSI}, una vez termina de recoger los datos debe abrir el navegador de archivos y dirigirse a la carpeta \url{Documentos/Free-infrarossi/free\_infrarossi/datos}; donde aparece un archivo con el nombre de dats1.dat, cambiar el nombre de este archivo a \texttt{dats3.dat} y copiarlo a la carpeta \url{Documentos/Free-infrarossi/free\_infrarossi/Carpetas/FUENTE/}, hacer doble click sobre el programa \texttt{est\_fuente.py}, esperar unos segundos mientras el programa hace los cálculos necesarios y una vez hecho esto mostrara la imagen que se observa en la figura \ref{fig:fig16}.
+%============MONTAJE TEST FUENTE 
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/DIS_Fuente.png}
+  \caption{Gráfica que ofrece  el software \texttt{FREEinfraROSSI} para  el enfoque óptico de la fuente \texttt{FUENinfraROSSI}.}
+  \label{fig:fig16}
+\end{figure}
+\section{Análisis de resultados}
+Una vez termina de analizar los datos el programa se recomienda cerrar la ventana azul de software \texttt{FREEinfraROSSI}, el programa muestra la gráfica que se aprecia en la figura \ref{fig:fig16} en la cual se observa el flujo irradiado de fotones infrarrojos sobre el sistema de recolección del vehículo motorizado \texttt{infraROSSI}; en la tabla \ref{tab:tab1} se muestra el análisis de los datos con el sistema óptico colocado y sin colocar en la fuente, donde se observa que con el sistema óptico diseñado se obtiene una dispersión de \texttt{5 grados}, esta  dispersión se considera óptima para el experimento de difracción que ofrece  el proyecto \texttt{infraROSSI} y su software de control \texttt{FREEinfraROSSI}.
+\begin{table}[htbp]
+  \centering
+  \caption{\footnotesize Análisis dispersión de la fuente FUENinfraROSSI con y sin sistema óptico. }
+  \label{tab:tab1}
+  \begin{tabular}{lcc}\hline
+    Prueba  & Separación & Dispersión (Grados)   \\ \hline
+    Sin sistema óptico     & 30 cm    & 10     \\ 
+    Con sistema óptico    & 30 cm    & 5     \\ \hline
+  \end{tabular}
+  \begin{tablenotes}
+    %[para,flushleft]
+    {\small
+      \vspace{0.1cm}
+      \textit{Nota.} Todos los datos son aproximados a partir de la gráfica que ofrece el software \texttt{FREEinfraROSSI}, la cual se observa en la figura \ref{fig:fig16}.
+    }
+  \end{tablenotes}
+\end{table}
+
+\section{Conclusiones}
+\begin{enumerate}
+\item[*] Con el sistema óptico de la \texttt{FUENinfraROSSI} se logra disminuir la dispersión de la luz infrarroja emitida por el diodo led infrarrojo en \texttt{5 grados}.\\
+\item[*] Al mejorar el enfoque óptico de la fuente \texttt{FUENinfraROSSI}, se disminuye  la intensidad de emisión fotónica de la misma.
+\item[*] El experimento de difracción ofrece parámetros aceptables con la fuente  \texttt{FUENinfraROSSI}, aunque se puede mejorar esta fuente remplazando el diodo emisor infrarrojo por un diodo láser infrarrojo.
+\item[*] El diseño de esta fuente es económico, pues el precio de fabricación no supera los $15$ dolares.
+\item[*] El análisis físico, matemático que se observa en este proyecto puede servir de modelo pedagógico para el estudio de diversos tópicos de óptica y electrónica de profesionales y estudiantes de diversas carreras de ciencia e ingeniería.
+\end{enumerate}
+\bibliographystyle{apacite}
+\bibliography{referencias}
+\end{document}

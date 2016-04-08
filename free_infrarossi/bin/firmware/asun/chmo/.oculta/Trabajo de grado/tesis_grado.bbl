@@ -1,0 +1,382 @@
+\begin{thebibliography}{}
+
+\bibitem [\protect \citeauthoryear {%
+Albella%
+\ \BBA {} Mart{\'\i}nez-Duart%
+}{%
+Albella%
+\ \BBA {} Mart{\'\i}nez-Duart%
+}{%
+{\protect \APACyear {1996}}%
+}]{%
+albella1996fundamentos}
+\APACinsertmetastar {%
+albella1996fundamentos}%
+\begin{APACrefauthors}%
+Albella, J\BPBI M.%
+\BCBT {}\ \BBA {} Mart{\'\i}nez-Duart, J\BPBI M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{1996}.
+\newblock
+\APACrefbtitle {Fundamentos de electr{\'o}nica f{\'\i}sica y
+  microelectr{\'o}nica} {Fundamentos de electr{\'o}nica f{\'\i}sica y
+  microelectr{\'o}nica}.
+\newblock
+\APACaddressPublisher{}{Addison-Wesley Iberoamericana}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Alcocer%
+, Gomez%
+, Prat%
+\BCBL {}\ \BBA {} Albareda%
+}{%
+Alcocer%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2006}}%
+}]{%
+alcocer2006programacion}
+\APACinsertmetastar {%
+alcocer2006programacion}%
+\begin{APACrefauthors}%
+Alcocer, P\BHBI P\BPBI V.%
+, Gomez, J\BPBI M.%
+, Prat, A\BPBI M.%
+\BCBL {}\ \BBA {} Albareda, X\BPBI M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2006}.
+\newblock
+\APACrefbtitle {Programaci{\'o}n en C++ para ingenieros} {Programaci{\'o}n en
+  c++ para ingenieros}.
+\newblock
+\APACaddressPublisher{}{Editorial Paraninfo}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Behlendorf%
+\ \protect \BOthers {.}}{%
+Behlendorf%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {1999}}%
+}]{%
+behlendorf1999open}
+\APACinsertmetastar {%
+behlendorf1999open}%
+\begin{APACrefauthors}%
+Behlendorf, B.%
+, Bradner, S.%
+, Hamerly, J.%
+, Mckusick, T.%
+, Paquin, T.%
+, Perens, B.%
+\BDBL {}others%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1999}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Open Sources: Voices from the Open Source Revolution}
+  {Open sources: Voices from the open source revolution}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Retrieved February}{10}{}{2001}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Burtch%
+}{%
+Burtch%
+}{%
+{\protect \APACyear {2004}}%
+}]{%
+burtch2004linux}
+\APACinsertmetastar {%
+burtch2004linux}%
+\begin{APACrefauthors}%
+Burtch, K\BPBI O.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2004}.
+\newblock
+\APACrefbtitle {Linux shell scripting with bash} {Linux shell scripting with
+  bash}.
+\newblock
+\APACaddressPublisher{}{Pearson Higher Education}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Eaton%
+, Bateman%
+\BCBL {}\ \BBA {} Hauberg%
+}{%
+Eaton%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {1997}}%
+}]{%
+eaton1997gnu}
+\APACinsertmetastar {%
+eaton1997gnu}%
+\begin{APACrefauthors}%
+Eaton, J\BPBI W.%
+, Bateman, D.%
+\BCBL {}\ \BBA {} Hauberg, S.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{1997}.
+\newblock
+\APACrefbtitle {Gnu octave} {Gnu octave}.
+\newblock
+\APACaddressPublisher{}{Network thoery London}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Gautreau%
+, Savin%
+\BCBL {}\ \BBA {} Velazquez~Valle%
+}{%
+Gautreau%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2001}}%
+}]{%
+gautreau2001fisica}
+\APACinsertmetastar {%
+gautreau2001fisica}%
+\begin{APACrefauthors}%
+Gautreau, R.%
+, Savin, W.%
+\BCBL {}\ \BBA {} Velazquez~Valle, D.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2001}.
+\newblock
+\APACrefbtitle {Fisica moderna.} {Fisica moderna.}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Hecht%
+, Dal~Col%
+, Talavera%
+\BCBL {}\ \BBA {} P{\'e}rez%
+}{%
+Hecht%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2000}}%
+}]{%
+hecht2000optica}
+\APACinsertmetastar {%
+hecht2000optica}%
+\begin{APACrefauthors}%
+Hecht, E.%
+, Dal~Col, R.%
+, Talavera, R\BPBI W.%
+\BCBL {}\ \BBA {} P{\'e}rez, J\BPBI M\BPBI G.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2000}.
+\newblock
+\APACrefbtitle {{\'O}ptica} {{\'O}ptica}.
+\newblock
+\APACaddressPublisher{}{Addison Wesley}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Herrador%
+}{%
+Herrador%
+}{%
+{\protect \APACyear {2009}}%
+}]{%
+herrador2009guia}
+\APACinsertmetastar {%
+herrador2009guia}%
+\begin{APACrefauthors}%
+Herrador, R\BPBI E.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2009}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Gu{\'\i}a de Usuario de Arduino} {Gu{\'\i}a de usuario
+  de arduino}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Universidad de C{\'o}rdoba}{}{}{8}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Hoile%
+\ \protect \BOthers {.}}{%
+Hoile%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2014}}%
+}]{%
+hoile2014raspberry}
+\APACinsertmetastar {%
+hoile2014raspberry}%
+\begin{APACrefauthors}%
+Hoile, C.%
+, Bowman, C.%
+, Meijer, S\BPBI D.%
+, Corteil, B.%
+, Orsini, L.%
+\BCBL {}\ \BBA {} Mott, T.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2014}.
+\newblock
+\APACrefbtitle {Raspberry Pi and AVR Projects: Augmenting the Pi's ARM with the
+  Atmel ATmega, ICs, and Sensors} {Raspberry pi and avr projects: Augmenting
+  the pi's arm with the atmel atmega, ics, and sensors}.
+\newblock
+\APACaddressPublisher{}{Maker Media, Inc.}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Kathirvel%
+\ \BBA {} Srinivasan%
+}{%
+Kathirvel%
+\ \BBA {} Srinivasan%
+}{%
+{\protect \APACyear {2009}}%
+}]{%
+kathirvel2009global}
+\APACinsertmetastar {%
+kathirvel2009global}%
+\begin{APACrefauthors}%
+Kathirvel, A.%
+\BCBT {}\ \BBA {} Srinivasan, R.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2009}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Global mobile information system simulator in Fedora
+  Linux} {Global mobile information system simulator in fedora linux}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{ACM Computer Communication Review}{1}{1}{}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+McKinney%
+}{%
+McKinney%
+}{%
+{\protect \APACyear {2012}}%
+}]{%
+mckinney2012python}
+\APACinsertmetastar {%
+mckinney2012python}%
+\begin{APACrefauthors}%
+McKinney, W.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2012}.
+\newblock
+\APACrefbtitle {Python for data analysis: Data wrangling with Pandas, NumPy,
+  and IPython} {Python for data analysis: Data wrangling with pandas, numpy,
+  and ipython}.
+\newblock
+\APACaddressPublisher{}{OReilly Media, Inc.}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Ostle%
+}{%
+Ostle%
+}{%
+{\protect \APACyear {1981}}%
+}]{%
+ostle1981estadistica}
+\APACinsertmetastar {%
+ostle1981estadistica}%
+\begin{APACrefauthors}%
+Ostle, B.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{1981}.
+\newblock
+\APACrefbtitle {Estad{\'\i}stica aplicada} {Estad{\'\i}stica aplicada}.
+\newblock
+\APACaddressPublisher{}{Limusa}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Pedraja%
+}{%
+Pedraja%
+}{%
+{\protect \APACyear {2012}}%
+}]{%
+pedraja2012modelo}
+\APACinsertmetastar {%
+pedraja2012modelo}%
+\begin{APACrefauthors}%
+Pedraja, F.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2012}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Modelo computacional de Gymnotus omarorum: Un pez
+  el{\'e}ctrico de pulso con {\'o}rgano distribuido} {Modelo computacional de
+  gymnotus omarorum: Un pez el{\'e}ctrico de pulso con {\'o}rgano
+  distribuido}.{\BBCQ}
+\newblock
+
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Serway%
+}{%
+Serway%
+}{%
+{\protect \APACyear {1997}}%
+}]{%
+serway1997fisica}
+\APACinsertmetastar {%
+serway1997fisica}%
+\begin{APACrefauthors}%
+Serway, R\BPBI A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{1997}.
+\newblock
+\APACrefbtitle {f{\'\i}sica tomo II} {f{\'\i}sica tomo ii}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Shal{\'\i}mova%
+\ \BBA {} Grdiam%
+}{%
+Shal{\'\i}mova%
+\ \BBA {} Grdiam%
+}{%
+{\protect \APACyear {1975}}%
+}]{%
+shalimova1975fisica}
+\APACinsertmetastar {%
+shalimova1975fisica}%
+\begin{APACrefauthors}%
+Shal{\'\i}mova, K\BPBI V.%
+\BCBT {}\ \BBA {} Grdiam, A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{1975}.
+\newblock
+\APACrefbtitle {F{\'\i}sica de los Semiconductores} {F{\'\i}sica de los
+  semiconductores}.
+\PrintBackRefs{\CurrentBib}
+
+\end{thebibliography}

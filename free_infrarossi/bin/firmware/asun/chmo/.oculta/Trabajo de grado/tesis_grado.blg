@@ -1,0 +1,64 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: tesis_grado.aux
+The style file: apacite.bst
+A level-1 auxiliary file: app/appA.aux
+A level-1 auxiliary file: app/appB.aux
+A level-1 auxiliary file: app/appC.aux
+A level-1 auxiliary file: app/appD.aux
+A level-1 auxiliary file: app/appE.aux
+A level-1 auxiliary file: app/appF.aux
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=20001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: referencias.bib
+apacite.bst [2013/07/21 v6.03 APA bibliography style]
+Warning--No journal in pedraja2012modelo
+You've used 15 entries,
+            6951 wiz_defined-function locations,
+            1345 strings with 12807 characters,
+and the built_in function-call counts, 25161 in all, are:
+= -- 3137
+> -- 240
+< -- 1025
++ -- 1098
+- -- 32
+* -- 1422
+:= -- 4273
+add.period$ -- 59
+call.type$ -- 15
+change.case$ -- 255
+chr.to.int$ -- 0
+cite$ -- 31
+duplicate$ -- 763
+empty$ -- 1110
+format.name$ -- 414
+if$ -- 5000
+int.to.chr$ -- 0
+int.to.str$ -- 45
+missing$ -- 0
+newline$ -- 367
+num.names$ -- 120
+pop$ -- 638
+preamble$ -- 1
+purify$ -- 60
+quote$ -- 0
+skip$ -- 1642
+stack$ -- 0
+substring$ -- 1219
+swap$ -- 367
+text.length$ -- 31
+text.prefix$ -- 0
+top$ -- 1
+type$ -- 1200
+warning$ -- 1
+while$ -- 139
+width$ -- 0
+write$ -- 456
+(There was 1 warning)

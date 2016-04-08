@@ -1,0 +1,361 @@
+% version 12
+% Autor: Julian Salamanca
+% Institución: Universidad Distrital Francisco José de Caldas
+% Fecha: 09AGO2013
+
+\documentclass[jou]{apa6} %journal stilo APA con citacion clasica (apacite.pdf)
+%\documentclass[doc]{apa6} % journal estilo latex
+%\documentclass[man]{apa6}  % manuscrito APA
+
+\usepackage[toc,page]{appendix}
+\usepackage{balance}
+\usepackage{multicol}
+\usepackage{pdfpages}
+\usepackage{afterpage}
+\usepackage{float}
+
+
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}% Tildes
+\usepackage{hyperref}
+\urlstyle{same}
+
+%====================================================================
+%Para que no parta las palabras con guiones al final de linea
+\usepackage[none]{hyphenat} 
+\tolerance=6000
+%====================================================================
+
+
+
+%Stilo citaciones APA (debe ir despues de "hyperref ")
+\usepackage{apacite} 
+
+% para compilar eps con: pdflatex -shell-escape <archivo>.tex
+\usepackage{epstopdf} 
+
+\usepackage{amsmath, amsthm, amsfonts}
+\usepackage{graphicx,wrapfig,lipsum}
+
+\usepackage{fancyhdr}%
+\pagestyle{fancy}
+\fancypagestyle{empty}{
+
+%  \setlength{\topmargin}{-0.5in}
+%  \setlength{\headheight}{1.05in}
+  \setlength{\headsep}{0.5in}
+%  \setlength{\headwidth}{\textwidth}
+%  \setlength{\footskip}{2.0in}
+
+  \renewcommand{\headrulewidth}{0pt}
+
+  % ========== EDITAR LOGO GRUPO =========================
+
+  \fancyhead[L]{
+    \includegraphics[width=2.0cm, height=2.0cm]{img/logoGI}
+    \vspace{-1.0cm}
+  }
+  % ========== FIN NO EDITAR LOGO GRUPO =================
+  
+
+  % ========== NO EDITAR LOGO UD =========================
+
+  \fancyhead[R]{
+    \includegraphics[width=5.5cm, height=1.2cm]{img/logo_UD_EXT}
+  }
+  % ========== FIN NO EDITAR ===========================
+  
+
+}
+
+
+\title{Ilustración de la ley de decaimiento  de la densidad de flujo de radiación con el cuadrado inverso de la distancia de separación a la fuente; utilizando el modulo motorizado \texttt{infraROSSI} y su software de control \texttt{FREEinfraROSSI}}
+
+\shorttitle{ARTICULO ATENUACIÓN}
+
+%==================== AUTOR (ES) ========================
+\author{Diego Alberto Parra Garzón \\ \href{mailto:diegoestudianteud1@gmail.com}{diegoestudianteud1@gmail.com}, \\ PhD. Julian Andrés Salamanca Bernal \\ \href{mailto:jasalamanca@udistrital.edu.co}{jasalamanca@udistrital.edu.co}}
+\date{\today}
+\affiliation{Universidad Distrital ``Francisco José de Caldas'', Facultad de Ciencias y Educación\\ 
+	     calle 3 No 26A-40 Bogotá-Colombia\\
+             Grupo de Física e Informáica ``FISINFOR''}
+\leftheader{Diego}
+%==================== FIN AUTOR (ES) ====================
+
+%==================== RESUMEN ========================
+\abstract{
+\begin{center}
+\textbf{Abstrac}
+\end{center}
+The present article illustrates the attenuation due to the inverse square law of the flux of radiation emitted by a LED diode infrared emitter, using a mirror, the motor module  \texttt{infraROSSI} and control software \texttt{FREEinfraROSSI}; environment GNU-linux, highlighting the functionality of this instrument  illustration attenuation because to the irradiansa in point source is proportional to the inverse of the distance squared. \\\\
+Keywords: Motor module, infrared sensors, microcontroller module bluetooth, electromagnetic wave, attenuation, inverse square law.
+\begin{center}
+\textbf{Resumen}
+\end{center}
+El presente trabajo ilustra la atenuación debido a la ley del cuadrado inverso de la densidad de flujo de radiación emitida por un diodo led emisor infrarrojo, utilizando un espejo, el modulo motorizado  \texttt{infraROSSI} y su software de control \texttt{FREEinfraROSSI}; en un entorno GNU-linux, resaltando la funcionalidad de este instrumento en la ilustración de la atenuación debido a que la irradiansa de una fuente puntual es proporcional al inverso de su distancia al cuadrado si no se consideran otros tipos de atenuación.
+}
+\keywords{Modulo motorizado, sensores infrarrojos, microcontrolador, modulo bluetooth, ondas electromagnéticas, atenuación, ley del cuadrado inverso, quantum.}
+
+%==================== FIN RESUMEN ========================
+
+\begin{document}
+
+%================  NO EDITAR =================
+\renewcommand{\tablename}{Tabla} %"Cuadro" por "Tabla"
+\renewcommand{\refname}{Referencias} %"Cuadro" por "Tabla"
+% \def\st@rtbibsection{\mspart{RReferencias}}% ``References'' por ``Referencias'
+\renewcommand{\rheadname}{Encabezado de página}% Running head (encabezado de pagina)
+\renewcommand{\acksname}{Nota de Autor}% 
+\renewcommand{\keywordname}{Palabras clave}% 
+\renewcommand{\listtablename}{Índice de tablas}% 
+\renewcommand{\BOthers}[1]{et al.\hbox{}}
+\renewcommand{\appendixname}{Ap} %"Cuadro" por "Tabla"
+\renewcommand{\appendixname}{Anexo}
+\renewcommand{\appendixname}{Anexos}
+\renewcommand{\appendixtocname}{Anexos}
+\renewcommand{\appendixpagename}{Anexos}
+\maketitle
+
+%============== TABLA DE CONTENIDO ===============
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+%=================INTRODUCCION ============
+\section{INTRODUCCION}
+Los fenómenos de las ondas siempre han fascinado los pensamientos de los seres humanos; es allí donde la física con ayuda de la matemática muestran su majestuosidad, al explicar de manera muy detallada estos fenómenos de transporte; la atenuación es una de estas propiedades, la cual esta muy presente en la vida diaria y con la ayuda del modulo motorizado \texttt{infraROSSI} y su software de control \texttt{FREEinfraROSSI}, se ilustra este fenómeno físico y se realiza un calculo del valor exponencial de la distancia a la cual se atenua la irradiansa propia producida por un diodo infrarrojo emisor. \\\\
+Según \cite{miakishev1995bujovsev}\,``una fuente de luz casi siempre ilumina la superficie de los objetos desigualmente. Así, una lámpara suspendida sobre una mesa ilumina mejor el centro de ésta. Los bordes de la mesa están mucho menos iluminados. Esto no sólo se debe a que la intensidad de la luz de la lámpara eléctrica sea distinta en diferentes direcciones. Incluso en el caso un foco puntual corresponderá a la superficie del centro más potencia luminosa (flujo luminoso)  que a una superficie igual en el borde. \\\\
+Se llama iluminación (o iluminancia ) a la razón del flujo luminoso, que incide sobre una superficie determinada, al área de dicha superficie. Como unidad de iluminación se toma el lux (lx); un lx es la iluminación con la cual sobre 1 metro cuadrado de superficie se distribuye uniformemente un flujo luminoso de un lumen. \\ \\
+La dependencia de la iluminacion respecto de la distancia a la fuente se puede determinar colocando mentalmente una fuente puntual en el centro de una esfera, la iluminación sera igual al flujo luminoso total de la fuente distribuido sobre el área de la esfera. Es decir, la iluminación de una superficie es inversamente proporcional al cuadrado de su distancia a la fuente."
+%=================MARCO TEORICO =================
+\section{Marco teórico}
+Los fotones producidos por el diodo emisor de la fuente emisora de radiación infrarroja se dan según \cite{shalimova1975fisica}\,``debido a que en los semiconductores, con estructura compleja de las bandas energéticas, son posibles las transiciones indirectas de los electrones de la banda de conducción  a la de valencia acompañadas de la emisión de un fotón. En este caso la recombinación del electrón libre con el hueco se desarrolla con la aparición de un fonón, lo que asegura la conservación del cuasi impulso. Lo más probable es que el fonón sea emitido. Si en el semiconductor se desarrollan procesos de recombinación entre bandas  tanto directa como indirectas, en el espectro de radiación se observan dos bandas de luminiscencia. \\ \\
+En la banda prohibida de los semiconductores reales existe una gran cantidad de estados localizados, que están ligados a los átomos de impureza, defectos de la estructura, infracciones de la periodicidad de la estructura en la superficie, entre otros. Estos estados localizados desempeñan un papel importante  en los procesos de luminiscencia. \\ \\
+Las transiciones de los electrones de la banda de conducción a los niveles de los pequeños donadores (o de los huecos de la banda de valencia a los niveles de los pequeños aceptores),  que hacen que estos últimos se neutralicen, pueden ser con radiación. En este caso es de esperar la aparición de luminosidad en la región infrarroja remota del espectro. Pero los cálculos  muestran que en estas transiciones lo más probable es que sea emitido un fonón y no un fotón, es decir, que el proceso se desarrolla sin radiación. La recombinación con radiación se produce por lo general  como viene mostrado en la figura \ref{fig:fig1}\,. Primero un electrón de la banda de conducción es capturado por un nivel local situado un poco más abajo que Ec  \footnote{Ec es el nivel de energía de conducción.}, y después se efectúa la recombinación de este electrón localizado con un hueco de la banda de valencia, la cual va acompañada de la emisión de un fotón. El electrón puede también realizar una transición con radiación de la banda de conducción y después recombinarse con un hueco.\\\\
+% =============================0 FIGURA Transiciones con radiación entre una banda y los estados de impureza.
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/transiciones.png}
+  \caption{Transiciones con radiación entre una banda y los estados de impureza.}
+  \label{fig:fig1}
+\end{figure}
+El estudio de los espectros de luminiscencia relacionados a diversas impurezas y defectos permite obtener información sobre estas infracciones de la estructura. \\ \\
+En los semiconductores se pueden producir pares \texttt{electrón-hueco} ligados por la atracción coulombiana, es decir, excitones. Si uno de estos pares se aniquila, se produce la emisión de un fotón. La energía de esta radiación es: 
+\begin{equation}
+h\nu = E_g - E\label{eq:eq1},
+\end{equation}
+donde E es la energía de enlace del excitón."\\\\
+Ahora se tiene un flujo de fotones de energía $h\nu$ saliendo del diodo emisor infrarrojo, según \cite{gautreau2001fisica}\,``como los fotones viajan a la velocidad de la luz deben, de acuerdo con la teoría de la relatividad, tener una masa en reposo igual a cero; de aquí que su energía sea completamente cinética. Si un fotón existe, entonces se mueve a la velocidad de la luz, $c$; si deja de moverse a velocidad c, deja de existir. Para $m_{0} = 0$ la relación relativista \texttt{momentum-energía}  se convierte en $E = pc$.
+de esta forma, cada fotón tiene un momentum de 
+\begin{equation}
+p = \frac{E}{c} = \frac{h\nu}{c} = \frac{h}{\lambda}\label{eq:eq2},
+\end{equation}
+Desde el punto de vista cuántico, un haz de energía electromagnética se compone de fotones que se desplazan a la velocidad $c$. La intensidad del haz será proporcional al número de fotones que cruza un área unitaria por unidad de tiempo. Entonces, si el haz es monocromático (de una frecuencia), la intensidad $I$ se obtendrá de 
+\begin{equation}
+I = (h\nu)\times \left ( \frac{N}{A\times t } \right)\label{eq:eq3},
+\end{equation}
+$h$ es la constante de Plank que tiene un valor de $6.626 \times 10^{-34} (J * s)$; $N$ es el número de fotones que pasan por segundo a través de la superficie; $A$ es la superficie; $t$ es el tiempo en segundos."\\\\
+Esta radiansa de fotones desde el diodo emisor, avanza por el espacio proyectando un ángulo solido hasta un espejo que se encuentra a 30 cm de la fuente, por lo que la irradiansa  sera igual al cociente de la radiansa con el ángulo solido proyectado sobre el espejo.\\\\
+Ahora el flujo de fotones que interactua con la superficie del material de muestra dan como resultado desde el punto de vista clásico varios fenómenos físicos como lo son  la reflexión, refracción, absorción, atenuación, reflectancia, transmitancia.  Ahora el flujo de fotones  es  visto como el flujo de ondas electromagnéticas,   las que interactúan con la materia  en donde parte de la energía es transmitida al material aumentando la energía cinética media de sus constituyentes, otra parte traspasa el material y el resto del flujo electromagnético avanza paralelamente contrario a la dirección de desplazamiento inicial, si no se considera interacción de las ondas electromagnéticas con el aire como medio disipativo  y otras formas de perdida de energía.\\\\
+En este trabajo solo se tiene en cuenta el fenómeno de reflexión de la luz con el espejo, en el caso ideal  que no exista perdida de energía entre la luz incidente en el espejo; osea que la intensidad del  rayo incidente sea igual a la intensidad de la luz emitida por la interfaz del espejo. Solo se tiene en cuenta la atenuación de energía debido al avance de la expansión geométrica por el espacio, debido al flujo de luz emitida por el diodo emisor infrarrojo.\\\\
+Ahora la luz que sale del espejo tendrá que recorrer nuevamente 30 cm hasta el detector, mientras avanza seguirá decayendo su intensidad con el inverso del cuadrado de la distancia.\\\\
+Al iluminar el diodo receptor infrarrojo con esta energía radiante, según \cite{albella1996fundamentos}\,``en el semiconductor por cada fotón absorbido se rompe un enlace y se crea un par electrón-hueco. 
+Es importante destacar que no todos los portadores fotogenerados contribuyen a la conducción, ya que una fracción importante de ellos se recombinan antes de llegar al extremo correspondiente del semiconductor. El calculo del incremento de corriente $\Delta I_{e}$, debida al exceso de electrones generados en la banda de conducción, $\Delta n$, es
+\begin {equation}
+\Delta I_{e} = q\mu _{e}(\Delta n)ES\label{eq:eq4},
+\end{equation} 
+siendo $E$ el campo eléctrico aplicado, $\mu_{e}$ la movilidad de los electrones y $S$ la sección transversal del fotoconductor.\\\\
+En condiciones de iluminación, el estado estacionario se alcanza cuando la velocidad de generación de portadores en todo el volumen del semiconductor, $G$, se iguala a la velocidad de recombinación, $R$, es decir $R = G$. para un conductor intrínseco en el cual existe un exceso de portadores, $\Delta n = \Delta p$, la velocidad de recombinación de los portadores vendrá dada por:\\
+\begin{equation}
+R = \frac{\Delta n }{\tau} = \frac{\Delta p}{\tau}\label{eq:eq5},
+\end{equation}
+\\siendo $\tau$ el tiempo de vida media de los portadores fotogenerados. En un semiconductor de longitud $L$ en el que suponemos que el espesor es suficiente para que toda la luz que incide sobre el, sea absorbida en su interior, se tiene ahora para la velocidad de generación de portadores en la banda de conducción:\\
+\begin{equation}
+G = \eta n_{fot} = \eta \frac{\frac{P_{i}}{h\nu}}{SL}\label{eq:eq6},
+\end{equation}\\
+siendo $n_{fot}$ el número de fotones incidentes en el semiconductor por unidad de volumen y de tiempo, y $\eta$ la eficiencia de la conversión en la generación de portadores. El valor $n_{fot}$ se calcula a través del cociente entre la potencia de la luz incidente, $P_{i}$, y la energía de la radiación, $h\nu$, dividido a su vez por el volumen del material.\\ \\
+Sabiendo que la velocidad de arrastre de los electrones por el campo eléctrico viene dada por: $v_{e} = \mu_{e}E$, las igualdades anteriores permiten escribir para la corriente de electrones fotogenerada entre los dos electrodos:\\
+\begin{equation}
+\Delta I_{e} = q\nu_{e}\eta\frac{\frac{P_{i}}{h\nu}}{L}\tau\label{eq:eq7},
+\end{equation}
+\\si se tiene en cuenta que el cociente $t_{r} = L/v_{e}$, representa el tiempo de trásito de los electrones entre los dos electrodos, resulta para $\Delta I_{e}$:
+\begin{equation}
+\Delta I_{e} = q\eta \frac{P_{i}}{h\nu}\frac{\tau}{t_{r}}\label{eq:eq8},
+\end{equation}
+\\con una expresión similar para la corriente de huecos en la banda de valencia. En la ecuación \ref{eq:eq8}, el factor $q\eta(P_{i}/h\nu) = I_{fot}$ tiene dimensiones de corriente y representa la velocidad de generación de carga en el semiconductor. En función de este parámetro, se define el factor de ganancia del fotoconductor a través del cociente:\\
+\begin{equation}
+\frac{\Delta I}{I_{fot}} = \frac{\tau}{t_{r}}\label{eq:eq9},
+\end{equation}
+\\ahora bien un diodo operando con cierto voltaje aplicado, $V$, en presencia de radiación electromagnética  capaz de excitar portadores a través de la banda prohibida dejara pasar una intensidad I dada por:\\
+\begin{equation}
+I = I_{0}[e^{(qV/kT)}-1] - I_{L}\label{eq:eq10},
+\end{equation}
+\\donde $I_{0}$ representa la corriente típica de un diodo, $I_{L}$ representa la corriente debida a  los portadores generados. El valor de $I_{L}$ puede calcularse de la siguiente manera:
+\begin{equation}
+I_{L} = qGS(L_{e} - L_{h})\label{eq:eq11},
+\end{equation}
+siendo $G$ el número de portadores generados por unidad de volumen y de tiempo y $S$ el área de la sección transversal del diodo. $L_{e}$ y $L_{h}$ representan las longitudes de difusión de los electrones y huecos. El dispositivo funciona entonces como detector del nivel de iluminación  convirtiendo una señal óptica en señal eléctrica."\\\\
+Como la corriente I en el diodo es proporcional a la irradiansa de la superficie iluminada por fotones infrarrojos y esta ultima se atenúa con el inverso del cuadrado de la distancia del frente de energía a la fuente; en otras palabras como el voltaje que mide el microcontrolador es directamente proporcional a la corriente $I$ en el diodo receptor infrarrojo, por consiguiente el voltaje medido en el semiconductor debe  tener una relación inversamente proporcional al cuadrado de la distancia.
+\begin{equation}
+V(x) = \frac{A_{0}}{x^{2}}\label{eq:eq12},
+\end{equation}
+Como la irradiansa de fotones infrarrojos es proporcional al inverso del cuadrado de la distancia de separación a la fuente, y la función voltaje que mide el modulo motorizado \texttt{infraROSSI} es proporcional al inverso del cuadrado de la  distancia de separación de la fuente al vehículo \texttt{infraROSSI}; se realiza el cociente de la intensidad irradiada en el diodo led que es según el fabricante de \texttt{20 mW/}$\Omega$, sobre el voltaje producido en el sensor que es de \texttt{5000mV}; como se muestra en la figura \ref{fig:GraficaVI}.\\
+%================== FIGURA absorcion semiconductor
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/graficaVI.png}
+  \caption{Relación irradiansa vs voltaje.}
+  \label{fig:GraficaVI}
+\end{figure}\\\\
+Una vez absorbidos los fotones infrarrojos, el microcontrolador atmega 328 del vehículo motorizado \texttt{infraROSSI}, mide la relación de voltaje en el sensor de electro-recepción activa que es proporcional a la irradiansa del emisor infrarrojo la cual equivale a $4 \mu W/mV$ lo que significa que por cada $4 \mu W$ de radiación incidente el sensor esta arrojando en su salida $1 mV$. 
+\begin{equation}
+I(x) = \frac{B_{0}}{x^{2}}\label{eq:eq13},
+\end{equation}
+%================DISEÑO EXPERIMENTAL====================
+\section{Montaje experimental}
+%============== MATERIALES PARA EL MONTAJE=============
+\subsection{Materiales del montaje}
+Para la realización de este montaje se requiere de los siguientes materiales:
+\begin{enumerate}
+\item[a.] Ordenador con sistema operativo GNU-Linux.
+\item[b.] Modulo motorizado \texttt{infraROSSI}.
+\item[c.] Software de control \texttt{FREEinfraROSSI}.
+\item[d.] Espejo de 10x20 $cm^{2}$.
+\item[e.] Modulo bluetooth para pc.
+\end{enumerate}
+%=========================MONTAJE==========================
+\subsection{Montaje}
+Colocar el sensor de electro-recepción activa junto con el control de avance y el control de hardware en el vehículo motorizado \texttt{infraROSSI} como se observa en la figura \ref{fig:fig2}.\\\\
+% =============================0 FIGURA Transiciones con radiación entre una banda y los estados de impureza.
+\begin{figure}
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/ch,ca,ea.png}
+  \caption{Montaje modulo motorizado \texttt{infraROSSI} para el laboratorio de atenuación.}
+  \label{fig:fig2}
+\end{figure}
+Los esquemas de pines de las partes utilizadas para el montaje se muestran en las figuras \ref{fig:fig3} , \ref{fig:fig4}  y \ref{fig:fig5} ; se debe conectar el pin  ch1 con el pin  ea4, el pin  ch3 con el pin  ca9, el pin de ch4 con el pin  ea2, el pin ch7 con el pin ca2, el pin ch8 con el pin ca1, el pin ca5 con el pin ea1, el pin ca6 con el pin ea3, por ultimo el pin ca7 y el pin ca8 son las conexiones al motor.\\\\
+% =============================Esqueema Pin1.
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/ESQ_1.png}
+  \caption{Esquema de pines del sistema de control de hardware.}
+  \label{fig:fig3}
+\end{figure}
+% =============================Esqueema Pin2.
+\begin{figure}
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/ESQ_2.png}
+  \caption{Esquema de pines del sistema de control de avance.}
+  \label{fig:fig4}
+\end{figure}
+% =============================Esqueema Pin3.
+\begin{figure}
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/ESQ_4.png}
+  \caption{Esquema de pines del sensor de electro-recepción activa en infrarrojo.}
+  \label{fig:fig5}
+\end{figure}
+Situar el vehículo motorizado \texttt{infraROSSI} a una distancia de 30 cm del espejo como se muestra en la figura \ref{fig:fig6}; el espejo debe estar perpendicular a la parte frontal del vehículo. Abrir una terminal de GNU-Linux y escribir infrarossi, oprimir enter y la clave de superusuario, luego de abrir el programa como se muestra en la figura \ref{fig:fig7}, debe oprimir el boton on, esperar que se empareje el bluetooth, una vez emparejado el modulo bluetooth, el programa desplegara un tercer menú, oprimir el botón de atenuación y esperar que el programa tome los datos necesarios.\\\\
+%=====================MONTAJE ATENUACION==============================
+\begin{figure}
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/mon_ate.png}
+  \caption{Imagen del montaje para la atenuación utilizando el modulo motorizado \texttt{infraROSSI} y un espejo.}
+  \label{fig:fig6}
+\end{figure}
+
+%======================TERCER MENU==========================
+\begin{figure}
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/3menu.png}
+  \caption{Interfaz grafica software \texttt{FREEinfraROSSI}.}
+  \label{fig:fig7}
+\end{figure}
+Ahora el software de control \texttt{FREEinfraROSSI} le envía vía bluetooth la señal de avanzar y capturar datos al vehículo motorizado \texttt{infraROSSI} el cual avanza 2 milímetros por cada paso, recolecta 140 datos por cada avance enviándolos vía bluetooth al ordenador en donde el software de control realiza un análisis estadístico de los mismos, cuando termina este análisis envía una señal al modulo motorizado \texttt{infraROSSI} vía bluetooth, indicándole que avance nuevamente y repita el proceso, esto lo realiza 117 veces; una vez terminado de recoger todos los datos realiza una estadística sobre toda la muestra de estos datos capturados. \\\\
+%=================seccion analisis de resultados?=======================================
+\section{Análisis de resultados}
+El programa \texttt{FREEinfraROSSI} después de recoger los datos realiza un análisis estadístico de los mismos, según \cite{ostle1981estadistica}\,``un ajuste lineal de una función exponencial de la forma $Y^{*} = aX^{b}$, siendo $Y$ la intensidad irradiada, $a$ la amplitud, $X$ la distancia de avance,  $b$ el valor del exponente de atenuación, $Y^{*}$ es el valor esperado de la variable física; aplicando logaritmo natural para linealizar se obtiene:\\
+\begin{equation}
+ln ( Y^{*}) = ln (a) + bln(X)  \cdots \Longrightarrow V^{*} = A + bU\label{eq:eq14},
+\end{equation} 
+donde $V^{*}$ es $ln(Y^{*})$, $A $ es el $ln(a)$ y $U$ es igual al $ln(X)$. \\\\
+La suma de  todos los errores debe ser diferentes a cero $\sum e \neq 0$. \\
+El exponente de ajuste b se halla con la varianza de $U$ sobre $V$  dividida entre la varianza de $U$ sobre $U$, obteniendo\\
+\begin{equation}
+b = \frac{S_{UV}}{S^{2} _{U}} =  \frac{\frac{1}{n} \sum_{i=1}^{n} UV - \bar{U} \bar{V}}{\frac{1}{n} \sum _{i=1}^{n} U^{2} - \bar{U}^2}\label{eq:eq15},
+\end{equation}
+ahora el valor de A sera igual al valor medio del logaritmo de la variable física $\bar{V}$ menos el valor de la multiplicación entre el exponente $b$ y el valor medio del logaritmo de la variable experimental:\\
+\begin{equation}
+A = \bar{V} -b\bar{U}\label{eq:eq16},
+\end{equation}
+deshaciendo el logaritmo de $A$  se obtiene el valor de la amplitud a:\\
+\begin{equation}
+a = antiln(A) = antiln(\bar{V} - b\bar{U})\label{eq:eq17},
+\end{equation}
+de modo que el ajuste efectuado es:\\
+\begin{equation}
+Y^{*} =  aX^{b}  = [antiln(\bar{V} - b\bar{U})]*X^{ \left(\frac{\frac{1}{n} \sum_{i=1}^{n} UV - \bar{U} \bar{V}}{\frac{1}{n} \sum _{i=1}^{n} U^{2} - \bar{U}^{2}}\right)}\label{eq:eq18},
+\end{equation}
+la bondad del ajuste es el error cuadrático medio o $ECM$ y es igual a: \\
+\begin{equation}
+ECM = \frac{\sum_{i=1}^{n}e_{i}^{2}}{n}\label{eq:eq19},
+\end{equation}
+siendo $e_{i}$ cada una de las diferencias entre las variables físicas y los valores estimados para las variables físicas $e_{i} = Y_{i} - Y^{*}_{i}$; al haber transformado la variable física ya no se minimiza $\sum e^{2}$ sino $\sum (ln(Y) - ln(Y^{*}))^{2}$, de ahí que $\sum e \neq 0$."\\\\
+Luego de este análisis estadístico, aparece la gráfica de estos, la cual se aprecia en la figura \ref{fig:fig8}, esta ya contiene el análisis estadístico y arroja el valor del exponente que debe tener la distancia; los datos del experimento de atenuación estan en puntos azules, la gráfica estimada estadísticamente esta en lineas azules, la gráfica teórica son las lineas de color rojo. \\\\
+La gráfica de análisis y los datos capturados se almacenan dentro del archivo llamado Carpetas/Atenuacion con la fecha y hora del análisis de datos.\\\\
+% =============================GRAFICA==============================
+\begin{figure}
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/Atenuacion.png}
+  \caption{Gráfica generada por el software \texttt{FREEinfraROSSI}.}
+  \label{fig:fig8}
+\end{figure}
+En la tabla \ref{tab:tab1}, se muestra los resultados obtenidos después de seis pruebas del exponente de atenuación con el modulo motorizado \texttt{infraROSSI} y su software de control \texttt{FREEinfraROSSI}; en ella se observa que la amplitud de la función intensidad, tiene un valor medio de $0,000259$, el valor medio del factor de atenuación de la distancia es $-1,906$; el valor obtenido en el análisis estadístico esta muy próximo al valor teórico; por lo que la cantidad de energía radiada por el diodo emisor decrece con el inverso del cuadrado de la distancia con un error de $4.7\%$. \\\\
+\begin{table}[htbp]
+  \centering
+  \caption{\footnotesize Análisis del experimento de difracción con el vehículo motorizado \texttt{infraROSSI} y su software de control \texttt{FREEinfraROSSI}.}
+  \label{tab:tab1}
+\begin{tabular}{|c|c|c|c|c|c|} 
+\hline
+\bf{P} & \bf{a} $( x 10^{-6} )$ & \bf{b} & \bf{T} & \bf{E.C.M.} $( x 10^{-7} )$ & \bf{E.E.}\\
+\hline
+ 1 & 251 & -1,922 & -2 & 1.479 & 0.078 \\
+\hline
+ 2 & 251 & -1,922 & -2 & 1.479 & 0.078 \\
+\hline
+ 3 & 275 & -1.874 & -2 & 26.257 & 0.126 \\
+\hline 
+ 4 & 251 & -1,922 & -2 & 1.479 & 0.078 \\
+\hline
+5 & 251 & -1,922 & -2 & 1.479 & 0.078 \\
+\hline
+6 & 275 & -1.874 & -2 & 26.257 & 0.126 \\
+\hline
+\end{tabular}
+  \begin{tablenotes}
+    %[para,flushleft]
+    {\small
+      \vspace{0.1cm}
+      \textit{Nota.} Datos obtenidos de seis pruebas para medir el exponente de atenuación, con el modulo motorizado \texttt{infraROSSI} y su software de control \texttt{FREEinfraROSSI}; $a$ es la amplitud de la función, $b$ es el exponente con el que se atenúa la función, $E.C.M.$ es el error cuadrático medio, o también llamado bondad en el ajuste, $E.E.$ es el error en el exponente.
+    }
+  \end{tablenotes}
+\end{table} 
+\\Por tanto la intensidad en función de la distancia en este trabajo tiene una ecuación estimada en la ecuación \ref{eq:eq20}\,:
+\begin{equation}
+I(x) = 0,000259 X^{-1,906} \label{eq:eq20}.
+\end{equation}
+
+\balance
+
+\section{Conclusiones}
+\begin{enumerate}
+\item[*] La amplitud del valor medio de la función intensidad es $0.000259$   $[W][m^{2}]$, por lo que se considera este valor, como la amplitud ideal para la función intensidad.
+\item[*] El valor medio en el factor de atenuación de la distancia es $-1.906$\, que esta muy cercano al predicho por la teoría el cual es $-2$, con un error en su estimación de $4.7 \%$, lo cual indica que el decaimiento en la densidad de flujo electromagnético que atraviesa una superficie en la unidad de tiempo, que a su vez se refleja y por ende que llega al sistema detector del modulo motorizado \texttt{infraROSSI}, decrece con el cuadrado de la distancia. 
+\item[*] El promedio del error cuadrático medio en los datos obtenidos por el experimentador indican que $ 11.286 x 10^{-5} \%$ de estos no pueden ser explicados por este modelo físico-matemático, dejando solamente un $99.9998 \%$ de fiabilidad en el ajuste estadístico, utilizado en este trabajo.\\
+\item[*] El modulo motorizado \texttt{infraROSSI} y su software de control ilustran de manera cuantitativa y cualitativa fenómenos ondulatorios y corpusculares  de la radiación electromagnética como la atenuación con el inverso del cuadrado de la distancia, la radiansa, la irradiansa, fenómenos de transporte e inyección y su análisis estadístico, calculando de una manera aproximada el exponente que acompaña a la atenuación debido a la distancia de propagación del flujo de energía radiante producida en el diodo emisor infrarrojo.   
+\item[*] El modulo motorizado \texttt{infraROSSI} y su software de control es una herramienta fácil de usar y muy precisa, capaz de ser utilizada para diversos propósitos en el aula de clase combibo modelo pedagógico,  tanto de profesionales como estudiantes de diferentes carreras; haciendo de este recurso pedagógico una herramienta indispensable  en el aula de clase.
+\end{enumerate}
+\bibliographystyle{apacite}
+\bibliography{referencias}
+\end{document}

@@ -1,0 +1,262 @@
+% version 9
+% Autor: Julian Salamanca
+% Institución: Universidad Distrital Francisco José de Caldas
+% Fecha: 09AGO2013
+
+%\documentclass[jou]{apa6} %journal stilo APA con citacion clasica (apacite.pdf)
+%\documentclass[doc]{apa6} % journal estilo latex
+%\documentclass[man]{apa6}  % manuscrito APA
+%\documentclass[jou]{apa6}  % manuscrito APA
+%\documentclass[12pt,spanish,letter,twoside]{article}
+\documentclass[jou]{apa6}  % manuscrito APA
+
+
+
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}% Tildes
+\usepackage{hyperref}
+\urlstyle{same}
+
+%Stilo citaciones APA (debe ir despues de "hyperref ")
+\usepackage{apacite} 
+
+% para compilar eps con: pdflatex -shell-escape <archivo>.tex
+\usepackage{epstopdf} 
+
+\usepackage{amsmath, amsthm, amsfonts}
+\usepackage{graphicx,wrapfig,lipsum}
+
+\usepackage{fancyhdr}%
+\pagestyle{fancy}
+\fancypagestyle{empty}{
+
+%  \setlength{\topmargin}{-0.5in}
+%  \setlength{\headheight}{1.05in}
+  \setlength{\headsep}{0.5in}
+%  \setlength{\headwidth}{\textwidth}
+%  \setlength{\footskip}{2.0in}
+
+  \renewcommand{\headrulewidth}{0pt}
+  \fancyhead[L]{
+    \includegraphics[width=2.0cm, height=2.0cm]{img/logoGI}
+    \vspace{-1.0cm}
+  }
+  
+  \fancyhead[R]{
+    \includegraphics[width=7.0cm, height=2.0cm]{img/logo_UD_EXT}
+    \vspace{-1.0cm}
+  }
+}
+
+%====================================
+
+
+\title{Plantilla para Preparación de Manuscritos de Trabajos de Grado en El PCLF Bajo Normas APA 6th Edición}
+
+\shorttitle{PLANTILLA TRABAJO DE GRADO PCLF}
+
+%==================== AUTOR (ES) ========================
+\author{Pepito Perez}
+\affiliation{Universidad Distrital ``Francisco Jose de Caldas'', Facultad de Ciencias y Educación\\ 
+  Grupo de Física e Informáica ``FISINFOR''}
+\leftheader{Salamanca}
+%==================== FIN AUTOR (ES) ====================
+
+%==================== RESUMEN ========================
+\abstract{Esta plantilla en \LaTeX~  pretende ser un ejemplo y guia para la elaboracion del manuscrito del Trabajo de Grado utilizando los criterios de las normas APA 6a edición. Se utilizo al paquete \texttt{apa6} elaborado por Brian D. Beitzel, Department of Educational Psychology,  Counseling and Special Education, SUNY Oneonta, y el paquete \texttt{apacite} para hacer las citaciones bajo APA. Igualmente se requiere leer los manuales de los paquetes mencionados.}
+\keywords{PCLF, APA, demostracion, Trabjo de grado.}
+%==================== FIN RESUMEN ========================
+
+%==================== NOTA DE AUTOR ========================
+\authornote{
+  {\bf Información de contacto.} Pepito Perez, Proyecto Curricular de Licenciatura en Física, Grupo de Fisica e Informatica ``FISINFOR'', Facultad de Ciencias y Educacion, Universidad Distrital ``Francisco Jose de Caldas''. Código estudiante: {\bf 2013123456}, \underline{micorreo@micorreo.com}, Bogotá, Colombia 2013. 
+
+
+{\bf Agradecimientos.} Este trabajo de grado fue financiado por el Centro de Investigaciones de la Universidad Distrital (CIDC). Especial agradecimiento a los contribuyentes que hicieron posible mi educación. Este trabajo de grado fue financiado por el Centro de Investigaciones de la Universidad Distrital (CIDC). Especial agradecimiento a los contribuyentes que hicieron posible mi educación. Este trabajo de grado fue financiado por el Centro de Investigaciones de la Universidad Distrital (CIDC). Especial agradecimiento a los contribuyentes que hicieron posible mi educación.Este trabajo de grado fue financiado por el Centro de Investigaciones de la Universidad Distrital (CIDC). 
+}
+%==================== FIN NOTA DE AUTOR ========================
+
+\begin{document}
+
+%================  NO EDITAR =================
+\renewcommand{\tablename}{Tabla} %"Cuadro" por "Tabla"
+\def\st@rtbibsection{\mspart{Referencias}}% ``References'' por ``Referencias''
+\renewcommand{\rheadname}{Encabezado de página}% Running head (encabezado de pagina)
+\renewcommand{\acksname}{Nota de Autor}% 
+\renewcommand{\keywordname}{Palabras clave}% 
+\renewcommand{\BOthers}[1]{et al.\hbox{}}
+\thispagestyle{empty}
+\clearpage
+
+\maketitle
+%=============================================
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+
+
+%==============      INTRODUCCION     ==================
+\section{INTRODUCCIÓN}
+Los siguientes párrafos incluyendo este, constituyen la introducción al documento. Aquí NO se coloca el titulo ``introducción''.
+Se requerida leer los manuales y además se recomienda hacer una instalación de todo el paquete de \LaTeX~ (en ubuntu 12.04, \texttt{sudo synaptic}, y encontrar ``texlive-full).
+
+También se recomienda leer las normas APA 6a Edición y un ejemplo de preparación de manuscrito que se puede encontrar en este link: \url{http://www.apastyle.org/manual/related/sample-experiment-paper-1.pdf}
+
+%==============  FIN  INTRODUCCION    ==================
+
+
+\section{PRIMER NIVEL DE CABECERA}
+
+Como se ve, este primer nivel se encuentra centrado y corresponde al primer nivel de cabecera de cinco que se caracterizan en las normas APA actuales. Como se ve, este primer nivel se encuentra centrado y corresponde al primer nivel de cabecera de cinco que se caracterizan en las normas APA actuales.
+
+Como se ve, este primer nivel se encuentra centrado y corresponde al primer nivel de cabecera de cansa que se caracterizan en las normas APA actuales.
+Como se ve, este primer nivel se encuentra centrado y corresponde al primer nivel de cabecera de cinto que se caracterizan en las normas APA actuales.
+
+\subsection{Segundo Nivel de Cabecera}
+
+Se encuentra a la izquierda del texto y sin indotación. Fíjese que la primera linea de esta párrafo se encuentra indentada. Se encuentra a la izquierda del texto y sin indentacion. Fíjese que la primera linea de esta párrafo se encuentra indentada. Se encuentra a la izquierda del texto y sin indentacion. Fíjese que la primera linea de esta párrafo se encuentra indentada.
+
+Se encuentra a la izquierda del texto y sin indentacion. Fíjese que la primera linea de esta párrafo se encuentra indentada.Se encuentra a la izquierda del texto y sin indentacion. Fíjese que la primera linea de esta párrafo se encuentra indentada.
+
+\subsection{Otro Ejemplo del Segundo Nivel de Cabecera}
+
+Se encuentra a la izquierda del texto y sin indentación. Fíjese que la primera linea de esta párrafo se encuentra indentada. Se encuentra a la izquierda del texto y sin indentacion. Fíjese que la primera linea de esta párrafo se encuentra indentada. Se encuentra a la izquierda del texto y sin indentacion. Fíjese que la primera linea de esta párrafo se encuentra indentada.
+
+Se encuentra a la izquierda del texto y sin indentacion. Fíjese que la primera linea de esta párrafo se encuentra endentada.Se encuentra a la izquierda del texto y sin indentacion. Fíjese que la primera linea de esta párrafo se encuentra indentada.
+
+\subsubsection{Ejemplo del Tercer Nivel de Cabecera}
+
+Como se ve, el texto que sigue después de declarar este nivel es contiguo a la cabecera.Como se ve, el texto que sigue después de declarar este nivel es contiguo a la cabecera.Como se ve, el texto que sigue después de declarar este nivel es contiguo a la cabecera.
+
+\paragraph{Ejemplo del Cuarto Nivel de Cabecera}
+Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto. Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto. Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.
+
+\subparagraph{Ejemplo del Quinto Nivel de Cabecera}
+Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto. Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto. Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.
+
+\paragraph{Otro Ejemplo del Cuarto Nivel de Cabecera}
+Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto. Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto. Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.
+
+\subparagraph{Otro Ejemplo del Quinto Nivel de Cabecera}
+Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto. Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto. Texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto texto.
+
+\section{TABLAS Y FIGURAS}
+
+Las tablas, figuras y ecuaciones se citan en el texto bajo normas APA. Las leyendas de tablas se ubican en la parte de arriba de las mismas; para las gráficas: en la parte de abajo. En el trabajo de grado, las tablas y figuras se encuentran al final del texto \texttt{$\backslash$documentclass[man]{apa6}}. Si se cambia la opción por\texttt{$\backslash$documentclass[jou]{apa6}}, las figuras y tablas aparecerán como en cualquier articulo científico. Utilizando \texttt{$\backslash$documentclass[doc]{apa6}} queda como un documento de \LaTeX.
+
+\begin{table}[htbp]
+  \centering
+  \caption{\footnotesize Ejemplo tabla.}% Este ejemplo fue tomado de la plantilla para manuscritos APA 5ta edición. Tamaño de la leyenda 11pt }
+  \label{tab:tab1}
+  \begin{tabular}{lcc}\hline
+    & \multicolumn{2}{c}{Factor 2} \\ \cline{2-3}
+    Factor 1  & Condición A  & Condición B   \\ \hline
+    First     & 586 (231)    & 649 (255)     \\
+    &    2.2       &    7.5        \\
+    Second    & 590 (195)    & 623 (231)     \\
+    &    2.8       &    2.5        \\ \hline
+  \end{tabular}
+  \begin{tablenotes}
+    %[para,flushleft]
+    {\small
+      \vspace{0.1cm}
+      \textit{Nota.} Todos los datos son aproximados. Las condiciones y los factores tienen una relación lineal. Los valores fueron estimados. Todos los datos son aproximados. Las condiciones y los factores tienen una relación lineal. Los valores fueron estimados. Todos los datos son aproximados. Las condiciones y los factores tienen una relación lineal. Los valores fueron estimados. Todos los datos son aproximados. Las condiciones y los factores tienen una relación lineal. Los valores fueron estimados.
+    }
+  \end{tablenotes}
+\end{table}
+
+Igualmente, se ilustra un ejemplo de una figura, utilizando el logo de la Semana de la enseñanza de la física. 
+
+\begin{figure}
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/logo.eps}
+  \caption{\footnotesize Logo SEF. Logo institucionalizado para la semana de la enseñanza de la física. Figura en formato \texttt{.eps}}
+  \label{fig:fig1}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/logo.png}
+  \caption{\footnotesize Logo SEF. Logo institucionalizado para la semana de la enseñanza de la física. Figura en formato \texttt{.png}}
+  \label{fig:fig1}
+\end{figure}
+
+
+Las tablas y figuras se deben hacer referencia en el texto como Figura~\ref{fig:fig1} y Tabla~\ref{tab:tab1}.
+
+\subsection{Ecuaciones}
+Las ecuaciones se van enumerando automáticamente en el texto pero es importante etiquetarlas con \texttt{label} para que puedan ser referenciadas en el texto, como por ejemplo la Ecuación~\ref{eq:fine}
+\begin{equation}
+I = \! \int_{-\infty}^\infty f(x)\,dx \label{eq:fine}.
+\end{equation}
+
+\noindent donde $f(x)$ es una función cualquiera para este ejemplo.
+
+\subsubsection{Cantidades físicas}
+Se debe utilizar el Sistema Internacional de Unidades
+
+\section{CITACION BAJO NORMAS APA}
+
+Al igual que las figuras, tablas y ecuaciones, las referencias a citas bibliográficas se realizan bajo normas APA.
+
+Este es un ejemplo. El modelo de radiación directa \cite{salamanca} fue ilustrado en Colombia por \citeA{reyes, salamanca}, pero también fue utilizado en otras latitudes de la región colombiana \maskcite{reyes}. Igualmente se dio a conocer en todo el mundo por \maskciteauthor{salamanca} en el año de \citeyearNP{reyes} y después en el año con parentesis de \citeyear{salamanca}.\\
+
+\section{INSTALACION \texttt{apa6} Y \texttt{apacite} Y PAQUETES RELACIONADOS}
+
+Antes de comenzar es importante tener instalado los paquetes \texttt{bibtex} y \texttt{apacite}. Estos pueden ser obtenidos instalando \texttt{texlive-full} (documentación relacionada con \texttt{apacite}: \\
+\url{http://www.ctan.org/tex-archive/biblio/bibtex/contrib/apacite}
+
+Hacer un directorio de trabajo (i.e., \texttt{tg/}). Luego bajar el archivo de \LaTeX~ \texttt{apa6.dtx} (se puede obtener del repositorio CTAN:\\
+\url{http://www.ctan.org/tex-archive/macros/latex/contrib/apa6})\\
+y moverlo al directorio de trabajo. Hacer \texttt{latex apa6.dtx} y después \texttt{ctrl D} para crear los archivos \texttt{apa6.cls} (estilo APA) y \texttt{apa6.log}. 
+
+Compilar el ejemplo para saber que todo va bien: 
+
+\texttt{latex tg-plantilla.tex} (dos veces)
+
+\texttt{bibtex tg-plantilla.aux}(dos veces)
+
+\texttt{latex tg-plantilla.tex} (dos veces)
+
+Visualizar con \texttt{xdvi} y convertir a pdf con:
+
+\texttt{convert input.dvi input.pdf } o \texttt{dvipdf input.dvi output.pdf}
+
+\subsection{Archivo \texttt{.bib}}
+
+En el ejemplo de plantilla se encontrara con un archivo llamado \texttt{bib\_ejemplo\_tg-plantilla.bib}. Si usted quiere renombrar este archivo con otro nombre, por ejemplo: \texttt{bibliografia\_tg.bib}, asegúrese de cambiar este nombre en la plantilla (al final de la plantilla):
+\begin{verbatim}
+\bibliography{bib_ejemplo_tg-plantilla}
+\end{document}
+\end{verbatim}
+por
+\begin{verbatim}
+\bibliography{bibliografia_tg}
+\end{document}
+\end{verbatim}
+
+\section{Compilación en \LaTeX}
+
+Para las personas que deseen realizar su manuscrito en Linux, se comentan algunas cuestiones técnicas respecto a la compilación.
+
+El código fuente del artículo en {\LaTeX} se puede compilar con \LaTeX~ o Pdf\LaTeX~ siempre y cuando las gráficas estén en formato \texttt{eps} (para el primer caso) o en \texttt{png}, \texttt{gif} y \texttt{jpg} (para el segundo). Esta plantilla cuenta con un ejemplo de archivo para crear las referencias dentro del texto utilizando normas APA (\texttt{bib\_ejemplo\_tg-plantilla.bib}). Primero se debe compilar el código \texttt{.tex} con \texttt{latex o pdflatex}, luego el código \texttt{.aux}  con \texttt{bibtex} generado por la anterior compilación y compilar de nuevo, dos veces, el código \texttt{.tex}. 
+
+\subsection{Importante, muy importante}
+
+Si se quiere utilizar pdf\LaTeX~ con gráficas en formato \texttt{.eps} se recomienda compilar con:\\
+\texttt{pdflatex -shell-escape <archivo>.tex}\\
+
+Debe asegurar que el paquete \texttt{epstopdf} este declarado en la cabecera del archivo \texttt{.tex}.
+
+\section{CONCLUSIONES}
+
+El articulo debe contener una sección de conclusiones. Se espera que esta sección sea para concluir y discutir sobre los resultados del trabajo. De otro lado, se espera que también sea un espacio para recomendaciones y propuestas futuras de trabajo.\\
+
+\bibliographystyle{apacite}
+\bibliography{bib_ejemplo_tg-plantilla}
+\end{document}
+
+\appendix
+\include{app/app1}

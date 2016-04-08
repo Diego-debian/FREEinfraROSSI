@@ -1,0 +1,68 @@
+\BOOKMARK [1][-]{section*.4}{INTRODUCCION}{}% 1
+\BOOKMARK [1][-]{section*.5}{Experimentos demostrativos que ilustra el veh\355culo motorizado infraROSSI y su software FREEinfraROSSI}{}% 2
+\BOOKMARK [2][-]{section*.6}{Calculo de la longitud de onda de la radiaci\363n de un diodo led infrarrojo}{section*.5}% 3
+\BOOKMARK [2][-]{section*.11}{Decaimiento de la densidad de flujo de radiaci\363n infrarroja}{section*.5}% 4
+\BOOKMARK [2][-]{section*.15}{Calculo del factor de perdida de la interacci\363n radiaci\363n-materia}{section*.5}% 5
+\BOOKMARK [1][-]{section*.21}{Veh\355culo motorizado infraROSSI}{}% 6
+\BOOKMARK [1][-]{section*.32}{Modelo f\355sico-matem\341tico de los experimentos que ilustra el modulo infraROSSI y su software FREEinfraROSSI}{}% 7
+\BOOKMARK [2][-]{section*.33}{Producci\363n de fotones infrarrojos}{section*.32}% 8
+\BOOKMARK [2][-]{section*.35}{Longitud de onda de un diodo led infrarrojo}{section*.32}% 9
+\BOOKMARK [2][-]{section*.39}{Ley de decaimiento de la densidad de flujo de radiaci\363n}{section*.32}% 10
+\BOOKMARK [2][-]{section*.40}{Factor de perdida de la interacci\363n radiaci\363n-mater\355a}{section*.32}% 11
+\BOOKMARK [2][-]{section*.42}{Absorci\363n de los fotones en el diodo receptor infrarrojo}{section*.32}% 12
+\BOOKMARK [1][-]{section*.44}{Software de control FREEinfraROSSI}{}% 13
+\BOOKMARK [2][-]{section*.45}{\277Qu\351 es FREEinfraROSSI?}{section*.44}% 14
+\BOOKMARK [2][-]{section*.46}{Licencia}{section*.44}% 15
+\BOOKMARK [2][-]{section*.47}{Instalaci\363n}{section*.44}% 16
+\BOOKMARK [2][-]{section*.52}{Primer uso FREEinfraROSSI}{section*.44}% 17
+\BOOKMARK [2][-]{section*.53}{Carga de firmware en el modulo infraROSSI}{section*.44}% 18
+\BOOKMARK [1][-]{section*.55}{Dise\361o experimental del modulo infraROSSI}{}% 19
+\BOOKMARK [2][-]{section*.56}{Disposici\363n el\351ctrica}{section*.55}% 20
+\BOOKMARK [3][-]{section*.57}{Control de hardware}{section*.56}% 21
+\BOOKMARK [3][-]{section*.67}{Control de avance}{section*.56}% 22
+\BOOKMARK [3][-]{section*.72}{Sensor de electro-recepci\363n pasiva}{section*.56}% 23
+\BOOKMARK [3][-]{section*.75}{Sensor de electro-recepci\363n activa}{section*.56}% 24
+\BOOKMARK [2][-]{section*.78}{Disposici\363n mec\341nica}{section*.55}% 25
+\BOOKMARK [2][-]{section*.80}{Test del modulo infraROSSI y su software FREEinfraROSSI}{section*.55}% 26
+\BOOKMARK [3][-]{section*.81}{Difracci\363n}{section*.80}% 27
+\BOOKMARK [3][-]{section*.86}{Atenuaci\363n}{section*.80}% 28
+\BOOKMARK [3][-]{section*.89}{Absorci\363n}{section*.80}% 29
+\BOOKMARK [1][-]{section*.90}{CONCLUSIONES}{}% 30
+\BOOKMARK [1][-]{section*.91}{Referencias}{}% 31
+\BOOKMARK [1][-]{section*.92}{Ap\351ndice A. Dise\361o de una fuente emisora de fotones para el montaje del experimento ilustrativo de la difracci\363n}{}% 32
+\BOOKMARK [1][-]{section*.93}{Ap\351ndice B. Calculo de la longitud de onda de la radiaci\363n de un diodo led infrarrojo}{}% 33
+\BOOKMARK [1][-]{section*.94}{Ap\351ndice C. Ilustraci\363n de la ley de decaimiento de la densidad de flujo de radiaci\363n con el cuadrado inverso de la distancia de separaci\363n a la fuente}{}% 34
+\BOOKMARK [1][-]{section*.95}{Ap\351ndice D. Calculo del factor de perdida de la densidad de flujo de radiaci\363n emitida por un diodo led emisor infrarrojo, cuando esta radiaci\363n interact\372a con la mater\355a}{}% 35
+\BOOKMARK [1][-]{section*.96}{Ap\351ndice E. C\363digos del programa FREEinfraROSSI}{}% 36
+\BOOKMARK [2][-]{section*.97}{Ap\351ndice E1. LICENSE}{section*.96}% 37
+\BOOKMARK [2][-]{section*.98}{Ap\351ndice E2. copyright}{section*.96}% 38
+\BOOKMARK [2][-]{section*.99}{Ap\351ndice E3. README.md}{section*.96}% 39
+\BOOKMARK [2][-]{section*.100}{Ap\351ndice E4. instalador.py}{section*.96}% 40
+\BOOKMARK [2][-]{section*.101}{Ap\351ndice E5. INSTALADOR.py}{section*.96}% 41
+\BOOKMARK [2][-]{section*.102}{Ap\351ndice E6. unistall.py}{section*.96}% 42
+\BOOKMARK [2][-]{section*.103}{Ap\351ndice E7. infrarossi.py}{section*.96}% 43
+\BOOKMARK [2][-]{section*.104}{Ap\351ndice E8. infrarossi}{section*.96}% 44
+\BOOKMARK [2][-]{section*.105}{Ap\351ndice E9. c\137Blue.sh}{section*.96}% 45
+\BOOKMARK [2][-]{section*.106}{Ap\351ndice E10. g\137p\137Abs.py}{section*.96}% 46
+\BOOKMARK [2][-]{section*.107}{Ap\351ndice E11. g\137p\137Ate.py}{section*.96}% 47
+\BOOKMARK [2][-]{section*.108}{Ap\351ndice E12. Estadistica1.m}{section*.96}% 48
+\BOOKMARK [2][-]{section*.109}{Ap\351ndice E13. Estadistica2.m}{section*.96}% 49
+\BOOKMARK [2][-]{section*.110}{Ap\351ndice E14. Atenuacion.py}{section*.96}% 50
+\BOOKMARK [2][-]{section*.111}{Ap\351ndice E15. Absorcion.py}{section*.96}% 51
+\BOOKMARK [2][-]{section*.112}{Ap\351ndice E16. Difraccion.py}{section*.96}% 52
+\BOOKMARK [2][-]{section*.113}{Ap\351ndice E17. c\137p\137Abs.py}{section*.96}% 53
+\BOOKMARK [2][-]{section*.114}{Ap\351ndice E18. c\137p\137Dif.py}{section*.96}% 54
+\BOOKMARK [2][-]{section*.115}{Ap\351ndice E19. c\137p\137Ate.py}{section*.96}% 55
+\BOOKMARK [2][-]{section*.116}{Ap\351ndice E20. Estadis2.py}{section*.96}% 56
+\BOOKMARK [2][-]{section*.117}{Ap\351ndice E21. o\137Carpetas.py}{section*.96}% 57
+\BOOKMARK [2][-]{section*.118}{Ap\351ndice E22. o\137Carpetas1.py}{section*.96}% 58
+\BOOKMARK [2][-]{section*.119}{Ap\351ndice E23. o\137Carpetas2.py}{section*.96}% 59
+\BOOKMARK [2][-]{section*.120}{Ap\351ndice E24. m\137Carpeta.sh}{section*.96}% 60
+\BOOKMARK [2][-]{section*.121}{Ap\351ndice E25. m\137Carpetas1.sh}{section*.96}% 61
+\BOOKMARK [2][-]{section*.122}{Ap\351ndice E26. m\137Carpetas2.sh}{section*.96}% 62
+\BOOKMARK [2][-]{section*.123}{Ap\351ndice E27. est\137fuente.py}{section*.96}% 63
+\BOOKMARK [2][-]{section*.124}{Ap\351ndice E28. G\137firmware.py}{section*.96}% 64
+\BOOKMARK [2][-]{section*.125}{Ap\351ndice E29. firmware\137free\137infrarossi.py}{section*.96}% 65
+\BOOKMARK [2][-]{section*.126}{Ap\351ndice E30. infrarossi.cpp}{section*.96}% 66
+\BOOKMARK [2][-]{section*.127}{Ap\351ndice E31. infrarossi.hex}{section*.96}% 67
+\BOOKMARK [1][-]{section*.128}{Ap\351ndice F. COTIZACI\323N COSTOS DE MATERIALES, PROYECTO INFRAROSSI}{}% 68

@@ -1,0 +1,439 @@
+% version 12
+% Autor: Julian Salamanca
+% Institución: Universidad Distrital Francisco José de Caldas
+% Fecha: 09AGO2013
+
+\documentclass[jou]{apa6} %journal stilo APA con citacion clasica (apacite.pdf)
+%\documentclass[doc]{apa6} % journal estilo latex
+%\documentclass[man]{apa6}  % manuscrito APA
+
+\usepackage[toc,page]{appendix}
+\usepackage{balance}
+\usepackage{multicol}
+\usepackage{pdfpages}
+\usepackage{afterpage}
+\usepackage{float}
+
+
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}% Tildes
+\usepackage{hyperref}
+\urlstyle{same}
+
+%====================================================================
+%Para que no parta las palabras con guiones al final de linea
+\usepackage[none]{hyphenat} 
+\tolerance=6000
+%====================================================================
+
+
+
+%Stilo citaciones APA (debe ir despues de "hyperref ")
+\usepackage{apacite} 
+
+% para compilar eps con: pdflatex -shell-escape <archivo>.tex
+\usepackage{epstopdf} 
+
+\usepackage{amsmath, amsthm, amsfonts}
+\usepackage{graphicx,wrapfig,lipsum}
+
+\usepackage{fancyhdr}%
+\pagestyle{fancy}
+\fancypagestyle{empty}{
+
+%  \setlength{\topmargin}{-0.5in}
+%  \setlength{\headheight}{1.05in}
+  \setlength{\headsep}{0.5in}
+%  \setlength{\headwidth}{\textwidth}
+%  \setlength{\footskip}{2.0in}
+
+  \renewcommand{\headrulewidth}{0pt}
+
+  % ========== EDITAR LOGO GRUPO =========================
+
+  \fancyhead[L]{
+    \includegraphics[width=2.0cm, height=2.0cm]{img/logoGI}
+    \vspace{-1.0cm}
+  }
+  % ========== FIN NO EDITAR LOGO GRUPO =================
+  
+
+  % ========== NO EDITAR LOGO UD =========================
+
+  \fancyhead[R]{
+    \includegraphics[width=5.5cm, height=1.2cm]{img/logo_UD_EXT}
+  }
+  % ========== FIN NO EDITAR ===========================
+  
+
+}
+
+
+\title{Calculo del factor de perdida de la densidad de flujo de radiación emitida por un diodo led emisor infrarrojo, cuando esta radiación interactúa con la matería; utilizando el modulo motorizado \texttt{infraROSSI} y su software de control \texttt{FREEinfraROSSI}}
+
+\shorttitle{ARTICULO ABSORCIÓN}
+
+%==================== AUTOR (ES) ========================
+\author{Diego Alberto Parra Garzón \\ \href{mailto:diegoestudianteud1@gmail.com}{diegoestudianteud1@gmail.com}, \\ PhD. Julian Andrés Salamanca Bernal \\ \href{mailto:jasalamanca@udistrital.edu.co}{jasalamanca@udistrital.edu.co}}
+\date{\today}
+\affiliation{Universidad Distrital ``Francisco José de Caldas'', Facultad de Ciencias y Educación\\ 
+	     calle 3 No 26A-40 Bogotá-Colombia\\
+             Grupo de Física e Informáica ``FISINFOR''}
+\leftheader{Diego}
+%==================== FIN AUTOR (ES) ====================
+
+%==================== RESUMEN ========================
+\abstract{
+\begin{center}
+\textbf{Abstrac}
+\end{center}
+This paper illustrates the calculation of the loss factor flux density of radiation emitted by a LED diode infrared emitter, when this radiation interacts with matter; using construction paper of various colors, the motor module \texttt{infraROSSI}  and control software \texttt{FREEinfraROSSI},  in a GNU-Linux environment; highlighting the functionality of this instrument in illustrating the calculation factor in the loss of intensity on the measuring instrument and its proportionality with the flux of radiation emitted by a LED diode emitting infrared radiation when it interacts with matter.\\\\
+Keywords: Motor module, infrared sensors, microcontroller module bluetooth, electromagnetic wave, reflection, refraction, absorption, attenuation, reflectance, transmittance.
+\begin{center}
+\textbf{Resumen}
+\end{center}
+El presente trabajo ilustra el calculo del factor de perdida de la densidad de flujo de radiación emitida por un diodo led emisor infrarrojo, cuando esta radiación interactúa con la metería; utilizando cartulinas de varios colores, el modulo motorizado  \texttt{infraROSSI} y su software de control \texttt{FREEinfraROSSI}, en un entorno GNU-linux; resaltando la funcionalidad de este instrumento en la ilustración del calculo en el  factor de perdida de la intensidad en el instrumento de medida y su proporcionalidad con  la densidad de flujo de radiación emitida por un diodo led emisor infrarrojo, cuando esta radiación interactúa con la metería.
+}
+\keywords{  Modulo motorizado, sensores infrarrojos, microcontrolador, reflectancia, refracción, modulo bluetooth, ondas electromagnéticas, reflexión, absorción, atenuación,  transmitancia.}
+
+%==================== FIN RESUMEN ========================
+
+\begin{document}
+
+%================  NO EDITAR =================
+\renewcommand{\tablename}{Tabla} %"Cuadro" por "Tabla"
+\renewcommand{\refname}{Referencias} %"Cuadro" por "Tabla"
+% \def\st@rtbibsection{\mspart{RReferencias}}% ``References'' por ``Referencias'
+\renewcommand{\rheadname}{Encabezado de página}% Running head (encabezado de pagina)
+\renewcommand{\acksname}{Nota de Autor}% 
+\renewcommand{\keywordname}{Palabras clave}% 
+\renewcommand{\listtablename}{Índice de tablas}% 
+\renewcommand{\BOthers}[1]{et al.\hbox{}}
+\renewcommand{\appendixname}{Ap} %"Cuadro" por "Tabla"
+\renewcommand{\appendixname}{Anexo}
+\renewcommand{\appendixname}{Anexos}
+\renewcommand{\appendixtocname}{Anexos}
+\renewcommand{\appendixpagename}{Anexos}
+\maketitle
+
+%============== TABLA DE CONTENIDO ===============
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+%=================INTRODUCCION ============
+\section{INTRODUCCION}
+Los fenómenos de las ondas siempre han fascinado los pensamientos de los seres humanos; es allí donde la física con ayuda de la matemática muestran su majestuosidad, al explicar de manera muy detallada estos fenómenos de transporte; desde el punto de vista clásico en la interacción del flujo de radiación electromagnética con la materia pueden darse varios fenómenos tales como la reflexión, refracción, absorción, atenuación, reflectancia, transmitancia; en estos fenómenos, incide radiación sobre una superficie de muestra y se mide la proporción en la cantidad de radiación que el material absorbe, que deja pasar y la que se refleja, estos cálculos son muy utilizados en espectrofotómetros infrarrojos y en diversos estudios que implican la interacción \texttt{radiación-materia.}   \\\\
+En este trabajo se hace un calculo del índice de  reflectancia de las diferentes muestras, enviando radiación infrarroja sobre el material y midiendo el factor de perdida en la intensidad de la radiación electromagnética que incide sobre el detector infrarrojo del vehículo motorizado \texttt{infraROSSI} después  que la radiación ha interactuado con la muestra y ha sido reflejada.
+%=================MARCO TEORICO==============
+\section{Marco teórico}
+Los fotones producidos por el diodo emisor de la fuente emisora de radiación infrarroja, según \cite{shalimova1975fisica} ``se dan debido a que en los semiconductores, con estructura compleja de las bandas energéticas, son posibles las transiciones indirectas de los electrones de la banda de conducción  a la de valencia acompañadas de la emisión de un fotón. En este caso la recombinación del electrón libre con el hueco se desarrolla con la aparición de un fonón, lo que asegura la conservación del cuasi impulso. Lo más probable es que el fonón sea emitido. Si en el semiconductor se desarrollan procesos de recombinación entre bandas  tanto directa como indirectas, en el espectro de radiación se observan dos bandas de luminiscencia. \\ \\
+En la banda prohibida de los semiconductores reales existe una gran cantidad de estados localizados, que están ligados a los átomos de impureza, defectos de la estructura, infracciones de la periodicidad de la estructura en la superficie, etc. Estos estados localizados desempeñan un papel importante  en los procesos de luminiscencia. 
+% =============================0 FIGURA Transiciones con radiación entre una banda y los estados de impureza.
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/transiciones.png}
+  \caption{Transiciones con radiación entre una banda y los estados de impureza.}
+  \label{fig:fig1}
+\end{figure}
+El estudio de los espectros de luminiscencia relacionados a diversas impurezas y defectos permite obtener información sobre estas infracciones de la estructura. \\ \\
+En los semiconductores se pueden producir pares \texttt{electrón-hueco} ligados por la atracción coulombiana, es decir, excitones. Si uno de estos pares se aniquila, se produce la emisión de un fotón. La energía de esta radiación es: 
+\begin{equation}
+h\nu = E_g - E\label{eq:eq1},
+\end{equation}
+donde E es la energía de enlace del excitón."\\\\
+Ahora se tiene un flujo de fotones de energía $h\nu$ saliendo del diodo emisor infrarrojo, según \cite{gautreau2001fisica}\,``como los fotones viajan a la velocidad de la luz deben, de acuerdo con la teoría de la relatividad, tener una masa en reposo igual a cero; de aquí que su energía sea completamente cinética. Si un fotón existe, entonces se mueve a la velocidad de la luz, $c$; si deja de moverse a velocidad c, deja de existir. Para $m_{0} = 0$ la relación relativista \texttt{momentum-energía}  se convierte en $E = pc$.
+de esta forma, cada fotón tiene un momentum de 
+\begin{equation}
+p = \frac{E}{c} = \frac{h\nu}{c} = \frac{h}{\lambda}\label{eq:eq2},
+\end{equation}
+Desde el punto de vista cuántico, un haz de energía electromagnética se compone de fotones que se desplazan a la velocidad $c$. La intensidad del haz será proporcional al número de fotones que cruza un área unitaria por unidad de tiempo. Entonces, si el haz es monocromático (de una frecuencia), la intensidad $I$ se obtendrá de 
+\begin{equation}
+I = (h\nu)\times \left ( \frac{N}{A\times t } \right)\label{eq:eq3},
+\end{equation}
+$h$ es la constante de Plank que tiene un valor de $6.626 \times 10^{-34} (J * s)$; $N$ es el número de fotones que pasan por segundo a través de la superficie; $A$ es la superficie; $t$ es el tiempo en segundos."\\\\
+Esta radiansa de fotones desde el diodo emisor, avanza por el espacio proyectando un ángulo solido, por lo que la irradiancia  sera igual al cociente de la radiansa con el ángulo solido proyectado.\\\\
+La maxima distancia que se toma para la radiansa de fotones como se observa en la figura  \ref{fig:fig3}\,, es de 30 centimetros desde el diodo emisor hasta el material de muestra \footnote{La muestra son octavos de cartulina de colores.} colocado perpendicular al flujo de energía, por lo que habrá reducido su intensidad con el inverso del cuadrado de la distancia de la fuente a la muestra $\frac{1}{(0.30)^{2}}$ .\\\\
+% =============================Montaje laboratorio absorción utilizando el 
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/mon_abso.png}
+  \caption{Montaje laboratorio absorción utilizando el modulo motorizado \texttt{infraROSSI} y un octavo de cartulina.}
+  \label{fig:fig3}
+\end{figure}\\
+Ahora el flujo de fotones que interactua con la superficie del material de muestra dan como resultado desde el punto de vista clásico varios fenómenos físicos como lo son  la reflexión, refracción, absorción, atenuación, reflectancia, transmitancia.  Ahora el flujo de fotones  es  visto como el flujo de ondas electromagnéticas,   las que interactúan con la materia  en donde parte de la energía es transmitida al material aumentando la energía cinética media de sus constituyentes, otra parte traspasa el material y el resto del flujo electromagnético avanza paralelamente contrario a la dirección de desplazamiento inicial, si no se considera interacción de las ondas electromagnéticas con el aire como medio disipativo  y otras formas de perdida de energía.\\\\
+Según \cite{hecht2000optica}\, ``Consideremos un haz de luz circular que incide en una superficie, tal como se muestra en la figura \ref{fig:fig2}, de tal modo que se produzca una zona iluminada cuya área sea $A$. Recordemos que la potencia por unidad de área que cruza una superficie en el vacío cuya normal es paralela a $\textbf{S}$, el vector de Poynting  viene determinado por:
+\begin{equation}
+\textbf{S} = c^{2} \epsilon_{0}\textbf{E}\times \textbf{B}\label{eq:eq4}.
+\end{equation}
+A demás la densidad de flujo radiante $(W / m^{2})$ o irradiancia es entonces 
+\begin{equation}
+I =  < S >_{t}   = \frac{c \epsilon_{0}}{2} E_{0}\label{eq:eq5}.
+\end{equation}
+Este el promedio de energía por unidad de tiempo que cruza  un área unidad, normal a  $\textbf{S}$ (en medios isótropos $\textbf{S}$ es paralela al vector de onda $\textbf{k})$. En el caso que nos ocupa (figura \ref{fig:fig2}) sean $I_{i} , I_{r}$ y $I_{t}$ las densidades de flujo incidente, reflejado y transmitido, serán respectivamente, $A cos(\theta _{i})$, $A cos(\theta _{r})$ y $A cos(\theta _{t})$.\\ \\
+De acuerdo con esto, la potencia incidente es $I_{i} A cos(\theta_{i})$, esta es la energía por unidad de tiempo que fluye en el rayo incidente y, por consiguiente, la potencia que llega a la superficie de $A$. Del mismo modo,  $I_{r} A cos(\theta_{r})$, es la potencia en el rayo reflejado, e $I_{t} A cos(\theta_{t})$, es la potencia que se transmite a través de $A$. Definimos la \textbf{reflectancia} $R$ como el cociente entre la potencia (o flujo) reflejada y la potencia incidente, es decir:
+\begin{equation}
+R \equiv \frac{I_{r}A cos(\theta_{r})}{I_{i}A cos(\theta_{i})} = \frac{I_{r}}{I_{i}}\label{eq:eq6},
+\end{equation} 
+% =============================Figura reflexión y transmisión .
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/reflexate.png}
+  \caption{Reflexión y transmisión de un haz incidente.}
+  \label{fig:fig2}
+\end{figure}
+Del mismo modo la \textbf{transmitancia T} se define como el cociente entre el flujo transmitido y el flujo incidente y viene dada por:
+\begin{equation}
+T \equiv \frac{I_{t}A cos(\theta_{t})}{I_{i}A cos(\theta_{i})} = \frac{I_{t}}{I_{i}}\label{eq:eq7},
+\end{equation}
+escribamos ahora una ecuación que represente la conservación de energía para la configuración que se muestra en la figura \ref{fig:fig2}. Dicho de otro modo, la energía total que llega al área  $A$ por unidad de tiempo debe ser igual a la energía que fluye hacia fuera de ella por unidad de tiempo:
+\begin{equation}
+I_{i} A cos(\theta_{i}) = I_{r} A cos(\theta_{r}) + I_{t} A cos(\theta_{t}) \label{eq:eq8},
+\end{equation}
+multiplicando a ambos lados por $c$ esta expresión queda: 
+\begin{center}
+$ n_{i} E_{0i}^{2}cos(\theta_{i}) =  n_{i} E_{0r}^{2}cos(\theta_{r}) +  n_{t} E_{0t}^{2}cos(\theta_{t})$ 
+\end{center}
+Dividiendo a ambos lados por $ n_{i} E_{0i}^{2}cos(\theta_{i})$ obtenemos:
+\begin{equation}
+1 = \left ( \frac{E_{0r}}{E_{0i}} \right) ^{2} + \left ( \frac{n_{t}cos(\theta_{t})}{n_{i}cos(\theta_{i})} \right ) \left ( \frac{E_{0t}}{E_{0i}} \right) ^{2}\label{eq:eq9},
+\end{equation}
+Pero esto es simplemente:
+\begin{equation}
+R + T = 1 \label{eq:eq10},
+\end{equation}
+En donde $n_{i}$ es el índice de refracción del medio del que incide, $n_{t}$ es el índice de refracción en el medio transmitido."
+
+
+Si se toma $R$ como la reflectancia y $T$ como el factor de perdida de energía por la muestra, podemos decir que: 
+\begin{center}
+$I_{fot} = RI_{fot} + TI_{fot} $
+\end{center}
+En donde $I_{fot}$ , es el flujo de fotones que inciden por unidad de tiempo sobre la superficie, $RI_{fot}$ es el flujo de fotones que son reflejados por unidad de tiempo sobre la superficie y $TI_{fot}$  es el flujo de fotones que se transmitieron sobre la superficie. De esta manera los fotones salen de la muestra con una radiansa de $RI_{fot}$.\\\\
+Esta radiansa de fotones desde el punto de vista cuántico $RI_{fot}$, o frente de onda desde el punto de vista clásico $\left ( \frac{E_{0r}}{E_{0i}} \right) ^{2}$, tiene que avanzar ahora 30 centímetros desde la muestra hasta el detector, por lo que ahora disminuye su intensidad desde la muestra hasta el foto-detector con el inverso del cuadrado de la distancia $\frac{RI_{fot}}{(0.30)^{2}}$.\\\\
+Al iluminar el diodo receptor infrarrojo con esta energía radiante, según \cite{albella1996fundamentos}``en el semiconductor por cada fotón absorbido se rompe un enlace y se crea un par electrón-hueco. Es importante destacar que no todos los portadores fotogenerados contribuyen a la conducción, ya que una fracción importante de ellos se recombinan antes de llegar al extremo correspondiente del semiconductor. El calculo del incremento de corriente $\Delta I_{e}$, debida al exceso de electrones generados en la banda de conducción, $\Delta n$, es
+\begin {equation}
+\Delta I_{e} = q\mu _{e}(\Delta n)ES\label{eq:eq11}
+\end{equation} 
+siendo $E$ el campo eléctrico aplicado, $\mu_{e}$ la movilidad de los electrones y $S$ la sección transversal del fotoconductor.\\\\
+En condiciones de iluminación, el estado estacionario se alcanza cuando la velocidad de generación de portadores en todo el volumen del semiconductor, $G$, se iguala a la velocidad de recombinación, $R$, es decir $R = G$. para un conductor intrínseco en el cual existe un exceso de portadores, $\Delta n = \Delta p$, la velocidad de recombinación de los portadores vendrá dada por:
+\begin{equation}
+R = \frac{\Delta n }{\tau} = \frac{\Delta p}{\tau}\label{eq:eq12}
+\end{equation}
+siendo $\tau$ el tiempo de vida media de los portadores fotogenerados. En un semiconductor de longitud $L$ en el que suponemos que el espesor es suficiente para que toda la luz que incide sobre el, sea absorbida en su interior, se tiene ahora para la velocidad de generación de portadores en la banda de conducción:
+\begin{equation}
+G = \eta n_{fot} = \eta \frac{\frac{P_{i}}{h\nu}}{SL}\label{eq:eq13}
+\end{equation}
+siendo $n_{fot}$ el número de fotones incidentes en el semiconductor por unidad de volumen y de tiempo, y $\eta$ la eficiencia de la conversión en la generación de portadores. El valor $n_{fot}$ se calcula a través del cociente entre la potencia de la luz incidente, $P_{i}$, y la energía de la radiación, $h\nu$, dividido a su vez por el volumen del material.\\ \\
+Sabiendo que la velocidad de arrastre de los electrones por el campo eléctrico viene dada por: $v_{e} = \mu_{e}E$, las igualdades anteriores permiten escribir para la corriente de electrones fotogenerada entre los dos electrodos:
+\begin{equation}
+\Delta I_{e} = q\nu_{e}\eta\frac{\frac{P_{i}}{h\nu}}{L}\tau\label{eq:eq14}
+\end{equation}
+si se tiene en cuenta que el cociente $t_{r} = L/v_{e}$, representa el tiempo de trásito de los electrones entre los dos electrodos, resulta para $\Delta I_{e}$:
+\begin{equation}
+\Delta I_{e} = q\eta \frac{P_{i}}{h\nu}\frac{\tau}{t_{r}}\label{eq:eq15}
+\end{equation}
+con una expresión similar para la corriente de huecos en la banda de valencia. En la ecuación anterior, el factor $q\eta(P_{i}/h\nu) = I_{fot}$ tiene dimensiones de corriente y representa la velocidad de generación de carga en el semiconductor. En función de este parámetro, se define el factor de ganancia del fotoconductor a través del cociente:
+\begin{equation}
+\frac{\Delta I}{I_{fot}} = \frac{\tau}{t_{r}}\label{eq:eq16}
+\end{equation}
+ahora bien un diodo operando con cierto voltaje aplicado, $V$, en presencia de radiación electromagnética  capaz de excitar portadores a través de la banda prohibida dejara pasar una intensidad I dada por:
+\begin{equation}
+I = I_{0}[e^{(qV/kT)}-1] - I_{L}\label{eq:eq17}
+\end{equation}
+donde $I_{0}$ representa la corriente típica de un diodo, $I_{L}$ representa la corriente debida a  los portadores generados. El valor de $I_{L}$ puede calcularse de la siguiente manera:
+\begin{equation}
+I_{L} = qGS(L_{e} - L_{h})\label{eq:eq19}
+\end{equation}
+siendo $G$ el número de portadores generados por unidad de volumen y de tiempo y $S$ el área de la sección transversal del diodo. $L_{e}$ y $L_{h}$ representan las longitudes de difusión de los electrones y huecos. El dispositivo funciona entonces como detector del nivel de iluminación  convirtiendo una señal óptica en señal eléctrica."\\ \\ 
+Como la corriente I en el diodo es proporcional a la irradiancia de la superficie iluminada por fotones infrarrojos y esta ultima se atenúa con el inverso del cuadrado de la distancia del frente de energía a la fuente; el voltaje que mide el microcontrolador es directamente proporcional a la corriente $I$ en el diodo receptor infrarrojo y esta ultima es proporcional a la densidad de potencia media de iluminación infrarroja sobre este, por consiguiente el voltaje medido en el semiconductor debe  tener una relación inversamente proporcional al cuadrado de la distancia, para el caso ideal:
+\begin{equation}
+I_{fot}(x) \propto V(x) = \frac{A_{0}}{x^{2}}\label{eq:eq19}
+\end{equation}
+para este caso en el que el material absorbe  parte de esa energía, solo $RI_{fot} /x^{2}$ estarán incidiendo en la superficie del foto detector infrarrojo por lo que ahora el voltaje medido en el microcontrolador sera:
+\begin{equation}
+RI_{fot}(x) \propto RV(x) = \frac{RA_{0}}{x^{2}}\label{eq:eq20}
+\end{equation}
+Como la irradiansa de fotones infrarrojos es proporcional al inverso del cuadrado de la distancia de separación a la fuente, y la función voltaje que mide el modulo motorizado \texttt{infraROSSI} es proporcional al inverso del cuadrado de la  distancia de separación de la fuente al vehículo \texttt{infraROSSI}; se realiza el cociente de la intensidad irradiada en el diodo led que es según el fabricante de \texttt{20 mW/}$\Omega$, sobre el voltaje producido en el sensor que es de \texttt{5000mV}; como se muestra en la figura \ref{fig:GraficaVI}.\\
+%================== FIGURA absorcion semiconductor
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/graficaVI.png}
+  \caption{Relación irradiansa vs voltaje.}
+  \label{fig:GraficaVI}
+\end{figure}\\\\
+Una vez absorbidos los fotones infrarrojos, el microcontrolador atmega 328 del vehículo motorizado \texttt{infraROSSI}, mide la relación de voltaje en el sensor de electro-recepción activa que es proporcional a la irradiansa del emisor infrarrojo la cual equivale a $4 \mu  W/ mV$ lo que significa que por cada $4 \mu W$ de radiación incidente el sensor esta arrojando en su salida $1 mV$ . 
+\begin{equation}
+I(x) = \frac{RB_{0}}{x^{2}}\label{eq:eq21}
+\end{equation}
+%----------------------aca empieza el montaje experimental-------------------------
+\section{Montaje experimental}
+%===================MATERIALES MONTAJE========================
+\subsection{Materiales del montaje}
+Para la realización de este montaje se utilizarón los siguientes materiales:
+\begin{enumerate}
+\item[a.] Ordenador con sistema operativo GNU-Linux.
+\item[b.] Modulo motorizado \texttt{infraROSSI}.
+\item[c.] Software de control \texttt{FREEinfraROSSI}.
+\item[d.] Un octavo de cartulina de los siguientes colores: azul, amarilla, roja, verde oscura, negra.
+\item[e.] Modulo bluetooth para pc.
+\end{enumerate}
+%========================MONTAJE===========================================0
+\subsection{Montaje}
+Colocar el sensor de electro-recepción activa junto con el control de avance y el control de hardware en el vehículo motorizado \texttt{infraROSSI} como se observa en la figura \ref{fig:fig5}.\\\\
+% ============================Montaje modulo motorizado infraROSSI para el laboratorio de absorción.
+\begin{figure}
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/ch,ca,ea.png}
+  \caption{Montaje modulo motorizado \texttt{infraROSSI} para el laboratorio de absorción.}
+  \label{fig:fig5}
+\end{figure}
+Los esquemas de pines de las partes utilizadas para el montaje se muestran en las figuras \ref{fig:fig6} , \ref{fig:fig7}  y \ref{fig:fig8} ; se debe conectar el pin  ch1 con el pin  ea4, el pin  ch3 con el pin  ca9, el pin de ch4 con el pin  ea2, el pin ch7 con el pin ca2, el pin ch8 con el pin ca1, el pin ca5 con el pin ea1, el pin ca6 con el pin ea3, por ultimo el pin ca7 y el pin ca8 son las conexiones al motor.\\\\
+% =============================Esqueema Pin1.
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/ESQ_1.png}
+  \caption{Esquema de pines del sistema de control de hardware.}
+  \label{fig:fig6}
+\end{figure}
+% =============================Esqueema Pin2.
+\begin{figure}
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/ESQ_2.png}
+  \caption{Esquema de pines del sistema de control de avance.}
+  \label{fig:fig7}
+\end{figure}
+% =============================Esqueema Pin3.
+\begin{figure}
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/ESQ_4.png}
+  \caption{Esquema de pines del sensor de electro-recepción activa en infrarrojo.}
+  \label{fig:fig8}
+\end{figure}
+Situar el vehículo motorizado \texttt{infraROSSI} a una distancia de 30 cm de la muestra (octavo de cartulina) tal como se muestra en la figura \ref{fig:fig2}, la muestra debe estar perpendicular a la parte frontal del vehículo. Abrir una terminal de GNU-Linux y escribir  \texttt{infrarossi}, oprimir enter y la clave de superusuario, luego de abrir el programa debe oprimir el boton on, esperar que se empareje el bluetooth, una vez emparejado el modulo bluetooth, el programa desplegara un tercer menú como se obserba en la figura \ref{fig:fig9}, oprimir el botón de absorción y esperar que el programa tome los datos necesarios.\\\\
+%======================TERCER MENU==========================
+\begin{figure}
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/3menu.png}
+  \caption{Interfaz grafica software FREEinfraROSSI.}
+  \label{fig:fig9}
+\end{figure}
+Ahora el software de control \texttt{FREEinfraROSSI} le envía vía bluetooth la señal de avanzar y capturar datos al vehículo motorizado \texttt{infraROSSI} el cual avanza 2 milímetros por cada paso, recolecta 140 datos por cada avance enviándolos vía bluetooth al ordenador en donde el software de control realiza un análisis estadístico de los mismos, cuando termina este análisis envía una señal al modulo motorizado \texttt{infraROSSI} vía bluetooth, indicándole que avance nuevamente y repita el proceso, esto lo realiza 117 veces; una vez terminado de recoger todos los datos realiza una estadística sobre toda la muestra de estos datos capturados. 
+%=======================Analisis de datps=====================
+\section{Análisis de resultados}
+El programa \texttt{FREEinfraROSSI} después de recoger los datos realiza un análisis estadístico de los mismos con un \cite{ostle1981estadistica}\,``ajuste lineal de una función exponencial de la forma $Y^{*} = aX^{b}$, siendo $Y$ la intensidad irradiada, $a$ la amplitud, $X$ la distancia de avance,  $b$ el valor del exponente de atenuación, $Y^{*}$ es el valor esperado de la variable física; aplicando logaritmo natural para linealizar se obtiene:\\
+\begin{equation}
+ln ( Y^{*}) = ln (a) + bln(X)  \cdots \Longrightarrow V^{*} = A + bU
+\end{equation} \\
+donde $V^{*}$ es $ln(Y^{*})$, $A $ es el $ln(a)$ y $U$ es igual al $ln(X)$. \\\\
+La suma de  todos los errores debe ser diferentes a cero $\sum e \neq 0$. \\
+El exponente de ajuste b se halla con la varianza de $U$ sobre $V$  dividida entre la varianza de $U$ sobre $U$, obteniendo\\
+\begin{equation}
+b = \frac{S_{UV}}{S^{2} _{U}} =  \frac{\frac{1}{n} \sum_{i=1}^{n} UV - \bar{U} \bar{V}}{\frac{1}{n} \sum _{i=1}^{n} U^{2} - \bar{U}^2}
+\end{equation}\\
+ahora el valor de A sera igual al valor medio del logaritmo de la variable física $\bar{V}$ menos el valor de la multiplicación entre el exponente $b$ y el valor medio del logaritmo de la variable experimental:\\
+\begin{equation}
+A = \bar{V} -b\bar{U}
+\end{equation}\\
+deshaciendo el logaritmo de $A$  se obtiene el valor de la amplitud a:\\
+\begin{equation}
+a = antiln(A) = antiln(\bar{V} - b\bar{U})
+\end{equation}\\
+de modo que el ajuste efectuado es:\\
+\begin{equation}
+Y^{*} =  aX^{b}  = [antiln(\bar{V} - b\bar{U})]*X^{ \left(\frac{\frac{1}{n} \sum_{i=1}^{n} UV - \bar{U} \bar{V}}{\frac{1}{n} \sum _{i=1}^{n} U^{2} - \bar{U}^{2}}\right)}
+\end{equation}\\
+la bondad del ajuste es el error cuadrático medio o $ECM$ y es igual a: \\
+\begin{equation}
+ECM = \frac{\sum_{i=1}^{n}e_{i}^{2}}{n}
+\end{equation}\\
+siendo $e_{i}$ cada una de las diferencias entre las variables físicas y los valores estimados para las variables físicas $e_{i} = Y_{i} - Y^{*}_{i}$; al haber transformado la variable física ya no se minimiza $\sum e^{2}$ sino $\sum (ln(Y) - ln(Y^{*}))^{2}$, de ahí que $\sum e \neq 0$."\\\\
+Este análisis se realizo previamente con un espejo, el cual deja como patrón de referencia o de intensidad ideal, el  valor medio de $0.000259 X ^{-2}$  y en la figura \ref{fig:fig10} aparece con el nombre $ideal$; ahora el programa calcula un valor estimado para los datos de la siguiente manera: la intensidad transmitida $I_{T}$ debe ser igual a la intensidad ideal $I_{ideal}$ menos la intensidad que mide el sensor $I_{real}$.
+\begin{center}
+$I_{t} = I_{ideal} - I_{real}$
+\end {center}
+El factor de perdida en la intensidad $T$ debe ser igual al cociente de la intensidad $I_{t}$ y la intensidad ideal $I_{ideal}$
+\begin{center}
+$T=\frac{I_{T}}{I_{ideal}} $
+\end{center}
+por lo tanto el promedio en el factor de perdida debe ser igual a la transmitancia o mejor dicho a la energía que se transmitió a la muestra,  
+\begin{center}
+$\bar{T} = \sum{T_{i}}/N$
+\end{center} 
+como la reflectancia es igual a $R = 1 - T $ (ecuación \ref{eq:eq10}), el valor de la amplitud $a$, debe ser igual:
+\begin{center}
+ $ a = (1 - \bar{T}) (0.000259)$
+\end{center}
+por lo que ahora la intensidad estimada en la figura \ref{fig:fig10} con la etiqueta $Exp$, en función del inverso de la distancia, disminuye con la reflectancia $R$: 
+\begin{center}
+ $ I^{*} = (1 - \bar{T}) (0.000259) X^{-2}$
+\end{center}
+después de este análisis el software \texttt{FREEinfraROSSI}  realiza la gráfica mostrando en ella (figura \ref{fig:fig10}) la intensidad ideal $I_{ideal}(x)$, la intensidad estimada debido a la reflectancia $I^{*}$ y el factor de transmitancia o factor de caída en la intensida $F_{p}$.
+%======================Grafica absorcion ==========================
+\begin{figure}
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/Absorcion.png}
+  \caption{Imagen generada por el programa \texttt{FREEinfraROSSI}.}
+  \label{fig:fig10}
+\end{figure}\\\\
+En la figura \ref{fig:fig10} se observan los datos capturados en el experimento, las funciones de color azul en la gráfica es intensidad ideal $I_{ideal}$, la función de color amarillo es la gráfica estimada $I^{*} = Exp$ y los puntos de color negro son los datos recolectados.\\\\
+En la tabla \ref{tab:tab1} se muestra  la función intensidad $\bf{a}$ en $[W][m^{2}]$, estimado por el software \texttt{FREEinfraROSSI}, para cada una de las diferentes muestras del mismo material de cartulina pero diferentes pigmentos; la cartulina en la cual hubo más transmitancia fue la de color negro, pues el $86.84\%$ de intensidad de la luz incidente sobre ella fue transmitida al material, llegando solo un $13.16\%$ de esta al sensor; ahora la muestra que mayor reflectancia tuvo fue la de color rojo pues el $18.08\%$ de la intensidad lumínica llego al sensor, indicando que solo el $81.92\%$ de esta fue transmitida al material de muestra.
+\begin{table}[htbp]
+  \centering
+  \caption{\footnotesize Análisis del experimento de absorción con el vehículo motorizado \texttt{infraROSSI} y su software de control \texttt{FREEinfraROSSI}.}
+  \label{tab:tab1}
+\begin{tabular}{|l|c|c|c|c|} 
+\hline
+\bf{Color} & \textbf{a} (x\,$10^{-5}$) & \bf{T} & \bf{R} & \textbf{ECM} (x\,$10^{-7}$)\\
+\hline
+ Azul & 4.5 & 0.825 & 0.175 & 1.3896\\
+\hline
+ Amarillo & 4.3 & 0.8322  & 0.1678 & 0.0439\\
+\hline
+ Verde & 4.2 & 0.8392  & 0.1608 & 0.2399\\
+\hline 
+ Negro & 3.4 & 0.8684  & 0.1316 & 0.332\\
+\hline
+Rojo & 4.7 & 0.8192  & 0.1808 & 0.0931\\
+\hline
+\hline
+\end{tabular}
+\begin{tablenotes}
+    %[para,flushleft]
+    {\small
+      \vspace{0.1cm}
+      \textit{Nota.} Datos  de amplitud, transmitancia y reflectancia de cinco muestras de cartulina de diferentes colores, recolectados con el modulo motorizado \texttt{infraROSSI} y su software de control \texttt{FREEinfraROSSI}.
+    }
+  \end{tablenotes}
+\end{table} 
+El error cuadrático medio indica que el valor estimado para la función intensidad que se produce en el diodo cuando sobre este incide radiación infrarroja que ha interactuado con la muestra, es explicado en un $99.9999958\%$ con este tratamiento (figura \ref{fig:fig11} y \ref{fig:fig12}).  
+%======================Grafica reflectancia ==========================
+\begin{figure}
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/reflectancia.png}
+  \caption{Imagen generada con la librería matplotlib de python 2.7, donde se aprecia las funciones estimadas por el programa y la función ideal de intensidad.}
+  \label{fig:fig11}
+\end{figure}
+%======================Grafica reflectancia ==========================
+\begin{figure}
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/reflectancia2.png}
+  \caption{Imagen generada con la librería matplotlib de python 2.7, donde se aprecia una porción distinguible de las funciones estimadas por el programa.}
+  \label{fig:fig12}
+\end{figure}
+%==================CONCLUSIONES===========================
+\balance
+\section{Conclusiones}
+\begin{enumerate}
+\item[*]  La muestra en la cual hubo más transmitancia, es la cartulina de color negro, pues el $86.84\%$ de intensidad de la luz incidente sobre ella fue transmitida al material, llegando solo un $13.16\%$ de esta al sensor.
+\item[*]  La muestra que mayor reflectancia tuvo fue la de color rojo pues el $18.08\%$ de la intensidad lumínica llego al sensor, indicando que solo el $81.92\%$ de esta fue transmitida al material de muestra.
+\item[*] El modulo motorizado \texttt{infraROSSI} y su software de control ilustran de manera cuantitativa y cualitativa fenómenos ondulatorios y corpusculares  de la radiación electromagnética como la atenuación con el inverso del cuadrado de la distancia, la radiansa, la irradiancia, fenómenos de transporte e  inyección, calculando el factor de perdida de intensidad en el sensor y de esta manera predice los valores de reflectancia y transmitancia del material estudiado.  
+\item[*] El error cuadrático medio indica que solo el $0.000004197\%$ del experimento no se explica con este modelo \texttt{físico-matemático}, dejando un $99.9999958\%$ de fiabilidad en el ajuste estadístico utilizado en este trabajo.
+\item[*] La física que se encuentra de manera implícita y explicita en este trabajo hace que el instrumento motorizado \texttt{infraROSSI} y su software de control \texttt{FREEinfraROSSI} sea un herramienta indispensable  en el aula de clase,  tanto de profesionales como estudiantes de ciencias afines.
+\end{enumerate}
+
+
+\bibliographystyle{apacite}
+\bibliography{referencias}
+\end{document}

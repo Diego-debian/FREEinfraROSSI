@@ -1,0 +1,44 @@
+
+\section{Apéndice B.  OTRO EJEMPLO DE APÉNDICE}
+\label{app:appA}
+
+Los siguientes párrafos incluyendo este, constituyen la introducción al documento. Aquí NO se coloca el titulo ``introducción''.
+Se requerida leer los manuales y además se recomienda hacer una instalación de todo el paquete de \LaTeX~ (en ubuntu 12.04, \texttt{sudo synaptic}, y encontrar ``texlive-full).
+
+También se recomienda leer las normas APA 6a Edición y un ejemplo de preparación de manuscrito que se puede encontrar en este link: \url{http://www.apastyle.org/manual/related/sample-experiment-paper-1.pdf}
+
+Las tablas, figuras y ecuaciones se citan en el texto bajo normas APA. Las leyendas de tablas se ubican en la parte de arriba de las mismas; para las gráficas: en la parte de abajo. En el trabajo de grado, las tablas y figuras se encuentran al final del texto \texttt{$\backslash$documentclass[man]{apa6}}. Si se cambia la opción por\texttt{$\backslash$documentclass[jou]{apa6}}, las figuras y tablas aparecerán como en cualquier articulo científico. Utilizando \texttt{$\backslash$documentclass[doc]{apa6}} queda como un documento de \LaTeX.
+
+\begin{table}[htbp]
+  \centering
+  \caption{\footnotesize Ejemplo tabla.}% Este ejemplo fue tomado de la plantilla para manuscritos APA 5ta edición. Tamaño de la leyenda 11pt }
+  \label{tab:tab1_B}
+  \begin{tabular}{lcc}\hline
+    & \multicolumn{2}{c}{Factor 2} \\ \cline{2-3}
+    Factor 1  & Condición A  & Condición B   \\ \hline
+    First     & 586 (231)    & 649 (255)     \\
+    &    2.2       &    7.5        \\
+    Second    & 590 (195)    & 623 (231)     \\
+    &    2.8       &    2.5        \\ \hline
+  \end{tabular}
+  \begin{tablenotes}
+    %[para,flushleft]
+    {\small
+      \vspace{0.1cm}
+      \textit{Nota.} Todos los datos son aproximados. Las condiciones y los factores tienen una relación lineal. Los valores fueron estimados. Todos los datos son aproximados. Las condiciones y los factores tienen una relación lineal. Los valores fueron estimados. Todos los datos son aproximados. Las condiciones y los factores tienen una relación lineal. Los valores fueron estimados. Todos los datos son aproximados. Las condiciones y los factores tienen una relación lineal. Los valores fueron estimados.
+    }
+  \end{tablenotes}
+\end{table}
+
+Igualmente, se ilustra un ejemplo de una figura, utilizando el logo de la Semana de la enseñanza de la física. 
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=8.0cm, height=3.0cm]{img/logo.eps}
+  \caption{\footnotesize Logo SEF. Logo institucionalizado para la semana de la enseñanza de la física. Figura en formato \texttt{.eps}}
+  \label{fig:fig1_B}
+\end{figure}
+
+Las tablas y figuras se deben hacer referencia en el texto como Figura~\ref{fig:fig1_B} y Tabla~\ref{tab:tab1_B}.
+
+

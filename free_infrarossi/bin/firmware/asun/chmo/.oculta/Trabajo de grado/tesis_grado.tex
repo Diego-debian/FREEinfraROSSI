@@ -1,0 +1,1060 @@
+% version 12
+% Autor: Julian Salamanca
+% Institución: Universidad Distrital Francisco José de Caldas
+% Fecha: 09AGO2013
+
+\documentclass[jou]{apa6} %journal stilo APA con citacion clasica (apacite.pdf)
+%\documentclass[doc]{apa6} % journal estilo latex
+%\documentclass[man]{apa6}  % manuscrito APA
+
+\usepackage[toc,page]{appendix}
+\usepackage{balance}
+\usepackage{multicol}
+\usepackage{pdfpages}
+\usepackage{afterpage}
+\usepackage{float}
+
+%Girar horizontal y vertical una pagina
+ \usepackage{lscape}
+
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}% Tildes
+%\usepackage[draft]{hyperref}
+\usepackage{hyperref}
+
+\urlstyle{same}
+
+%====================================================================
+%Para que no parta las palabras con guiones al final de linea
+\usepackage[none]{hyphenat} 
+\tolerance=6000
+%====================================================================
+
+
+
+%Stilo citaciones APA (debe ir despues de "hyperref ")
+\usepackage{apacite} 
+
+% para compilar eps con: pdflatex -shell-escape <archivo>.tex
+\usepackage{epstopdf} 
+
+\usepackage{amsmath, amsthm, amsfonts}
+\usepackage{graphicx,wrapfig,lipsum}
+
+\usepackage{fancyhdr}%
+\pagestyle{fancy}
+\fancypagestyle{empty}{
+
+%  \setlength{\topmargin}{-0.5in}
+%  \setlength{\headheight}{1.05in}
+  \setlength{\headsep}{0.5in}
+%  \setlength{\headwidth}{\textwidth}
+%  \setlength{\footskip}{2.0in}
+
+  \renewcommand{\headrulewidth}{0pt}
+
+  % ========== EDITAR LOGO GRUPO =========================
+
+  \fancyhead[L]{
+    \includegraphics[width=2.0cm, height=2.0cm]{img/logoGI}
+    \vspace{-1.0cm}
+  }
+  % ========== FIN NO EDITAR LOGO GRUPO =================
+  
+
+  % ========== NO EDITAR LOGO UD =========================
+
+  \fancyhead[R]{
+    \includegraphics[width=5.5cm, height=1.2cm]{img/logo_UD_EXT}
+  }
+  % ========== FIN NO EDITAR ===========================
+  
+
+}
+
+
+\title{Modulo motorizado para ilustrar la difracción, atenuación y absorción de ondas electromagnéticas en el espectro infrarrojo; utilizando tecnologías libres y de bajo costo.}
+
+\shorttitle{TRABAJO DE GRADO PCLF}
+
+%==================== AUTOR (ES) ========================
+\author{Diego Alberto Parra Garzón}
+\affiliation{Universidad Distrital ``Francisco José de Caldas'', Facultad de Ciencias y Educación\\ 
+  Grupo de Física e Informáica ``FISINFOR''}
+\leftheader{Salamanca}
+%==================== FIN AUTOR (ES) ====================
+
+%==================== RESUMEN ========================
+\abstract{El presente escrito, describe con detalle un vehículo motorizado que ilustra tres propiedades físicas de las ondas electromagnéticas en el espectro infrarrojo, aprovechando las nuevas tecnologías en semiconductores para el control de hardware con un microcontrolador \texttt{atmega328P-PU}, comunicación serial vía bluetooth con un ordenador cuyo sistema operativo es \texttt{GNU-Linux}, equipado con un sensor  infrarrojo lateral que ilustra el fenómeno de difracción y calcula la longitud de onda emitida por el diodo led emisor en infrarrojo, tiene un par de sensores \texttt{emisor-receptor} infrarrojo en la parte del frente del vehículo.\\\\ El sensor infrarrojo frontal y el emisor infrarrojo frontal ilustran la ley del decaimiento de  la densidad de radiansa con el cuadrado de la distancia a la fuente radiante,  la reflectancia y  transmitancia que ocurre debido a la interacción de esta radiación con la materia. Este proyecto cuenta con las indicaciones para el uso del software de control FREEinfraROSSI y su respectiva instalación, cuya función es controlar las acciones que realiza el vehículo infraROSSI, tanto  avanzar  y capturar datos de los sensores  lateral y frontal como de controlar la fuente radiante de fotones en el infrarrojo, para su respectivo análisis.\\\\
+ Cabe mencionar que toda esta comunicación entre el modulo motorizado infraROSSI y su software de control viene pre diseñada para que sea  vía bluetooth. EL software de control realiza el análisis estadístico de los diferentes montajes de laboratorio para la ilustración de las propiedades de absorción, atenuación, difracción de las ondas electromagnéticas en el espectro infrarrojo, brindado una gráfica con todo el estudio sobre el experimento que se este llevando a la practica con el vehículo motorizado \texttt{infraROSSI}  y su software de control \texttt{FREEinfraROSSI}\,.\\\\
+Este proyecto esta diseñado para ser utilizado tanto por estudiantes como docentes de muy diversas ramas de las ciencias y  la ingeniería o como una herramienta muy útil para los educadores y alumnos de media vocacional.}
+\keywords{Modulo motorizado infraROSSI, software de control FREEinfraROSSI, ley de decaimiento de la densidad de radiansa con el inverso del cuadrado, reflectancia, software libre, GNU-Linux, difracción, comunicación serial, bluetooth,  hardware libre, tesis de grado.}
+%==================== FIN RESUMEN ========================
+
+\begin{document}
+
+%================  NO EDITAR =================
+\renewcommand{\tablename}{Tabla} %"Cuadro" por "Tabla"
+\renewcommand{\refname}{Referencias} %"Cuadro" por "Tabla"
+% \def\st@rtbibsection{\mspart{RReferencias}}% ``References'' por ``Referencias'
+\renewcommand{\rheadname}{Encabezado de página}% Running head (encabezado de pagina)
+\renewcommand{\acksname}{Nota de Autor}% 
+\renewcommand{\keywordname}{Palabras clave}% 
+\renewcommand{\listtablename}{Índice de tablas}% 
+\renewcommand{\BOthers}[1]{et al.\hbox{}}
+\renewcommand{\appendixname}{Ap} %"Cuadro" por "Tabla"
+
+\renewcommand{\appendixname}{Anexo}
+\renewcommand{\appendixname}{Anexos}
+\renewcommand{\appendixtocname}{Anexos}
+\renewcommand{\appendixpagename}{Anexos}
+
+\maketitle
+%=========NOTA DE AUTOR Y AGRADECIMIENTOS =====
+
+   {\bf Agradecimientos.} Agradeciendo primeramente a Dios por brindarme su sabiduría, ayuda y las mil bendiciones que nos regala cada día; a mi familia por el amor, comprensión, confianza, el cariño y por la vida que me han brindado y dedicado durante toda sus vidas, a los docentes que se esmeraron en brindarme lo mejor de ellos con mucho amor y paciencia mostrándome con sus acciones el significado de la palabra maestro, a los contribuyentes que hicieron posible mi educación y a todas las personas que trabajan en el proyecto \texttt{GNU-Linux}  que nos brinda su sistema operativo y todos los programas \texttt{openSOURCE} y \texttt{freeSOFTWARE} como maravillosa herramienta de trabajo para los docentes y estudiantes.
+
+
+   {\bf Información de contacto.} Diego Alberto Parra Garzón, Licenciatura en Física, Grupo de Fisica e Informatica ``FISINFOR'', Facultad de Ciencias y Educacion, Universidad Distrital ``Francisco Jose de Caldas''. Código estudiante: {\bf 20031135053}, \href{mailto:diegoestudianteud1@gmail.com}{diegoestudianteud1@gmail.com} Bogotá D.C., Colombia 2016. 
+
+
+   {\bf Director trabajo de grado} Julián Andrés Salamanca Bernal, PhD. Profesor Universidad Distrital. Correo electrónico: \href{mailto:jasalama@udistrital.edu.co}{jasalama@udistrital.edu.co}\\\\
+
+%=============================================
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+%==============      INTRODUCCION     ==================
+\section{INTRODUCCION}
+En la actualidad, una cantidad de instrumentos de laboratorio para la enseñanza en física y especialmente de  fenómenos electromagnéticos,  transporte e inyección de energía a los portadores de carga en los semiconductores, fenómenos ondulatorios, entre otros fenómenos electromagnéticos; son  muy costosos, incluso estos instrumentos son exclusivos de los departamentos de ciencias en diferentes  universidades y laboratorios, lo que dificulta el contacto de la población a estas manifestaciones físicas; un caso especial es el estudio de las propiedades de las ondas electromagnéticas y su dualidad \texttt{onda-partícula}, en determinadas frecuencias \texttt{caso clásico} o en paquetes de energía discreta según su longitud de onda \texttt{caso cuántico}.\\\\
+Específicamente en cuestión de frecuencias o longitudes de onda que corresponden al espectro electromagnético infrarrojo, concretamente cuando se habla de difracción, atenuación, absorbancia, transmitancia, reflectancia, ley de decaimiento de la densidad de radiansa con el inverso del cuadrado de la distancia a la fuente; solo se tiene como marco de estudio de estos fenómenos ondulatorios infrarrojos a la espectrometría  infrarroja, que es usada habitualmente por estudiantes de medicina, química, biología, entre otras; equipos muy especializados, con instrumentos muy costosos y precisos; lo que deja sin aproximarse a los demás estudiantes de ciencias exactas a estos tópicos de la física que están presentes en la vida diaria y que no son visibles al ojo humano.\\\\
+El objetivo de este trabajo de grado es diseñar un instrumento de laboratorio que sea capaz de ilustrar tres  fenómenos físicos  de la radiación electromagnética y su dualidad \texttt{onda-partícula}; los cuales son: difracción en infrarrojo, reflectancia en el infrarrojo y ley del decaimiento de la irradiansa con el inverso del cuadrado de la distancia a la fuente. Esto con el fin de dejar  referencia que en la actualidad no se estudia de manera cómoda los fenómenos ondulatorios y de interacción de esta manifestación física de la energía con la materia, en el espectro de está longitud de onda como lo es el infrarrojo. \\\\
+Por esta razón se elabora muy cuidadosamente un instrumento que llene las expectativas de aprendices y docentes de carreras afines a  estos asuntos;  el cual es económico, con materiales de fácil acceso, que es capaz de aproximar al educando a fenómenos como lo es la difracción, la ley del decaimiento de  la densidad de radiansa con el inverso del cuadrado de la distancia a la fuente radiante,  la reflectancia y  transmitancia que ocurre debido a la interacción de esta radiación con la materia, en el rango infrarrojo del espectro.  \\\\
+A este instrumento se le denomino modulo motorizado infraROSSI, el cual es un vehículo de tracción electromagnética, con comunicación serial vía bluetooth y un ordenador \texttt{GNU-Linux}, equipado con un sensor infrarrojo lateral para ilustrar el fenómeno de difracción, un sensor infrarrojo frontal y un emisor infrarrojo frontal para ilustrar la ley del decaimiento de  la densidad de radiansa con el cuadrado de la distancia a la fuente radiante,  la reflectancia y  transmitancia que ocurre debido a la interacción de esta radiación con la materia; el modulo infraROSSI es capaz de acercar de manera cualitativa y cuantitativa al estudio de estos contenidos, pues aparte del instrumento de adquisición de datos, también cuenta con un software de control y análisis de datos obtenidos, a este software se le designo el nombre de software de control \texttt{FREEinfraROSSI}, el cual complementa el modulo motorizado \texttt{infraROSSI}, convirtiéndolo en una herramienta de laboratorio muy precisa, económica, fácil de utilizar, con su propio repositorio en github, con buena  documentación, fácil de manipular e instalar.\\\\
+Este escrito presenta en primera instancia lo que el vehículo motorizado FREEinfraROSSI puede hacer, en segunda instancia como se elaboro el vehículo y una breve documentación del software de control.
+%===========================SECTION eXPERIMENTOS===================================
+\section{Experimentos demostrativos que ilustra el vehículo motorizado  infraROSSI y su software FREEinfraROSSI}
+Debido a la naturaleza activa y pasiva de los sensores con los que cuenta el vehículo motorizado infraROSSI y su cualidad de moverse únicamente hacia adelante a un paso constante de \texttt{2 mm} combinada con la comunicación bluetooth entre el dispositivo y un ordenador con \texttt{GNU-Linux} y el software de control \texttt{FREEinfraROSSI} \texttt{pre-instalado}, es posible realizar experimentos demostrativos de las propiedades de las ondas electromagnéticas en el espectro infrarrojo, los cuales se detallan a continuación.
+%======================== DIFRACCION ===========================
+\subsection{Calculo de la longitud de onda de la radiación de un diodo led infrarrojo}
+En este experimento se calcula la longitud de onda propia emitida por un diodo led infrarrojo, utilizando la fuente fotónica en infrarrojo FUENinfraROSSI la cual se detalla en el anexo A.~\ref{app:appA} que se encuentra en la pagina \pageref{app:appA}\,, una rejilla de difracción de \texttt{100 lineas por mm}, el vehículo motorizado infraROSSI y el software  de control FREEinfraROSSI; se coloca el vehículo motorizado infraROSSI perpendicularmente a la fuente FUENinfraROSSI, separados una distancia de \texttt{45 cm} de la fuente como se muestra en la figura \ref{fig:fig1}\,.\\\\
+% =============================Figura montaje difrracción.
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/Mon_difraccion.png}
+  \caption{\footnotesize Imagen del montaje para la difracción utilizando el modulo motorizado infraROSSI, una fuente emisora de fotones de $\lambda = 850 nm$  y una red de difracción de 100 lineas por milímetro.}
+  \label{fig:fig1}
+\end{figure}
+El proyecto ofrece en el anexo B.\,\ref{app:appB} de la pagina \pageref{app:appB}, el articulo titulado $``$Calculo de la longitud de onda de la radiación de un diodo led infrarrojo, utilizando el modulo motorizado \texttt{infraROSSI} y su software de control \texttt{FREEinfraROSSI}$"$, el cual describe como se debe realizar las conexiones de los diferentes dispositivos de la interfaz de adquisición de datos, el uso del software \texttt{FREEinfraROSSI}, brindando una ayuda didáctica al lector sobre los principios físicos que suceden en el experimento,  la captura y análisis de datos se realiza de una manera muy detallada y entendible para que el experimentador visualice los fenómenos físicos que ocurren.\\\\
+Para  comenzar con el experimento es necesario abrir una terminal de linux y escribir en ella \texttt{infrarossi}, dar enter y escribir la clave de superusuario; inmediatamente se abrirá la interfaz gráfica \texttt{FREEinfraROSSI} como se muestra en la figura \ref{fig:fig2}\,. Oprimir el botón \texttt{on}, y luego oprimir el botón de difracción. 
+%======================TERCER MENU==========================
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/3menu.png}
+  \caption{\footnotesize Interfaz gráfica software FREEinfraROSSI.}
+  \label{fig:fig2}
+\end{figure}\\
+%========================== GRAFICA DIFRACCION
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/Graficas.png}
+  \caption{\footnotesize Gráfica generada por el programa FREEinfraROSSI, para el laboratorio de difracción.}
+  \label{fig:fig3}
+\end{figure}
+El software comienza la captura de datos del sensor de \texttt{electro-recepción} pasiva \cite{pedraja2012modelo}\,; enviando  una señal vía bluetooth al vehículo \texttt{infraROSSI}, una vez ha recogido \texttt{140 datos} el software \texttt{FREEinfraROSSI} le ordena al vehículo \texttt{infraROSSI} que avance \texttt{2mm}, se detenga y capture \texttt{140 datos}, esto lo realiza 94 veces hasta que halla avanzado \texttt{20 cm}, luego de esto se detiene la captura  de datos a través del vehículo \texttt{infraROSSI}, ahora  el software \texttt{FREEinfraROSSI} realiza el análisis de datos y brinda una gráfica como se muestra en la figura \ref{fig:fig3}\,, con el análisis de datos del experimento de difracción.\\\\
+Este experimento se realizo \texttt{9} veces, obteniendo los resultados que se muestran en la tabla \ref{tab:tab1}.
+%==================ACA COMIENZA LA TABLA 1
+	\begin{table}[htbp]
+  \centering
+  \caption{\footnotesize Análisis del experimento de difracción con el vehículo motorizado infraROSSI y su software de control \texttt{FREEinfraROSSI}.}
+  \label{tab:tab1}
+\begin{tabular}{ccccc} 
+\hline
+\hline
+\bf{Prueba} & \textbf{$\Delta$X [m]} & \bf{$\lambda$exp.[nm]} & \bf{$\lambda$teo.[nm]} & \bf{error  \%} \\
+\hline
+ 1 & 0.0401 & 854 & 850 & 0.471\\
+%\hline
+ 2 & 0.0405 & 862 & 850 & 1.412\\
+%\hline
+ 3 & 0.0405 & 862 & 850 & 1.412\\
+%\hline 
+ 4 & 0.0405 & 862 & 850 & 1.412\\
+%\hline
+5 & 0.0397 & 845 & 850 & 0.588\\
+%\hline
+6 & 0.0393 & 837 & 850 & 1.529\\
+%\hline
+7 & 0.0397 & 845 & 850 & 0.588\\
+%\hline
+8 & 0.0393 & 845 & 850 & 1.529\\
+%\hline
+9 & 0.0401 & 854 & 850 & 0.401\\
+\hline
+\hline
+\end{tabular}
+ \begin{tablenotes}
+    %[para,flushleft]
+    {\small
+      \vspace{0.1cm}
+      \textit{Nota.} Datos obtenidos de nueve pruebas para medir la longitud de onda producida por un diodo emisor infrarrojo, con el modulo motorizado infraROSSI y su software de control FREEinfraROSSI.
+    }
+  \end{tablenotes}
+\end{table}\\
+La distancia que hay entre pico y pico del patrón obtenido en la figura \ref{fig:fig3} es $\Delta X$, esta viene en metros, $\lambda exp.$  es la longitud de onda obtenida a través del experimento, viene en nanometros, $\lambda teo.$ es la longitud de onda teórica del diodo emisor infrarrojo,  la cual corresponde a $850 nm$ suministrada por el fabricante\footnote{Enlace a la hoja de datos del diodo led emisor infrarrojo de \texttt{850nm} suministrada por el fabricante online \url{http://www.betlux.com/product/LED_lamp/infrared\%20diodo/BL-L314IR.PDF}}, el error porcentual es la ultima columna  de la tabla. La longitud de onda promedio de los datos en la tabla \ref{tab:tab1} es $851.77 nm$  dando un error porcentual de $0.209\%$ de la longitud de onda suministrada por el fabricante.
+%========================ATENUACION=====================
+\subsection{Decaimiento  de la densidad de flujo de radiación infrarroja}
+En este experimento se ilustra la ley de decaimiento  de la densidad de flujo de radiación con el cuadrado inverso de la distancia de separación a la fuente, utilizando un espejo, el vehículo motorizado infraROSSI y el software  de control FREEinfraROSSI; se coloca el espejo perpendicularmente al vehículo motorizado infraROSSI, separados una distancia de 30 cm como se muestra en la figura \ref{fig:fig4}\,.\\
+%=====================MONTAJE ATENUACION==============================
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/mon_ate.png}
+  \caption{\footnotesize Imagen del montaje para la atenuación utilizando el modulo motorizado infraROSSI y un espejo.}
+  \label{fig:fig4}
+\end{figure}\\
+El proyecto ofrece en el anexo C.\,\ref{app:appC} de la pagina \pageref{app:appC}, el articulo titulado $``$Ilustración de la ley de decaimiento  de la densidad de flujo de radiación con el cuadrado inverso de la distancia de separación a la fuente; utilizando el modulo motorizado \texttt{infraROSSI} y su software de control \texttt{FREEinfraROSSI}$"$, el cual describe como se debe realizar las conexiones de los diferentes dispositivos de la interfaz de adquisición de datos, el uso del software \texttt{FREEinfraROSSI}, brindando una ayuda didáctica al lector sobre los principios físicos que suceden en el experimento,  la captura y análisis de datos se realiza de una manera muy detallada y entendible para que el experimentador visualice los fenómenos físicos que ocurren.\\\\
+Para  comenzar con el experimento es necesario abrir una terminal de linux y escribir en ella \texttt{infrarossi}, dar enter y escribir la clave de superusuario; inmediatamente se abrirá la interfaz gráfica \texttt{FREEinfraROSSI} como se muestra en la figura \ref{fig:fig2}\,, oprimir el botón \texttt{on}, y luego oprimir el botón de atenuación.\\\\ 
+El software comienza la captura de datos del sensor de \texttt{electro-recepción} activa \cite{pedraja2012modelo}\,; enviando  una señal vía bluetooth al vehículo \texttt{infraROSSI}, una vez ha recogido \texttt{140 datos} el software \texttt{FREEinfraROSSI} le ordena al vehículo \texttt{infraROSSI} que avance \texttt{2mm}, se detenga y capture \texttt{140 datos}, esto lo realiza \texttt{117} veces hasta que halla avanzado \texttt{30 cm}, luego de esto se detiene la captura  de datos a través del vehículo \texttt{infraROSSI}, ahora  el software \texttt{FREEinfraROSSI} realiza el análisis de datos y brinda una gráfica como se muestra en la figura \ref{fig:fig5}\,, con el análisis de datos del experimento de atenuación.
+% =============================GRAFICA ATENUACION==============================
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/Atenuacion.png}
+  \caption{\footnotesize Gráfica generada por el software FREEinfraROSSI, para el laboratorio de atenuación.}
+  \label{fig:fig5}
+\end{figure}\\
+Este experimento se realizo \texttt{6} veces, obteniendo los resultados que se muestran en la  tabla \ref{tab:tab2}.
+%========================ACA COMIENZA LA TABLA 2=====================================
+\begin{table}[htbp]
+  \centering
+  \caption{\footnotesize Análisis del experimento de difracción con el vehículo motorizado infraROSSI y su software de control \texttt{FREEinfraROSSI}.}
+  \label{tab:tab2}
+\begin{tabular}{cccccc} 
+\hline
+\hline
+\bf{P} & \bf{a} $( x 10^{-6} )$ & \bf{b} & \bf{T} & \bf{E.C.M.} $( x 10^{-7} )$ & \bf{E.E.}\\
+\hline
+ 1 & 251 & -1,922 & -2 & 1.479 & 0.078 \\
+%\hline
+ 2 & 251 & -1,922 & -2 & 1.479 & 0.078 \\
+%\hline
+ 3 & 275 & -1.874 & -2 & 26.257 & 0.126 \\
+%\hline 
+ 4 & 251 & -1,922 & -2 & 1.479 & 0.078 \\
+%\hline
+5 & 251 & -1,922 & -2 & 1.479 & 0.078 \\
+%\hline
+6 & 275 & -1.874 & -2 & 26.257 & 0.126 \\
+\hline
+\hline
+\end{tabular}
+  \begin{tablenotes}
+    %[para,flushleft]
+    {\small
+      \vspace{0.1cm}
+      \textit{Nota.} Datos obtenidos de seis pruebas para medir el exponente de atenuación, con el modulo motorizado infraROSSI y su software de control FREEinfraROSSI; $a$ es la amplitud de la función, $b$ es el exponente con el que se atenúa la función, $E.C.M.$ es el error cuadrático medio, o también llamado bondad en el ajuste, $E.E.$ es el error en el exponente.
+    }
+  \end{tablenotes}
+\end{table}\\
+De los datos que se muestran en la tabla \ref{tab:tab2} se obtiene la amplitud de la función densidad promedio de flujo fotónico reflejada sobre el espejo y que incide sobre el diodo led infrarrojo la cual tiene un valor de $0.000259$   $[W][m^{2}]$, por lo que se considera este valor como la amplitud ideal para la función intensidad., también se obtiene el valor del exponente que acompaña a la distancia debido al decaimiento de esta densidad de energía sobre el espacio el cual tiene un valor promedio de  $-1.906$\, que esta muy cercano al predicho por la teoría el cual es $-2$, con un error en su estimación de $4.7 \%$, lo cual indica que el decaimiento en la densidad de flujo electromagnético que atraviesa una superficie en la unidad de tiempo, que a su vez se refleja y por ende que llega al sistema detector del modulo motorizado infraROSSI, decrece con el cuadrado de la distancia.\\\\
+El promedio del error cuadrático medio en los datos obtenidos por el experimentador en la tabla \ref{tab:tab2}\,, indican que $ 11.286 x 10^{-5} \%$ de estos no pueden ser explicados por este modelo físico-matemático, dejando solamente un $99.9998 \%$ de fiabilidad en el ajuste estadístico, utilizado por el software \texttt{FREEinfraROSSI}\,.
+%==========================absorcion =================================
+\subsection{Calculo del factor de perdida de la interacción \texttt{radiación-materia}}
+En este experimento se ilustra el factor de perdida de la densidad de flujo de radiación emitida por un diodo led emisor infrarrojo, cuando esta radiación interactúa con la matería; utilizando el modulo motorizado \texttt{infraROSSI} y su software de control \texttt{FREEinfraROSSI}\,; se colocan octavos de cartulina perpendicularmente al vehículo motorizado \texttt{infraROSSI}\,, separados una distancia de 30 cm como se muestra en la figura \ref{fig:fig6}\,.
+% =============================Montaje laboratorio absorción utilizando el 
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/mon_abso.png}
+  \caption{\footnotesize Montaje laboratorio absorción utilizando el modulo motorizado infraROSSI y un octavo de cartulina.}
+  \label{fig:fig6}
+\end{figure}\\
+El proyecto ofrece en el anexo D.\,\ref{app:appD} de la pagina \pageref{app:appD}, el articulo titulado $``$Calculo del factor de perdida de la densidad de flujo de radiación emitida por un diodo led emisor infrarrojo, cuando esta radiación interactúa con la matería; utilizando el modulo motorizado \texttt{infraROSSI} y su software de control \texttt{FREEinfraROSSI}\,$"$, el cual describe como se debe realizar las conexiones de los diferentes dispositivos de la interfaz de adquisición de datos, el uso del software \texttt{FREEinfraROSSI}, brindando una ayuda didáctica al lector sobre los principios físicos que suceden en el experimento,  la captura y análisis de datos se realiza de una manera muy detallada y entendible para que el experimentador visualice los fenómenos físicos que ocurren.\\\\
+Para  comenzar con el experimento es necesario abrir una terminal de linux y escribir en ella \texttt{infrarossi}, dar enter y escribir la clave de superusuario; inmediatamente se abrirá la interfaz gráfica \texttt{FREEinfraROSSI} como se muestra en la figura \ref{fig:fig2}\,, oprimir el botón \texttt{on}, y luego oprimir el botón de absorción.\\\\
+El software comienza la captura de datos del sensor de \texttt{electro-recepción} activa \cite{pedraja2012modelo}\,; enviando  una señal vía bluetooth al vehículo \texttt{infraROSSI}, una vez ha recogido \texttt{140 datos} el software \texttt{FREEinfraROSSI} le ordena al vehículo \texttt{infraROSSI} que avance \texttt{2mm}, se detenga y capture \texttt{140 datos}, esto lo realiza \texttt{117} veces hasta que halla avanzado \texttt{30 cm}, luego de esto se detiene la captura  de datos a través del vehículo \texttt{infraROSSI}.\\\\
+El software \texttt{FREEinfraROSSI} realiza el análisis de datos y brinda una gráfica como se muestra en la figura \ref{fig:fig7}\,, con el análisis de datos del experimento de absorción. Este experimento se realizo con \texttt{5} octavos de cartulina con superficie de diferentes pigmentos como se muestra  en la tabla \ref{tab:tab3}\,.
+%======================Grafica absorcion ==========================
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/Absorcion.png}
+  \caption{\footnotesize Imagen generada por el programa FREEinfraROSSI, para el laboratorio de absorción.}
+  \label{fig:fig7}
+\end{figure}\\
+En la figura \ref{fig:fig7} se observan los datos capturados en el experimento, las funciones de color azul en la gráfica es intensidad ideal $I_{ideal}$, la función de color amarillo es la gráfica estimada $I^{*} = Exp$ y los puntos de color negro son los datos recolectados. En la tabla \ref{tab:tab3} y en las gráficas  \ref{fig:fig8} y \ref{fig:fig9}\,, se muestra  la función intensidad $\bf{a}$ en $[W][m^{2}]$, estimado por el software \texttt{FREEinfraROSSI}, para cada una de las diferentes muestras del mismo material de cartulina pero diferentes pigmentos; la cartulina en la cual hubo más transmitancia fue la de color negro, pues el $86.84\%$ de intensidad de la luz incidente sobre ella fue transmitida al material, llegando solo un $13.16\%$ de esta al sensor.\\\\
+La muestra que mayor reflectancia tuvo fue la de color rojo pues el $18.08\%$ de la intensidad lumínica llego al sensor, indicando que solo el $81.92\%$ de esta fue transmitida al material de muestra.
+%========aca comienza la tabla
+\begin{table}[htbp]
+  \centering
+  \caption{\footnotesize Análisis del experimento de absorción con el vehículo motorizado infraROSSI y su software de control \texttt{FREEinfraROSSI}.}
+  \label{tab:tab3}
+\begin{tabular}{lcccc} 
+\hline
+\hline
+\bf{Color} & \textbf{a} (x\,$10^{-5}$) & \bf{T} & \bf{R} & \textbf{ECM} (x\,$10^{-7}$)\\
+\hline
+ Azul & 4.5 & 0.825 & 0.175 & 1.3896\\
+%\hline
+ Amarillo & 4.3 & 0.8322  & 0.1678 & 0.0439\\
+%\hline
+ Verde & 4.2 & 0.8392  & 0.1608 & 0.2399\\
+%\hline 
+ Negro & 3.4 & 0.8684  & 0.1316 & 0.332\\
+%\hline
+Rojo & 4.7 & 0.8192  & 0.1808 & 0.0931\\
+\hline
+\hline
+\end{tabular}
+\begin{tablenotes}
+    %[para,flushleft]
+    {\small
+      \vspace{0.1cm}
+      \textit{Nota.} Datos  de amplitud, transmitancia y reflectancia de cinco muestras de cartulina de diferentes colores, recolectados con el modulo motorizado \texttt{infraROSSI} y su software de control \texttt{FREEinfraROSSI}.
+    }
+  \end{tablenotes}
+\end{table}
+%======================Grafica reflectancia1 ==========================
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/reflectancia.png}
+  \caption{\footnotesize Imagen generada con la librería matplotlib de python 2.7, donde se aprecia las funciones estimadas por el programa y la función ideal de intensidad.}
+  \label{fig:fig8}
+\end{figure}\\
+%======================Grafica reflectancia2 ==========================
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/reflectancia2.png}
+  \caption{\footnotesize Imagen generada con la librería matplotlib de python 2.7, donde se aprecia una porción distinguible de las funciones estimadas por el programa.}
+  \label{fig:fig9}
+\end{figure}\\
+El error cuadrático medio indica que solo el $0.000004197\%$ del experimento no se explica con este modelo \texttt{físico-matemático}, dejando un $99.9999958\%$ de fiabilidad en el ajuste estadístico utilizado en este laboratorio por el software de control \texttt{FREEinfraROSSI} y el método estadístico que utiliza \cite{ostle1981estadistica}\,.
+%==================SECCION  VEHICULO MOTORIZADO INFRAROSSI
+\section{Vehículo motorizado infraROSSI}
+El modulo motorizado infraROSI ver figuras \ref{fig:fig10}\,, \ref{fig:fig11}\,, \ref{fig:fig12} y \ref{fig:fig13}\,; es un vehículo con chasis de madera,  batería de $9 V$ del tipo cuadrada recargable,  modulador de señal de $9 V$ a  $5 V$ voltaje continuo, tracción electromagnética con  transmisión de tipo engranaje trasera con diferencial cero de eje posterior fijo y eje delantero fijo, cuatro llantas de cinco centímetros de diámetro y dos centímetros de ancho, comunicación bluetooth entre vehículo y ordenador, dos  sensores de intensidad lumínica en el rango infrarrojo del espectro electromagnético de estructura epoxy cinco milímetros, uno del tipo radar sin barrido basado en el principio de \texttt{electro-recepción}\,\cite{pedraja2012modelo} activa con disposición espacial en la parte media del sector frontal,  y en la zona lateral derecha a siete centímetros del sector frontal reposa el sensor del tipo radar sin barrido basado en el principio de \texttt{electro-recepción} pasiva, control de rapidez en el avance del vehículo y control de hardware del vehículo.
+%======================vista superior vehiculo==========================
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm, angle=0]{img/F9.png}
+  \caption{\footnotesize Vista superior del vehículo motorizado infraROSSI.}
+  \label{fig:fig10}
+\end{figure}\\
+%=================== vehiculo
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm, angle=0]{img/TF8.png}
+  \caption{\footnotesize Vista superior del vehículo motorizado infraROSSI y las bases para sus sistemas eléctricos.}
+  \label{fig:fig11}
+\end{figure}
+%=================== vehiculo
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.5cm, height=6.0cm, angle=0]{img/TF5.png}
+  \caption{\footnotesize Vista superior del vehículo donde se observa el sistema de control de hardware, el sistema de control de avance del vehículo, el sensor de \texttt{electro-recepción} pasiva y el sensor de \texttt{electro-recepción} activa.}
+  \label{fig:fig12}
+\end{figure}
+%===================vehiculo
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm, angle=0]{img/TF6.png}
+  \caption{\footnotesize Vista inferior del vehículo \texttt{infraROSSI}}
+  \label{fig:fig13}
+\end{figure}
+El modulo \texttt{infraROSSI} es un vehículo didáctico para la enseñanza experimental en física ver figuras \ref{fig:fig1}\,, \ref{fig:fig4}\,, \ref{fig:fig6}\,, \ref{fig:fig14} y \ref{fig:fig15}\,, los diferentes sistemas electrónicos del vehículo pueden removerse en cuatro sistemas: control de hardware y comunicación bluetooth con ordenador ver figura \ref{fig:fig16}\,, control rapidez del vehículo ver figura \ref{fig:fig17}\,, sensor \texttt{electro-recepción} pasiva ver figura \ref{fig:fig18} , y, un sensor de \texttt{electro-recepción} activa ver figura \ref{fig:fig19}.
+%===================montaje protoboard
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm, angle=0]{img/montajep.png}
+  \caption{\footnotesize Montaje en protoboard.}
+  \label{fig:fig14}
+\end{figure}
+%===================montaje protoboard
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm, angle=0]{img/esquemap.png}
+  \caption{\footnotesize Esquema eléctrico equivalente del vehículo.}
+  \label{fig:fig15}
+\end{figure}
+%===================control hardware
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm, angle=0]{img/TF1.png}
+  \caption{\footnotesize Sistema control de hardware.}
+  \label{fig:fig16}
+\end{figure}
+%===================control avance
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm, angle=0]{img/TF2.png}
+  \caption{\footnotesize Sistema control de avance.}
+  \label{fig:fig17}
+\end{figure}
+%===================sensor eelectro pasivo
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm, angle=0]{img/TF3.png}
+  \caption{\footnotesize Sistema de \texttt{electro-recepción} pasiva.}
+  \label{fig:fig18}
+\end{figure}
+%===================sensor electroactivo
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm, angle=0]{img/TF4.png}
+  \caption{\footnotesize Sistema de \texttt{electro-recepción} activa.}
+  \label{fig:fig19}
+\end{figure}\\\\
+El  modulo motorizado infraROSSI como se muestra en la figuras \ref{fig:fig13} y \ref{fig:fig14}\,, es un vehículo de tracción electromagnética, con comunicación serial vía bluetooth y un ordenador \texttt{GNU-Linux}, equipado con un sensor infrarrojo lateral para ilustrar el fenómeno de difracción, un sensor infrarrojo frontal y un emisor infrarrojo frontal para ilustrar la ley del decaimiento de  la densidad de radiansa con el cuadrado de la distancia a la fuente radiante,  la reflectancia y  transmitancia que ocurre debido a la interacción de esta radiación con la materia.\\\\
+Tanto los sistemas de control y los sensores del vehículo motorizado son movibles, la parte de abajo de las baquelas están cubiertas por velcro de color verde, esto facilita el poder desconectar y ubicar los diferentes elementos del proyecto, además con la ayuda de un \texttt{voltímetro-amperímetro} digital, una \texttt{protoboard} y los componentes \texttt{eléctronicos} el instrumento \texttt{infraROSSI} sirve de modelo pedagógico para la enseñanza de electrónica digital y convencional según \cite{albella1996fundamentos}.\\\\
+En las figuras \ref{fig:fig10}\,, \ref{fig:fig12}\,, \ref{fig:fig16}\,, \ref{fig:fig17}\,, \ref{fig:fig18} y \ref{fig:fig19}\,, todos los circuitos viene con cables de conexión y en las figuras \ref{fig:fig14} y \ref{fig:fig15} están los esquemas eléctricos del proyecto, con los cuales podría demostrarse según \cite{albella1996fundamentos}\,, el potencial eléctrico, capacitancia, corriente, resistencia, ley de \texttt{Ohm}, la potencia eléctrica, las leyes de \texttt{Kirchhoff}, generadores, motores eléctricos, teoria de diodos y circuitos integrados.\\\\
+Se elaboran cuatro articulo que detallan la manipulación del vehículo motorizado \texttt{infraROSSI} y las conexiones de los diferentes módulos eléctricos con los que cuenta.\\\\
+El articulo titulado ``Diseño de una fuente emisora de fotones en el espectro infrarrojo para el montaje del experimento ilustrativo de la difracción con el software \texttt{FREEinfraROSSI} y el vehículo motorizado \texttt{infraROSSI}'' en el anexo A.\,\ref{app:appA} pagina \pageref{app:appA}\,; describe detalladamente como se diseño una fuente fotónica en el infrarrojo de \texttt{850 nm} con mínima dispersión de densidad de flujo fotónica, para poder ejecutar el laboratorio de difracción con el modulo motorizado \texttt{infraROSSI} y su software de control \texttt{FREEinfraROSSI}.\\\\
+El articulo titulado  ``Calculo de la longitud de onda de la radiación de un diodo led infrarrojo, utilizando el modulo motorizado \texttt{infraROSSI} y su software de control \texttt{FREEinfraROSSI}'' en el anexo B.\,\ref{app:appB} pagina \pageref{app:appB}\,; se detalla el montaje de laboratorio para el experimento demostrativo de difracción con el vehículo motorizado \texttt{infraROSSI} y su software de control \texttt{FREEinfraROSSI} el cual calcula la longitud de onda de una rejilla de difracción de \texttt{100 lineas/mm}.\\\\
+El articulo titulado  ``Ilustración de la ley de decaimiento  de la densidad de flujo de radiación con el cuadrado inverso de la distancia de separación a la fuente; utilizando el modulo motorizado \texttt{infraROSSI} y su software de control \texttt{FREEinfraROSSI}'' en el anexo C.\,\ref{app:appC} pagina \pageref{app:appC}\,; se detalla el montaje de laboratorio con el vehículo motorizado \texttt{infraROSSI} y el software de control \texttt{FREEinfraROSSI} para  calcular el coeficiente de atenuación del flujo fotónico en el espacio el cual decrece con el inverso del cuadrado de la distancia de separación de este a la fuente, también calcular la amplitud de densidad de este flujo de fotones infrarrojos.\\\\
+El articulo titulado ``Calculo del factor de perdida de la densidad de flujo de radiación emitida por un diodo led emisor infrarrojo, cuando esta radiación interactúa con la matería; utilizando el modulo motorizado \texttt{infraROSSI} y su software de control \texttt{FREEinfraROSSI}'' anexo D.\ref{app:appD} pagina \pageref{app:appD}\,, donde se detalla el montaje de laboratorio de absorción de radiación infrarroja debido a la interacción de esta radiación con la materia, las conexiones de  los diferentes sistemas electrónicos del vehículo motorizado \texttt{infraROSSI} y con su software de control \texttt{FREEinfraROSSI} calcular la reflectancia y transmitancia de la interacción de esta radiación con la materia. 
+%=====================marco teorico experimentos demostrativos===================
+\section{Modelo \texttt{físico-matemático} de los experimentos que ilustra el modulo \texttt{infraROSSI} y su software \texttt{FREEinfraROSSI}}
+%================================produccion  de fotones =============================
+\subsection{Producción de fotones infrarrojos}
+Los fotones producidos por el diodo emisor de la fuente emisora\footnote{\texttt{FUENinfraROSSI}, la cual se detalla en el anexo A.\,\texttt{A}\,.\ref{app:appA} pagina \pageref{app:appA}\,  y la fuente emisora del sensor de \texttt{electro-recepción}\, activa\cite{pedraja2012modelo}\,,  el cual se muestra en la figura \ref{fig:fig19}\,.}\, de radiación infrarroja, según \cite{shalimova1975fisica} ``se dan debido a que en los semiconductores, con estructura compleja de las bandas energéticas, son posibles las transiciones indirectas de los electrones de la banda de conducción  a la de valencia acompañadas de la emisión de un fotón. En este caso la recombinación del electrón libre con el hueco se desarrolla con la aparición de un fonón, lo que asegura la conservación del cuasi impulso. Lo más probable es que el fonón sea emitido. Si en el semiconductor se desarrollan procesos de recombinación entre bandas  tanto directa como indirectas, en el espectro de radiación se observan dos bandas de luminiscencia. \\ \\
+Las transiciones de los electrones de la banda de conducción a los niveles de los pequeños donadores (o de los huecos de la banda de valencia a los niveles de los pequeños aceptores),  que hacen que estos últimos se neutralicen, pueden ser con radiación. En este caso es de esperar la aparición de luminosidad en la región infrarroja remota del espectro.\\\\
+Pero los cálculos  muestran que en estas transiciones lo más probable es que sea emitido un fonón y no un fotón, es decir, que el proceso se desarrolla sin radiación.
+La recombinación con radiación se produce por lo general  como viene mostrado en la figura \ref{fig:fig20}\,.
+% =============================0 FIGURA Transiciones con radiación entre una banda y los estados de impureza.
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/transiciones.png}
+  \caption{\footnotesize Transiciones con radiación entre una banda y los estados de impureza.}
+  \label{fig:fig20}
+\end{figure}\\
+En la banda prohibida de los semiconductores reales existe una gran cantidad de estados localizados, que están ligados a los átomos de impureza, defectos de la estructura, infracciones de la periodicidad de la estructura en la superficie, entre otros. Estos estados localizados desempeñan un papel importante  en los procesos de luminiscencia. \\\\
+El estudio de los espectros de luminiscencia relacionados a diversas impurezas y defectos permite obtener información sobre estas infracciones de la estructura. \\ \\
+En los semiconductores se pueden producir pares \texttt{electrón-hueco} ligados por la atracción coulombiana, es decir, excitones. Si uno de estos pares se aniquila, se produce la emisión de un fotón. La energía de esta radiación es: 
+\begin{equation}
+h\nu = E_g - E\label{eq:eq1},
+\end{equation}
+donde E es la energía de enlace del excitón."\\\\
+Ahora se tiene un flujo de fotones de energía $h\nu$ saliendo del diodo emisor infrarrojo, según \cite{gautreau2001fisica}\,``como los fotones viajan a la velocidad de la luz deben, de acuerdo con la teoría de la relatividad, tener una masa en reposo igual a cero; de aquí que su energía sea completamente cinética. Si un fotón existe, entonces se mueve a la velocidad de la luz, $c$; si deja de moverse a velocidad c, deja de existir. Para $m_{0} = 0$ la relación relativista \texttt{momentum-energía}  se convierte en $E = pc$.
+de esta forma, cada fotón tiene un momentum de 
+\begin{equation}
+p = \frac{E}{c} = \frac{h\nu}{c} = \frac{h}{\lambda}\label{eq:eq2},
+\end{equation}
+Desde el punto de vista cuántico, un haz de energía electromagnética se compone de fotones que se desplazan a la velocidad $c$. La intensidad del haz será proporcional al número de fotones que cruza un área unitaria por unidad de tiempo. Entonces, si el haz es monocromático (de una frecuencia), la intensidad $I$ se obtendrá de 
+\begin{equation}
+I = (h\nu)\times \left ( \frac{N}{A\times t } \right)\label{eq:eq3},
+\end{equation}
+$h$ es la constante de Plank que tiene un valor de \texttt{6.626}\,$\times 10^{-34}$\,\texttt{J*s}\,; $N$ es el número de fotones que pasan por segundo a través de la superficie; $A$ es la superficie; $t$ es el tiempo en segundos.''
+
+%================================ DIFRACCION
+\subsection{Longitud de onda de un diodo led infrarrojo}
+Ahora los fotones de la fuente \texttt{FUENinfraROSSI}\,, salen del diodo led emisor infrarrojo y avanzan hacia el sistema óptico el cual se detalla en el anexo A.\,\ref{app:appA} pagina \pageref{app:appA}\, consiste en una lente doble convexa\,\cite{serway1997fisica}\,y\,\cite{hecht2000optica}, la fuente emisora se coloca en el foco de la lente, pues como se muestra en la figura \ref{fig:fig21},  cuando la fuente emite los fotones infrarrojos desde el punto focal, estos pasan por la lente y salen en forma paralela con menor dispersión que si no tuviera el sistema óptico como se observa en la tabla \ref{tab:tab4} y en la figura \ref{fig:fig22} .\\\\
+% =============================lente doble convexa
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/lenteconvexa.png}
+  \caption{\footnotesize Lente doble convexa~\protect\cite{serway1997fisica}.}
+  \label{fig:fig21}
+\end{figure}
+%============MONTAJE TEST FUENTE 
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/DIS_Fuente.png}
+  \caption{\footnotesize Gráfica que ofrece  el software \texttt{FREEinfraROSSI} para  el enfoque óptico de la fuente \texttt{FUENinfraROSSI}.}
+  \label{fig:fig22}
+\end{figure}
+%==================TABLA 4==================
+\begin{table}[htbp]
+  \centering
+  \caption{\footnotesize Análisis dispersión de la fuente FUENinfraROSSI con y sin sistema óptico. }
+  \label{tab:tab4}
+  \begin{tabular}{lcc}\hline
+    Prueba  & Separación & Dispersión (Grados)   \\ \hline
+    Sin sistema óptico     & 30 cm    & 10     \\ 
+    Con sistema óptico    & 30 cm    & 5     \\ \hline
+  \end{tabular}
+  \begin{tablenotes}
+    %[para,flushleft]
+    {\small
+      \vspace{0.1cm}
+      \textit{Nota.} Todos los datos son aproximados a partir de la gráfica que ofrece el software \texttt{FREEinfraROSSI}, la cual se observa en la figura \ref{fig:fig22}.
+    }
+  \end{tablenotes}
+\end{table}
+Una vez producido los fotones infrarrojos con energía $h\nu$ se hacen pasar por una red de difracción de 100 lineas por milímetro, esta radiación en vez de comportarse como un corpúsculo como lo venia haciendo, se comporta como una onda y cada abertura de la red de difracción se convierte en una fuente, por lo que se tiene un gran numero de fuentes.\\ \\
+Según \cite{hecht2000optica}\,``Al reflejarse en esta clase de red, la luz esparcida por las varias caracteristicas periodicas de la superficie llegaran a un punto P con una relación de fase definida. El patrón de interferencia correspondiente engendrado despues de la reflexión es muy similar al que se produce por transmisión. Las redes diseñadas especificamente para funcionar de esta manera se denomina redes de reflexión de fase. Tradicionalmente, las redes de esta clase son rayadas sobre películas finas de aluminio que han sido evaporadas sobre bloques de vidrio ópticamente planos.Puesto que el aluminio es bastante blando, hay menos desgaste de la herramienta de rayar de diamante, siendo tambien mejor reflector en la región ultravioleta. Si miramos perpendicularmente a través de una red de transmisión hacia una fuente lineal paralela distante, los ojos servirían como lente de enfoque para la distribución de difracción. Como un puente simple aunque lógico entre los estudios de la interferencia y de la difracción se considera un conjunto de N osciladores puntuales coherentes (o antenas emisoras), todos ellos idénticos incluso en su polarización. Por ahora, hay que suponer que los osciladores no tengan diferencia de fase intrínseca\footnote{Este es el caso ideal, el cual en el experimento se da el caso que los fotones infrarrojos producidos por el diodo led infrarrojo no están en fase.}, es decir, cada uno tiene el mismo ángulo de fase inicial.\\\\
+Todos los rayos son casi paralelos, encontrándose en un punto P muy distante. Si la extensión espacial del conjunto es comparativamente pequeña, las amplitudes de onda individuales que lleguen a P serán esencialmente iguales, habiendo recorrido casi las mismas distancias, esto es:
+\begin{equation}
+E_{0}(r_{1}) = E_{0}(r_{2})= ... = E_{0}(r_{n}) = E_{0}(r)\label{eq:eq4}
+\end{equation}
+La suma de los trenes de onda esféricos interferentes   produce un campo eléctrico  en P proporcionado por la parte real de 
+\begin{equation}
+\vec{E} = E_{0}(r)e^{i(kr_{1} - \omega t)} +  E_{0}(r)e^{i(kr_{2} - \omega t)} + ... +  E_{0}(r)e^{i(kr_{N} - \omega t)}\label{eq:eq5}
+\end{equation}
+Por tanto ahora 
+\begin{equation}
+\vec{E}=E_{0}(r)e^{(-i\omega t)}e^{ikr_{1}}\times[1+e^{ik(r_{2}-r_{1})}+e^{ik(r_{3}-r_{1})}+...+e^{ik(r_{N}-r_{1})}]\label{eq:eq6}
+\end{equation}
+La diferencia de fases entre fuentes adyacentes se obtiene de la expresión $\delta = k_{0}\Lambda$, y puesto que $\Lambda = ndsin(\theta)$, en un medio con índice n, $\delta  = kdsin(\theta)$, de esto se deduce que $\delta = k(r_{2}-r_{1}) $, $2\delta = k(r_{3}-r_{1}) $.\\\\
+Entonces el campo de P puede escribirse como:\\\\
+\begin{equation}
+\vec{E} = E_{0}(r)e^{(-i\omega t)}e^{ikr_{1}} \times[1 + (e^{i\delta}) +  (e^{i\delta})^{2} + (e^{i\delta})^{3} + ... + (e^{i\delta})^{N-1}]\label{eq:eq7}
+\end{equation}
+La serie geométrica entre paréntesis tiene el valor: \\
+\begin{center}
+$(e^{i\delta N} -1)/(e^{i\delta} -1) $
+\end{center}
+que puede ordenarse así:\\
+\begin{equation}
+\frac{e^{i\delta N/2}[e^{i\delta N/2} - e^{-i\delta N/2}]} {e^{i\delta /2}[e^{i\delta /2} - e^{-i\delta /2}]}\label{eq:eq8}
+\end{equation}
+o de manera equivalente\\
+\begin{equation}
+e^{i(N -1)\delta/2} * \left( \frac{sin(N\delta /2)}{sin(\delta /2)} \right )\label{eq:eq9}
+\end{equation}
+Entonces el campo se transforma en:\\
+\begin{equation}
+\vec{E} = E_{0}(r)e^{(-i\omega t)}e^{i[kr_{1} + (N -1)\delta/2]}* \left ( \frac{sin(N\delta /2)}{sin(\delta /2)} \right )\label{eq:eq10}
+\end{equation}
+Si se define R como  la distancia desde el centro de la linea de los osciladores hasta el punto P, es decir:\\
+\begin{equation}
+R = \frac{1}{2}(N-1)d sin(\theta) + r_{1}\label{eq:eq11}
+\end{equation}
+Entonces la ecuación \ref{eq:eq10} se convierte en:\\
+\begin{equation}
+\vec{E} = E_{0}(r)e^{i(kR - \omega t)} \left ( \frac{sin(N\delta /2)}{sin(\delta /2)} \right )\label{eq:eq12}
+\end{equation}
+Finalmente, la distribución de densidad de flujo dentro de la distribución de difracción debida a N fuentes puntuales distantes, idénticas y coherentes en una disposición lineal, es proporcional a $EE^{*}/2$ para $E$ compleja  o\\
+\begin{equation}
+I = I_{0}\frac{sin^{2}(N\delta/2)}{sin^{2}(\delta/2)}\label{eq:eq13}
+\end{equation}
+donde $I_{0}$ es la densidad de flujo que saliendo desde cualquier fuente puntual llegue a P.\\\\
+La dependencia funcional de $I$ con $\theta$ queda más clara en la forma \\
+\begin{equation}
+I = I_{0}\frac{sin^{2}[(Nk\delta/2)sin(\theta)]}{sin^{2}[(k\delta/2)sin(\theta)]}\label{eq:eq14}
+\end{equation}
+\\ \\
+El término $sin^{2}[(Nk\delta/2)sin(\theta)]$ se somete a unas fluctuaciones rápidas, mientras que las fluctuación que la modula, $sin^{-2}[(k\delta/2)sin(\theta)]$, varia de manera relativamente lenta. La expresión combinada da lugar a una serie de picos principales agudos separados por picos pequeños complementarios.\\ \\
+La ecuación \ref{eq:eq15}, es la que describe el fenomeno físico y se denomina ecuación de red para incidencia normal. 
+\begin{equation}
+d*sin(\theta _m)= m\lambda \label{eq:eq15}
+\end{equation}
+Los valores de m especifican el orden de diversos máximos principales. Para una fuente que tenga un espectro continuo ancho, la imagen de orden cero, $ m = 0 $, corresponde a la imagen blanca de la fuente no desviada $ \theta _0 = 0 $.\\\\
+La ecuación de red depende de $\lambda$ y así, para cualquier valor de m $\ne  0$, las distintas imágenes coloreadas de la fuente correspondientes a ángulos ligeramente diferentes $(\theta _m)$, se dispersa en un espectro continuo. \\\\
+Las regiones ocupadas por los débiles máximos secundarios aparecerán como bandas aparentemente desprovistas de luz. El espectro de primer orden $m = \frac{+}{-}1$ aparece a cada lado de $\theta = 0$ y es seguido, junto con intervalos alternados de oscuridad, por los espectros de orden superior, $m = \frac{+}{-}1, \frac{+}{-}2$."\\\\
+Ahora se produce un patrón de difracción que alcanza al detector infrarrojo del modulo motorizado \texttt{infraROSSI} como se observa en la figura \ref{fig:fig1}, el cual avanza en linea recta a 45 centímetros de la fuente emisora de fotones infrarrojos, perpendicular a la incidencia de los patrones de difracción. 
+%===================ley de decaimiento de la densidad de flujo de radiación 
+\subsection{Ley de decaimiento  de la densidad de flujo de radiación}
+Esta radiansa de fotones desde el diodo emisor como se muestra en la figura \ref{fig:fig19}\,, avanza por el espacio proyectando un ángulo solido hasta un espejo que se encuentra a 30 cm de la fuente como se observa en la figura \ref{fig:fig4}, por lo que la irradiansa  sera igual al cociente de la radiansa con el ángulo solido proyectado sobre el espejo.\\\\
+El flujo de fotones que interactua con la superficie del material de muestra dan como resultado desde el punto de vista clásico varios fenómenos físicos como lo son  la reflexión, refracción, absorción, atenuación, reflectancia, transmitancia.  Ahora el flujo de fotones  es  visto como el flujo de ondas electromagnéticas,   las que interactúan con la materia  en donde parte de la energía es transmitida al material aumentando la energía cinética media de sus constituyentes, otra parte traspasa el material y el resto del flujo electromagnético avanza paralelamente contrario a la dirección de desplazamiento inicial, si no se considera interacción de las ondas electromagnéticas con el aire como medio disipativo  y otras formas de perdida de energía.\\\\
+En este trabajo solo se tiene en cuenta el fenómeno de reflexión de la luz con el espejo, en el caso ideal  que no exista perdida de energía entre la luz incidente en el espejo; osea que la intensidad del  rayo incidente sea igual a la intensidad de la luz emitida por la interfaz del espejo. Solo se tiene en cuenta la atenuación de energía debido al avance de la expansión geométrica por el espacio, debido al flujo de luz emitida por el diodo emisor infrarrojo.\\\\
+Ahora la luz que sale del espejo tendrá que recorrer nuevamente 30 cm hasta el detector, mientras avanza seguirá decayendo su intensidad con el inverso del cuadrado de la distancia.
+%=============================ABSORCION =====================
+\subsection{Factor de perdida de la interacción \texttt{radiación-matería}}
+
+Esta radiansa de fotones desde el diodo emisor, avanza por el espacio proyectando un ángulo solido, por lo que la irradiancia  sera igual al cociente de la radiansa con el ángulo solido proyectado.\\\\
+La maxima distancia que se toma para la radiansa de fotones como se observa en la figura  \ref{fig:fig6}\,, es de 30 centimetros desde el diodo emisor hasta el material de muestra \footnote{La muestra son octavos de cartulina de colores.} colocado perpendicular al flujo de energía, por lo que habrá reducido su intensidad con el inverso del cuadrado de la distancia de la fuente a la muestra $\frac{1}{(0.30)^{2}}$ .\\\\
+% =============================Montaje laboratorio absorción utilizando el 
+
+Ahora el flujo de fotones que interactua con la superficie del material de muestra dan como resultado desde el punto de vista clásico varios fenómenos físicos como lo son  la reflexión, refracción, absorción, atenuación, reflectancia, transmitancia.  Ahora el flujo de fotones  es  visto como el flujo de ondas electromagnéticas,   las que interactúan con la materia  en donde parte de la energía es transmitida al material aumentando la energía cinética media de sus constituyentes, otra parte traspasa el material y el resto del flujo electromagnético avanza paralelamente contrario a la dirección de desplazamiento inicial, si no se considera interacción de las ondas electromagnéticas con el aire como medio disipativo  y otras formas de perdida de energía.\\\\
+Según \cite{hecht2000optica}\, ``Consideremos un haz de luz circular que incide en una superficie, tal como se muestra en la figura \ref{fig:fig23}, de tal modo que se produzca una zona iluminada cuya área sea $A$. Recordemos que la potencia por unidad de área que cruza una superficie en el vacío cuya normal es paralela a $\textbf{S}$, el vector de Poynting  viene determinado por:
+\begin{equation}
+\textbf{S} = c^{2} \epsilon_{0}\textbf{E}\times \textbf{B}\label{eq:eq16}.
+\end{equation}
+% =============================Figura reflexión y transmisión .
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/reflexate.png}
+  \caption{\footnotesize Reflexión y transmisión de un haz incidente.}
+  \label{fig:fig23}
+\end{figure}\\
+A demás la densidad de flujo radiante $(W / m^{2})$ o irradiancia es entonces 
+\begin{equation}
+I =  < S >_{t}   = \frac{c \epsilon_{0}}{2} E_{0}\label{eq:eq17}.
+\end{equation}
+Este el promedio de energía por unidad de tiempo que cruza  un área unidad, normal a  $\textbf{S}$ (en medios isótropos $\textbf{S}$ es paralela al vector de onda $\textbf{k})$. En el caso que nos ocupa (figura \ref{fig:fig23}) sean $I_{i} , I_{r}$ y $I_{t}$ las densidades de flujo incidente, reflejado y transmitido, serán respectivamente, $A cos(\theta _{i})$, $A cos(\theta _{r})$ y $A cos(\theta _{t})$.\\\\
+De acuerdo con esto, la potencia incidente es $I_{i} A cos(\theta_{i})$, esta es la energía por unidad de tiempo que fluye en el rayo incidente y, por consiguiente, la potencia que llega a la superficie de $A$. Del mismo modo,  $I_{r} A cos(\theta_{r})$, es la potencia en el rayo reflejado, e $I_{t} A cos(\theta_{t})$, es la potencia que se transmite a través de $A$. Definimos la \textbf{reflectancia} $R$ como el cociente entre la potencia (o flujo) reflejada y la potencia incidente, es decir:
+\begin{equation}
+R \equiv \frac{I_{r}A cos(\theta_{r})}{I_{i}A cos(\theta_{i})} = \frac{I_{r}}{I_{i}}\label{eq:eq18},
+\end{equation} 
+Del mismo modo la \textbf{transmitancia T} se define como el cociente entre el flujo transmitido y el flujo incidente y viene dada por:
+\begin{equation}
+T \equiv \frac{I_{t}A cos(\theta_{t})}{I_{i}A cos(\theta_{i})} = \frac{I_{t}}{I_{i}}\label{eq:eq19},
+\end{equation}
+escribamos ahora una ecuación que represente la conservación de energía para la configuración que se muestra en la figura \ref{fig:fig23}. Dicho de otro modo, la energía total que llega al área  $A$ por unidad de tiempo debe ser igual a la energía que fluye hacia fuera de ella por unidad de tiempo:
+\begin{equation}
+I_{i} A cos(\theta_{i}) = I_{r} A cos(\theta_{r}) + I_{t} A cos(\theta_{t}) \label{eq:eq20},
+\end{equation}
+multiplicando a ambos lados por $c$ esta expresión queda: 
+\begin{center}
+$ n_{i} E_{0i}^{2}cos(\theta_{i}) =  n_{i} E_{0r}^{2}cos(\theta_{r}) +  n_{t} E_{0t}^{2}cos(\theta_{t})$ 
+\end{center}
+Dividiendo a ambos lados por $ n_{i} E_{0i}^{2}cos(\theta_{i})$ obtenemos:
+\begin{equation}
+1 = \left ( \frac{E_{0r}}{E_{0i}} \right) ^{2} + \left ( \frac{n_{t}cos(\theta_{t})}{n_{i}cos(\theta_{i})} \right ) \left ( \frac{E_{0t}}{E_{0i}} \right) ^{2}\label{eq:eq21},
+\end{equation}
+Pero esto es simplemente:
+\begin{equation}
+R + T = 1 \label{eq:eq22},
+\end{equation}
+En donde $n_{i}$ es el índice de refracción del medio del que incide, $n_{t}$ es el índice de refracción en el medio transmitido."
+
+%==================absorion de fotones en el diodo 
+\subsection{Absorción de los fotones en el diodo receptor infrarrojo}
+Al iluminar el diodo receptor infrarrojo con esta energía radiante, según \cite{albella1996fundamentos}``en el semiconductor por cada fotón absorbido se rompe un enlace y se crea un par electrón-hueco. Es importante destacar que no todos los portadores fotogenerados contribuyen a la conducción, ya que una fracción importante de ellos se recombinan antes de llegar al extremo correspondiente del semiconductor. El calculo del incremento de corriente $\Delta I_{e}$, debida al exceso de electrones generados en la banda de conducción, $\Delta n$, es
+\begin {equation}
+\Delta I_{e} = q\mu _{e}(\Delta n)ES\label{eq:eq23}
+\end{equation} 
+siendo $E$ el campo eléctrico aplicado, $\mu_{e}$ la movilidad de los electrones y $S$ la sección transversal del fotoconductor.\\\\
+En condiciones de iluminación, el estado estacionario se alcanza cuando la velocidad de generación de portadores en todo el volumen del semiconductor, $G$, se iguala a la velocidad de recombinación, $R$, es decir $R = G$. para un conductor intrínseco en el cual existe un exceso de portadores, $\Delta n = \Delta p$, la velocidad de recombinación de los portadores vendrá dada por:
+\begin{equation}
+R = \frac{\Delta n }{\tau} = \frac{\Delta p}{\tau}\label{eq:eq24}
+\end{equation}
+siendo $\tau$ el tiempo de vida media de los portadores fotogenerados. En un semiconductor de longitud $L$ en el que suponemos que el espesor es suficiente para que toda la luz que incide sobre el, sea absorbida en su interior, se tiene ahora para la velocidad de generación de portadores en la banda de conducción:
+\begin{equation}
+G = \eta n_{fot} = \eta \frac{\frac{P_{i}}{h\nu}}{SL}\label{eq:eq25}
+\end{equation}
+siendo $n_{fot}$ el número de fotones incidentes en el semiconductor por unidad de volumen y de tiempo, y $\eta$ la eficiencia de la conversión en la generación de portadores. El valor $n_{fot}$ se calcula a través del cociente entre la potencia de la luz incidente, $P_{i}$, y la energía de la radiación, $h\nu$, dividido a su vez por el volumen del material.\\ \\
+Sabiendo que la velocidad de arrastre de los electrones por el campo eléctrico viene dada por: $v_{e} = \mu_{e}E$, las igualdades anteriores permiten escribir para la corriente de electrones fotogenerada entre los dos electrodos:
+\begin{equation}
+\Delta I_{e} = q\nu_{e}\eta\frac{\frac{P_{i}}{h\nu}}{L}\tau\label{eq:eq26}
+\end{equation}
+si se tiene en cuenta que el cociente $t_{r} = L/v_{e}$, representa el tiempo de trásito de los electrones entre los dos electrodos, resulta para $\Delta I_{e}$:
+\begin{equation}
+\Delta I_{e} = q\eta \frac{P_{i}}{h\nu}\frac{\tau}{t_{r}}\label{eq:eq27}
+\end{equation}
+con una expresión similar para la corriente de huecos en la banda de valencia. En la ecuación \ref{eq:eq27}, el factor $q\eta(P_{i}/h\nu) = I_{fot}$ tiene dimensiones de corriente y representa la velocidad de generación de carga en el semiconductor. En función de este parámetro, se define el factor de ganancia del fotoconductor a través del cociente:
+\begin{equation}
+\frac{\Delta I}{I_{fot}} = \frac{\tau}{t_{r}}\label{eq:eq28}
+\end{equation}
+ahora bien un diodo operando con cierto voltaje aplicado, $V$, en presencia de radiación electromagnética  capaz de excitar portadores a través de la banda prohibida dejara pasar una intensidad I dada por:
+\begin{equation}
+I = I_{0}[e^{(qV/kT)}-1] - I_{L}\label{eq:eq29}
+\end{equation}
+donde $I_{0}$ representa la corriente típica de un diodo, $I_{L}$ representa la corriente debida a  los portadores generados. El valor de $I_{L}$ puede calcularse de la siguiente manera:
+\begin{equation}
+I_{L} = qGS(L_{e} - L_{h})\label{eq:eq30}
+\end{equation}
+siendo $G$ el número de portadores generados por unidad de volumen y de tiempo y $S$ el área de la sección transversal del diodo. $L_{e}$ y $L_{h}$ representan las longitudes de difusión de los electrones y huecos. El dispositivo funciona entonces como detector del nivel de iluminación  convirtiendo una señal óptica en señal eléctrica." \\\\
+Como la irradiansa de fotones infrarrojos es proporcional al inverso del cuadrado de la distancia de separación a la fuente, y la función voltaje que mide el modulo motorizado \texttt{infraROSSI} es proporcional al inverso del cuadrado de la  distancia de separación de la fuente al vehículo \texttt{infraROSSI}; se realiza el cociente de la intensidad irradiada en el diodo led que es según el fabricante de \texttt{20 mW/}$\Omega$, sobre el voltaje producido en el sensor que es de \texttt{5000mV}; como se muestra en la figura \ref{fig:fig24}.
+%================== FIGURA absorcion semiconductor
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/graficaVI.png}
+  \caption{\footnotesize Relación irradiansa vs voltaje.}
+  \label{fig:fig24}
+\end{figure}\\
+Una vez absorbidos los fotones infrarrojos, el microcontrolador atmega 328 del vehículo motorizado \texttt{infraROSSI}, mide la relación de voltaje en el sensor de \texttt{electro-recepción} activa que es proporcional a la irradiansa del emisor infrarrojo la cual equivale a $4 \mu  W/ mV$, este valor es la pendiente de la gráfica \ref{fig:fig24}; lo que significa que por cada $4 \mu W$ de radiación incidente el sensor esta arrojando en su salida $1 mV$ . 
+%============================software de control freeinfrarossi
+\section{Software de control \texttt{FREEinfraROSSI}}
+%===================== que es freeinfrarossi
+\subsection{¿Qué es \texttt{FREEinfraROSSI}\,?}
+\texttt{FREEinfraROSSI} es un  programa creado en Colombia, en la ciudad de Bogotá, como tesis de grado para optar por el titulo de licenciado en física en la Universidad Distrital Francisco José de Caldas, el cual fue desarrollado con software libre y en un entorno libre como lo es GNU-Linux, puede llegar a ser multiplataforma\footnote{Correr bajo cualquier sistema operativo como GNU-Linux, windows, MAC, Solaris, entre otros.} al ejecutar el programa en una maquina virtual\footnote{Enlace online a Virtualbox \url{https://www.virtualbox.org/} y Vmware \url{http://www.vmware.com/}\,.} con un sistema operativo \texttt{GNU-Linux}; se vale de lenguajes de programación, como  C, C++\,\cite{alcocer2006programacion}\,, python 2.7\,\cite{mckinney2012python}\,, bash\,\cite{burtch2004linux}\,; y de programas como arduino\cite{herrador2009guia}, octave\,\cite{eaton1997gnu}\,, gnuplot\,\cite{kathirvel2009global}, blueman-manager\,\cite{hoile2014raspberry}\,; entre otros, fusionados en una interfaz amigable y fácil de utilizar. \\\\
+\texttt{FREEinfraROSSI} es el software de control del instrumento de laboratorio \texttt{infraROSSI}  que ilustra  la propiedad de difracción, atenuación y absorción de ondas electromagnéticas en el espectro infrarrojo, esta diseñado para ser utilizado tanto por estudiantes como docentes de muy diversas ramas de las ciencias y  la ingeniería o como una herramienta muy útil para los educadores y alumnos de media vocacional.
+%--------------subsección Licencia
+\subsection{Licencia}
+Programa de control de hardware e ilustración física de las propiedades de las ondas electromagnéticas en el espectro infrarrojo.\\\\
+Copyright (C) 2016-01-01  Universidad Distrital Francisco Jose de Caldas, Diego Alberto Parra Garzón, PhD. Julian Andres Salamanca Bernal. \\\\
+El programa \texttt{FREEinfraROSSI} es software libre; puedes redistribuirlo y / o modificarlo bajo los términos de la Licencia Pública General GNU publicada por la Fundación para el Software Libre; ya sea la versión 3 de la Licencia, o (a su elección) cualquier versión posterior. Este programa se distribuye con la esperanza de que sea útil, pero SIN NINGUNA GARANTÍA; ni siquiera la garantía implícita de COMERCIALIZACIÓN o IDONEIDAD PARA UN PROPÓSITO PARTICULAR. Vea la Licencia Pública General GNU para más detalles. Debería haber recibido una copia de la Licencia Pública General de GNU junto con este programa; si no, escriba a la Free Software Foundation, Inc., 51 Franklin Street, Quinto Piso, Boston, MA 02110-1301 EE.UU..\\\\
+Si usted hace alguna modificación en esta aplicación, deberá siempre mencionar el autor original de la misma.
+%------------.subsección instalación 
+\subsection{Instalación}
+La instalación de este software es el mismo para distribuciones basadas en Debian\footnote{Pagina oficial proyecto Debian \url{https://www.debian.org/}}\, como lo es \texttt{UBUNTU 14.04LTS}\footnote{Enlace pagina oficial sistema operativo UBUNTU14.04LTS \url{http://www.ubuntu.com/}} y \texttt{Linux MINT 17.2}\footnote{Enlace pagina oficial sistema operativo \texttt{Linux MINT 17.2} \url{https://linuxmint.com/}}.\\\\
+Abrir una terminal\footnote{Procedimiento: \url{http://www.comoinstalarlinux.com/como-abrir-una-terminal-en-ubuntu-linux-mint-centos-debian/}} como se observa en la figura \ref{fig:fig25} y escribir sin comillas $``$sudo su$''$ y luego oprimir la tecla enter; escribir la contraseña de administrador, presionar enter; escribir sin comillas $"$aptitude install -y git$"$, presionar enter; escribir sin comillas $``$cd Documentos$''$ presionar enter; escribir sin comillas $``$git  clone \url{https://github.com/Diego-debian/Free-infrarossi}$''$, oprimir enter; escribir sin comillas $``$chmod +777 Free-infrarossi$''$, presionar la tecla enter.
+%==================comandos en terminal=================
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/S_install2.png}
+  \caption{\footnotesize Instalación, comandos en terminal.}
+  \label{fig:fig25}
+\end{figure}\\
+Cerrar la terminal y dirigirse al navegador de archivos en la carpeta \url{Documentos/Free-infrarossi/install}, como se observa en la figura \ref{fig:fig26}; dar click derecho del mouse en el archivo \texttt{instalador.py} como se observa en las figuras \ref{fig:fig27} y \ref{fig:fig28} , click izquierdo en la opción propiedades; en la pestaña de general debe decir abrir archivo con \texttt{python 2.7} y en la pestaña permisos debe estar seleccionada la casilla permitir ejecutar este archivo como programa, de no ser así, cambiar las opciones; cerrar la ventana y abrir el archivo \texttt{INSTALADOR.py}\,; escribir la clave administrador y presionar enter; escribir  1 y presionar enter; escribir nuevamente 1 y enter; una vez finalizada la instalación hay que reiniciar el pc.
+%================== carpeta install
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/S_install.png}
+  \caption{\footnotesize Instalación, vista navegador de archivos.}
+  \label{fig:fig26}
+\end{figure}
+%--------------------propiedades1
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/S_propiedades1.png}
+  \caption{\footnotesize Instalación, propiedades \texttt{FREEinfraROSSI}.}
+  \label{fig:fig27}
+\end{figure}\\
+%--------------------propiedades 2
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/S_propiedades2.png}
+  \caption{\footnotesize Instalación, propiedades \texttt{FREEinfraROSSI}.}
+  \label{fig:fig28}
+\end{figure}\\
+En caso de que en el sistema operativo \texttt{UBUNTU 14.04 LTS} se produzca un error en la instalación deberá ejecutar en la terminal el siguiente comando sin comillas ``\texttt{sudo python ~/Documentos/Free-infrarossi/install/instalador\\.py }'', de esta manera comienza la instalación del programa.\\\\
+Este software se testeo en diferentes sistemas operativos como \texttt{UBUNTU 14.04 LTS}, \texttt{Linux MINT17.2}, \texttt{Debian 8}, \texttt{Kali Linux}, \texttt{Tails} sin error alguno en el software, también se realizo el test  sobre  \texttt{Windows xp, windows 7, windows vista, windows 8, windows 10} en \texttt{maquina virtual}  con \texttt{VirtualBOx} sin ningún error por parte del programa \texttt{FREEinfraROSSI}.\\\\
+Los diferentes scripts que componen este software se observan en el anexo E.\,\ref{app:appE} pagina \pageref{app:appE}.
+%_------------------------------subsección Primer uso
+\subsection{Primer uso \texttt{FREEinfraROSSI}}
+Abrir una terminal del S.O. escribir en la terminal sin comillas \texttt{'infrarossi'} , oprimir la tecla enter, escribir la clave de administrador y se despliega la ventana del software \texttt{FREEinfraROSSI}\,, como se aprecia en la figura \ref{fig:fig2}\,.
+\subsection{Carga de firmware en el modulo \texttt{infraROSSI}}
+La ventana del programa \texttt{FREEinfraROSSI}\,, en la parte inferior derecha hay tres botones, oprimir el botón de firmware  como se muestra en la figura \ref{fig:fig29} , y conectar la tarjeta micro controladora arduino uno al pc; oprimir el botón continuar y esperar que cargue el firmware en la tarjeta, una vez hecho esto retirar el micro controlador de la tarjeta y colocarlo en el montaje del vehículo.
+%--------------------propiedades 2
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/firmware.png}
+  \caption{\footnotesize Ventana de instalación del firmware, que ofrece el software \texttt{FREEinfraROSSI}\,, para el vehículo motorizado \texttt{infraROSSI}\,.}
+  \label{fig:fig29}
+\end{figure}\\
+%====================DISEÑO EXPERIMENTAL MODULO INFRAROSSI
+\section{Diseño experimental del modulo \texttt{infraROSSI}}
+%=======================-Disposición electrica 
+\subsection{Disposición eléctrica}
+El modulo \texttt{infraROSSI} es un vehículo didáctico para la enseñanza experimental en física ver figuras \ref{fig:fig14} y \ref{fig:fig15}\,, los diferentes sistemas electrónicos del vehículo pueden removerse en cuatro sistemas: control de hardware y comunicación bluetooth con ordenador ver figura \ref{fig:fig16}\,, control rapidez del vehículo ver figura \ref{fig:fig17}\,, sensor \texttt{electro-recepción} pasiva ver figura \ref{fig:fig18}\,, y un sensor de \texttt{electro-recepción} activa ver figura \ref{fig:fig19}\,. \\\\
+%------------------------control de hardware.....
+\subsubsection{Control de hardware}
+El modulo \texttt{infraROSSI} tiene un sistema de control de hardware ver figura \ref{fig:fig16}\,, que le indica al vehículo cuando debe avanzar, cuando debe detenerse, la rapidez con que debe avanzar, la distancia que debe avanzar, activar y detener el sensor de \texttt{electro-recepción} pasiva y enviar los datos vía bluetooth al ordenador, activar y detener el sensor de \texttt{electro-recepción} activa y enviar los datos vía bluetooth al ordenador, enviar señales del proceso que esta realizando con el encendido y apagado de diodos leds de colores y mantener una comunicación continua con el ordenador vía bluetooth. \\\\
+El control de hardware ver figura \ref{fig:fig16} , está basado en un microcontrolador atmega 328P-PU según especificaciones del fabricante\footnote{Enlace online a la hoja de datos del microcontrolador atmega328P-PU \url{http://www.atmel.com/images/Atmel-8271-8-bit-AVR-Microcontroller-ATmega48A-48PA-88A-88PA-168A-168PA-328-328P_datasheet_Complete.pdf}}\,, tiene 28 pines, con un voltaje de operación de \texttt{5 V}, una corriente máxima de  \texttt{40 mA} por pin de salida, la suma de corriente en todas las salidas del microcontrolador no excede los  \texttt{150 mA}, trabaja en una frecuencia de \texttt{12 MHz}. Este dispositivo consta de un modulador de frecuencia, un modulador de señal de \texttt{9V a 5V} voltaje continuo, un modulo de comunicación tipo bluetooth, un botón de reinicio y un led indicador de procesos. \\\\
+El modulador de frecuencia como se muestra en las figuras \ref{fig:fig30} y \ref{fig:fig31} , sincroniza el reloj interno del microcontrolador, calibrando los tiempos en los procesos del microcontrolador con los indicados por el fabricante y que reposan en la pagina oficial del proyecto arduino\,\footnote{Pagina oficial proyecto arduino, [on line] \url{https://www.arduino.cc/}}\,.\\\\
+%-------------------------------------Sistema  tarjeta, oscilador para atmega 
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/F1.png}
+  \caption{\footnotesize Esquema tarjeta perforada con control de hardware del vehículo \texttt{infraROSSI}\,, cristal oscilador \texttt{12 MHz}, dos condensadores cerámicos de \texttt{12 pF}, resistencia de \texttt{1k}\,$\Omega$ y un botón; los cables de color negro son tierra, los de color rojo son voltaje, el cable azul y blanco son puentes. Figura generada en Fritzing.}
+  \label{fig:fig30}
+\end{figure}
+%-------------------------------------esquema electrico, oscilador para atmega 
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/G1.png}
+  \caption{\footnotesize Esquema eléctrico microcontrolador \texttt{atmetga 328}\,, cristal oscilador \texttt{12 MHz}, dos condensadores cerámicos de \texttt{12 pF}, resistencia de \texttt{1k}\,$\Omega$ y un botón. Figura generada en Fritzing.}
+  \label{fig:fig31}
+\end{figure}
+El botón de reinicio o switch de reset como se muestra en las figuras \ref{fig:fig30} y \ref{fig:fig31}, este interruptor reinicia el firmware cargado dentro del microcontrolador cuando surge algún conflicto interno en los procesos de este dispositivo. \\\\
+El modulador de señal como se muestra en las figuras \ref{fig:fig32} y \ref{fig:fig33}\,, filtra la señal de entrada de \texttt{9 V} voltaje continuo a la señal de trabajo óptima del microcontrolador y los diferentes sistemas electrónicos que es de \texttt{5 V} voltaje continuo.
+%-------------------------Modulador de voltaje
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/F2.png}
+  \caption{\footnotesize Esquema tarjeta perforada microcontrolador atmetga 328, transistor \texttt{LM 7805 cv}\,, dos condensadores electroliticos de \texttt{10\,}$\mu$\,\texttt{F}, conectados a batería de \texttt{9 V}\,. Figura generada en Fritzing.}
+  \label{fig:fig32}
+\end{figure}\\
+%-------------------------------------Esquema electrico modulador de voltaje
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/G2.png}
+  \caption{\footnotesize Esquema eléctrico microcontrolador atmetga 328, transistor LM 7805 cv, dos condensadores electroliticos de $10 \mu F$, conectados a batería de $9 V$\,. Figura generada en Fritzing.}
+  \label{fig:fig33}
+\end{figure}\\
+La comunicación del microcontrolador con el ordenador como se muestra en las figuras  \ref{fig:fig34} y \ref{fig:fig35} la ejecuta el modulo \texttt{bluetooth hc-05}; de esta manera el software de control \texttt{FREEinfraROSSI} tiene completo dominio del hardware del vehículo motorizado \texttt{infraROSSI}.
+%-----------------------------Sistema bluetooth
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/F3.png}
+  \caption{\footnotesize Esquema tarjeta perforada microcontrolador \texttt{atmetga 328P-PU}\,, modulo \texttt{bluetooth hc-05}, diodo \texttt{led de 3mm} y una resistencia de \texttt{500}\,$\Omega$. Figura generada en Fritzing.}
+  \label{fig:fig34}
+\end{figure}
+%------------------------------Esquema electrico sistema bluetooth
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/G3.png}
+  \caption{\footnotesize Esquema eléctrico microcontrolador \texttt{atmetga 328P-PU}\,, modulo \texttt{bluetooth hc-05}, diodo \texttt{led de 3mm} y una resistencia de \texttt{500}\,$\Omega$. Figura generada en Fritzing.}
+  \label{fig:fig35}
+\end{figure}
+El avance espacial del vehículo como el encendido y apagado de los diferentes sensores del dispositivo, junto con la recolección de datos de los sensores y la verificación del proceso que realiza la tarjeta, son enviados por el modulo \texttt{hc-05} al ordenador, para su respectivo análisis; de igual forma las ordenes provenientes del software de control vía bluetooth son recibidas por el modulo \texttt{hc-05} y enviadas al microcontrolador para su inmediata ejecución.\\\\
+El diodo led que se observa en las figuras  \ref{fig:fig34} y \ref{fig:fig35} es un indicador lumínico de los procesos que esta realizando el microcontrolador. De esta manera se tiene un indicador visual que muestra el proceso esta llevando a cabo el microcontrolador, si la intensidad de radiación que percibe el diodo receptor en cualquiera de los dos dispositivos eléctricos de \texttt{electro-recepción} es mayor o menor \texttt{10 $\mu W/\Omega$},  realzando el carácter visual y estético del modulo motorizado \texttt{infraROSSI}.\\\\
+El control de hardware que se observa en las figuras \ref{fig:fig36}, \ref{fig:fig37} y \ref{fig:fig38}\,, consta de un modulador de señal LM 7805cv, modulador de frecuencia con oscilador \texttt{12 Mhz}\,, el pin \texttt{IN2} es la conexión al \texttt{led de color 3mm}\,,  el pin \texttt{IN3} es la conexión al \texttt{led de color 3mm}\,, pin de salida a \texttt{+5v}, pin de salida a \texttt{GND}, modulo \texttt{bluetooth hc-05}\,, botón de reinicio, microcontrolador \texttt{atmega 328P-PU}\,, el pin \texttt{OUT1} es la salida al sensor de \texttt{electro-recepción} activa, el pin \texttt{OUT2} es la salida al sensor de \texttt{electro-recepción} pasiva, el pin \texttt{OUT3} es el pin de salida al sistema de control de velocidad, el pin \texttt{IN1} es la salida al \texttt{diodo emisor infrarrojo}\,; la placa perforada tiene dimensiones de  $6x4.5 cm^{2}$ , con un acabado en \texttt{velcro}, lo que facilita el montaje de la misma en el vehículo.\\\\
+%------------------------------MONTAJE FINAL
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/F6.png}
+  \caption{\footnotesize Esquema en tarjeta perforada del microcontrolador \texttt{atmetga 328P-PU}, con las disposiciones del sistema de control de hardware. Figura generada en Fritzing.}
+  \label{fig:fig36}
+\end{figure}
+%---------------esquema electrico MONTAJE FINAL
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/G4.png}
+  \caption{\footnotesize Esquema eléctrico microcontrolador \texttt{atmetga 328P-PU}, con las disposiciones del sistema de control de hardware. Figura generada en Fritzing.}
+  \label{fig:fig37}
+\end{figure}
+%------------------------------circuito impreso MONTAJE FINAL
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/H3.png}
+  \caption{\footnotesize Esquema de tarjeta impresa para el microcontrolador atmetga 328P-PU,  con las disposiciones del sistema de control de hardware. Figura generada en Fritzing.}
+  \label{fig:fig38}
+\end{figure}\\
+Cables conectores tipo hembra para que el usuario final \texttt{NO} manipule el microcontrolador \texttt{atmega328 P-PU} o podrían dañarlo; su parte inferior esta forrada en \texttt{velcro} lo que facilita remover el sistema de control en cualquier momento bien sea para mostrar sus dimensiones o explicar el funcionamiento eléctrico del sistema y las operaciones que realiza el microcontrolador \texttt{atmega 328P-PU}.\\\\
+Al \texttt{semiconductor} se le coloco un disipador térmico, para evitar el sobrecalentamiento del \texttt{semiconductor} y de esta manera garantizar el correcto funcionamiento de este dispositivo el cual alimenta al sistema de control de hardware y a los demás dispositivos eléctricos del modulo motorizado \texttt{infraROSSI} con unn voltaje de \texttt{5V} voltaje continuo.\\
+%========================CONTROL DE AVANCE 
+\subsubsection{Control de avance}
+El sistema de control de avance ver figura \ref{fig:fig17}\,, es el que da el movimiento del vehículo únicamente hacia adelante, pues no consta de un sistema de reversa, esta peculiaridad del vehículo permite que este avance una cantidad mínima de distancia para la recolección de datos de los distintos sensores de electro-recepción que dispone el vehículo. \\ \\
+El sistema de control en el avance del vehículo \texttt{infraROSSI} como se observa en las figuras \ref{fig:fig39} , \ref{fig:fig40} y \ref{fig:fig41} , consta de dos salidas a GND, dos salidas a \texttt{+5V}\,, una entrada a \texttt{GND}, una entrada a \texttt{+5V}\,, un \texttt{tip 122}, una resistencia de $5k\Omega$, \texttt{diodo 1N4001}\,, el pin \texttt{OUT3} es la salida al pin \texttt{D3(PWM)} del microcontrolador \texttt{atmega 328P-PU}, salida \texttt{M1} para el motor, salida \texttt{M2} para el motor; un motor de corriente directa de medio vatio de potencia con sistema de transmisión de engranaje de eje fijo como se observa en la figura \ref{fig:fig13}\,.\\\\
+El pin \texttt{D3(PWM)} del microcontrolador envía una señal de \texttt{24mA} al pin base del \texttt{tip 122}\,\footnote{Semiconductor, F. (2008). tip122 npn. [On line]. Disponible en: \url{http://pdf.datasheetcatalog.net/datasheet/fairchild/TIP122.pdf.}}\,, durante \texttt{37 ms}\,, dando un avance de \texttt{2 mm} al vehículo motorizado \texttt{infraROSSI.} El sistema de control de avance del vehículo motorizado \texttt{infraROSSI} tiene dimensiones de \texttt{3x4}\,$cm^{2}$,  forrado en \texttt{velcro}, lo que facilita retirar el sistema de control para mostrar sus conexiones o explicar el funcionamiento del \texttt{semiconductor TIP 122} para el control de velocidad en el avance espacial del vehículo.\\\\
+%------------------------Sistema control avance tarjeta perforada
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/F8.png}
+  \caption{\footnotesize Esquema tarjeta perforada del sistema de control de avance. Figura generada en Fritzing.}
+  \label{fig:fig39}
+\end{figure}
+%------------------------Sistema control avance circuito eléctrico
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm, angle=0]{img/tip122.png}
+  \caption{\footnotesize Esquema del circuito eléctrico del sistema de control de avance. Figura generada en Fritzing.}
+  \label{fig:fig40}
+\end{figure}
+%------------------------Sistema control avance tarjeta de circuito impreso
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm, angle=0]{img/H4.png}
+  \caption{\footnotesize Tarjeta de circuito impreso del sistema de control de avance. Figura generada en Fritzing.}
+  \label{fig:fig41}
+\end{figure}
+El paso en el avance del vehículo motorizado \texttt{infraROSSI} se calibra colocando el control de hardware que se muestra  en la figura\,\ref{fig:fig16} y el control de avance que se muestra en la figura \ref{fig:fig17} en las bases del vehículo motorizado \texttt{infraROSSI} que se muestra en las figuras \ref{fig:fig11} y \ref{fig:fig46}\,.\\
+%------------------------Sistema control avance montaje protoboard
+%\begin{figure}[htb]
+%  \centering
+%  \includegraphics[width=8.0cm, height=6.0cm, angle=0]{img/F7.png}
+%  \caption{\footnotesize Esquema en \texttt{protoboard} del sistema de control de avance. Figura generada en Fritzing.}
+%  \label{fig:proto_sis_con}
+%\end{figure}
+%====================ACA COMIENZA LA TABLA 5=====================
+\begin{table}[htbp]
+  \centering
+  \caption{\footnotesize Análisis de los datos obtenidos en la calibración del sistema de control de avance.}
+  \label{tab:tab5}
+\resizebox{8.5cm}{!}{
+	\begin{tabular}{rccl} 
+	\hline
+	\footnotesize\,\texttt{Prueba} & \footnotesize\,\texttt{Distancia [cm]} & \footnotesize\,\texttt{paso[cm]} & \footnotesize\,\texttt{error} \\
+	\hline
+	\hline
+	 1. & 20.2 & 0.214 & \footnotesize\,$\frac{+}{-}1 mm$ \\
+	 2. & 20 & 0.212  & \footnotesize\,$\frac{+}{-}1 mm$ \\
+	 3. & 20.1 & 0.213  & \footnotesize\,$\frac{+}{-}1 mm$ \\
+	 4. & 19.8 & 0.210  & \footnotesize\,$\frac{+}{-}1 mm$ \\
+	 5. & 19.5 & 0.207  & \footnotesize\,$\frac{+}{-}1 mm$ \\
+	 6. & 20.4 & 0.217  & \footnotesize\,$\frac{+}{-}1 mm$ \\
+	 7. & 20 & 0.212  & \footnotesize\,$\frac{+}{-}1 mm$ \\
+	 8. & 20 & 0.212  & \footnotesize\,$\frac{+}{-}1 mm$ \\
+	\hline
+	\hline
+	 & \footnotesize\,\texttt{\bf{DISTANCIA PROMEDIO}} &\footnotesize\,\texttt{20 cm} &   \\
+	& \footnotesize\,\texttt{\bf{PASO PROMEDIO}} & \footnotesize\,\texttt{0.212 cm} &   \\
+	\hline
+	\hline
+	\end{tabular}
+}
+\begin{tablenotes}
+    %[para,flushleft]
+    {\small
+      \vspace{0.1cm}
+      \textit{Nota.} Datos del modulo \texttt{infraSOSSI} con sistema de avance; la distancia de avance esta en \texttt{cm}, el avance es el cociente de la distancia avanzada y la cantidad de pasos, el error de la medida es  $\frac{+}{-} 1$\,\texttt{mm}\,.
+    }
+  \end{tablenotes}
+\end{table}\\
+El vehículo motorizado \texttt{infraROSSI} cuenta con cinco modos de avance, en cada modo aumenta el avance en \texttt{0.4 mm}, estos se encuentran reservados para el programador del software de control \texttt{FREEinfraROSSI}, dejando solo el avance de \texttt{2 mm} solamente hacia adelante fijo  y no cuenta con sistema de avance en reversa.\\\\
+El vehículo motorizado \texttt{infraROSSI} se coloca en una superficie de apoyo, con la ayuda de un metro para medir la distancia de avance, un bolígrafo para marcar el avance y el software de control \texttt{FREEinfraROSSI}, se hace avanzar 94 veces y se mide la distancia de avance, se realizarón \texttt{8} pruebas de ajuste en el avance y los datos obtenidos se muestran en la tabla \ref{tab:tab5}. \\
+%---------------------------seccion Sensor electrorecepcion pasiva
+\subsubsection{Sensor de electro-recepción pasiva}
+El sistema de electro-recepción pasiva como se observa en la figura \ref{fig:fig18}, es un sistema de adquisición de información energética de radiación electromagnética en el espectro infrarrojo de manera pasiva, solo recibe señales electromagnéticas en estas longitudes de onda; la información que recibe el sensor es enviada al microcontrolador y este la envía al ordenador a través del dispositivo bluetooth para el análisis de estos datos por la interfaz gráfica \texttt{FREEinfraROSSI}.\\\\
+El sistema de \texttt{electro-recepción} pasiva como se observa en las figuras \ref{fig:fig42} y \ref{fig:fig43}\,, consta de un diodo receptor infrarrojo o \texttt{IRR}, dos \texttt{led de 3mm}, dos resistencias de $500\Omega$,  resistencia de $5 k\Omega$, el pin \texttt{IN2} es salida al pin \texttt{D10(PWM)} del microcontrolador, el pin \texttt{IN3} es salida al pin \texttt{D11(PWM)} del microcontrolador, el pin \texttt{OUT2} es salida al pin \texttt{(A0)} del microcontrolador, pin de entrada \texttt{+5V} y pin de entrada a \texttt{GND.}
+%---------------------- Sensor electrorecepcion pasiva
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=5.0cm, angle=0]{img/F5.png}
+  \caption{\footnotesize Tarjeta perforada con el montaje del sensor de electro-recepción pasiva. Figura generada en Fritzing.}
+  \label{fig:fig42}
+\end{figure}
+%---------------------- Placa de circuito impreso Sensor electrorecepcion pasiva
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm, angle=0]{img/H2.png}
+  \caption{\footnotesize Placa de circuito impreso para el sensor de electro-recepción pasiva. Figura generada en Fritzing.}
+  \label{fig:fig43}
+\end{figure}\\
+El sensor esta calibrado como se muestra en la gráfica \ref{fig:fig24}\,, para medir $4 \mu W/mV$\,, recolectando \texttt{70 datos por segundo}, los diodos led son solo indicadores del proceso que esta realizando el microcontrolador y de la intensidad de señal recibida por el sensor, cantidad máxima medible $20 mW/\Omega$.\\
+%==================ELECTRORECEPCION ACTIVA
+%--------------------------seccion electrorecpcion activa
+\subsubsection{Sensor de \texttt{electro-recepción} activa}
+El sensor de electro-recepción activa como se observa en la figura \ref{fig:fig19}\, , esta basado en el principio de \texttt{electro-recepción} activa sin barrido, el cual consiste en un sensor de recepción por reflexión, donde una fuente fotónica ubicada al lado del sensor envía un flujo de energía electromagnética en la longitud de onda de \texttt{940 nm} por el espacio y al encontrar una  barrera que le impide el paso, esta interactúa con el obstáculo dando una reflexión del flujo irradiado en sentido contrario, fruto de esta interacción es la reducción de la intensidad de la señal. \\\\
+El sensor infrarrojo percibe esta señal transformando la energía lumínica en energía eléctrica, esta información es enviada al microcontrolador quien a su vez la envía por el bluetooth al software de control \texttt{FREEinfraROSSI} para su análisis. \\\\
+El sistema de electro-recepción activa como se observa en las figuras \ref{fig:fig44} y \ref{fig:fig45} , consta de un diodo receptor infrarrojo o \texttt{IRR}, un diodo emisor infrarrojo o \texttt{IRE}, una resistencia de $300\Omega$, una resistencia de $5 k\Omega$, un pin de entrada \texttt{+5V} y un pin de entrada a \texttt{GND}\,, el pin \texttt{IN1} es la conexión al pin \texttt{D6(PWM)} del microcontrolador, el pin \texttt{OUT1} es la salida al pin \texttt{A5} del microcontrolador. El emisor infrarrojo de longitud de onda \texttt{940 nm} tiene una densidad de flujo radiante sobre  ángulo solido de $20 mW/\Omega$.
+%------------------------Sensor electrorrecepcion activa 
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=4.0cm, height=6.0cm, angle=0]{img/F4.png}
+  \caption{\footnotesize Esquema tarjeta perforada del radar de \texttt{electro-recepción} activa sin barrido. Figura generada en Fritzing.}
+  \label{fig:fig44}
+\end{figure}\\
+Para el esquema de tarjeta perforada como se muestra en la figura \ref{fig:fig44} del sensor de electro-recepción activa, el cable de color negro es el pin de salida a tierra \texttt{(GND)}, el cable de color azul es el pin de salida al pin \texttt{D6(PWM)} del microcontrolador,  el cable de color rojo es el pin de conexión a \texttt{(+5V)}\,, el cable de color naranja es la conexión al pin \texttt{A5} del microcontrolador.
+%----------------------PCB Sensor electrorecepcion activa 
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=4.0cm, height=6.0cm, angle=0]{img/H1.png}
+  \caption{\footnotesize Placa de circuito impreso para el sensor de \texttt{electro-recepción} activa. Figura generada en Fritzing.}
+  \label{fig:fig45}
+\end{figure}
+El sensor de electro-recepción activa como se muestra en la gráfica \ref{fig:fig24} esta calibrado para medir $4 \mu W/mV$, recolectando \texttt{70} datos por segundo, máxima intensidad medible $20 mW/\Omega$ , con máximo alcance en la distancia de detección de \texttt{60 centímetros} a la fuente radiante.\\\\
+El sensor de \texttt{electro-recepción} activa envía la información de que cantidad de radiación infrarroja esta incidiendo sobre el, al microcontrolador \texttt{atmega 328P-PU} quien a su vez le comunica al modulo bluetooth \texttt{hc-05} que inicie la transmisión de datos al ordenador para su análisis con el software \texttt{FREEinfraROSSI}.
+%----------------------subseccion disposicion mecanica 
+\subsection{Disposición mecánica}
+La disposición mecánica del vehículo motorizado free infrarossi como se observa en las figuras \ref{fig:fig10}\,, \ref{fig:fig11}\,, \ref{fig:fig12}\,, \ref{fig:fig13} y \ref{fig:fig46}\,, esta compuesta por un chasis de madera, dos pares de llantas, dispone de tres bases macizas forradas en \texttt{velcro}\,, para facilitar el montaje de los diferentes sensores y sistemas de control, la base del sistema de control es hueca con espacio suficiente para la batería de \texttt{9 V} de tipo cuadrada recargable, el montaje del vehículo,  un capó de material \texttt{fommy} negro para aislar el ruido en el sensor de e\texttt{lectro-recepción} activa,  dos ejes fijos, un sistema de transmisión de tipo engranaje y sistema de avance de \texttt{2 mm} (únicamente  hacia adelante), los sistemas de control se puedan quitar y poner en el vehículo debido al material de \texttt{velcro}\,, el sistema de control aparte de ser móvil, puede  ser removido el microcontrolador y programado con futuras actualizaciones del firmware que provee el software \texttt{FREEinfraROSSI} para el vehículo motorizado \texttt{infraROSSI} y ampliar su funcionalidad como instrumento de laboratorio, estos sensores de adquisición de datos  no solo sirven para ilustrar la propiedad de difracción, atenuación y absorción de las ondas electromagnéticas, sino que por su naturaleza activa y pasiva, podrían ser utilizados para  ilustrar la magnitud de la  aceleración gravitacional terrestre, las características en el  movimiento de un péndulo, entre otras; como se piensa sacar en la \texttt{versión  1.1} del software \texttt{FREEinfraROSSI}\,.\\\\
+Puede revisar la pagina donde se aloja el proyecto \texttt{FREEinfraROSSI}\,\footnote{Para mayor información [online] \url{https://github.com/Diego-debian/Free-infrarossi}}\,, como se observa en los proyectos de la pagina esta el proyecto \texttt{FREE\_PoPs\_1.0}\,,\footnote{Para mayor información [on line] \url{https://github.com/Diego-debian/FREE_PoPs_1.0}\,}, el cual es un programa que ilustra el periodo de oscilación de un pendulo simple, que ha su vez es el prototipo de un modulo que va hacer adherido al software \texttt{FREEinfraROSSI} en su versión \texttt{1.1}\,.
+%================MONTAJE CHASIS INFERIOR
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm, angle=0]{img/TF7.png}
+  \caption{\footnotesize Chasis  de madera con dimensiones en \texttt{centímetros}, la caja del eje delantero tiene dimensiones \texttt{2 centímetros} de ancho, \texttt{3 centímetros} de largo y \texttt{2.5 centímetros} de alto; el eje delantero debe estar a  \texttt{1 centímetro}x de separación del chasis.}
+  \label{fig:fig46}
+\end{figure}
+\subsection{Test del modulo \texttt{infraROSSI} y su software \texttt{FREEinfraROSSI}}
+En esta sección se realiza una verificación y testeo del software de control \texttt{FREEinfraROSSI} y el vehículo motorizado \texttt{infaROSSI}; detallando las conexiones electrónicas del modulo \texttt{infraROSSI} para los diferentes laboratorios  que ofrece el software de control \texttt{FREEinfraROSSI}.\\
+\subsubsection{Difracción}
+Colocar el sensor de electro-recepción pasiva junto con el control de avance y el control de hardware en el vehículo motorizado \texttt{infraROSSI} como se observa en la figura \ref{fig:fig47}.\\\\
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/ch,ca,ep.png}
+  \caption{\footnotesize Montaje modulo motorizado \texttt{infraROSSI} para el laboratorio de difracción.}
+  \label{fig:fig47}
+\end{figure}
+Los esquemas de pines de las partes utilizadas para el montaje se muestran en las figuras \ref{fig:fig48} , \ref{fig:fig49}  y \ref{fig:fig50} ; se debe conectar el pin  ch2 con el pin  ep5, el pin  ch3 con el pin  ca9, el pin de ch5 con el pin  ep2, el pin de ch6 con el pin ep3, el pin ch7 con el pin ca2, el pin ch8 con el pin ca1, el pin ca4 con el pin ep4, el pin ca3 con el pin ep1, por ultimo el pin ca7 y el pin ca8 son las conexiones al motor.\\\\
+%========================== Montaje esq1
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/ESQ_1.png}
+  \caption{Esquema de pines del sistema de control de hardware.}
+  \label{fig:fig48}
+\end{figure}
+%========================== Montaje esq2
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/ESQ_2.png}
+  \caption{Esquema de pines del sistema de control de avance.}
+  \label{fig:fig49}
+\end{figure}
+%========================== Montaje esq3
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/ESQ_3.png}
+  \caption{Esquema de pines del sensor de electro-recepción pasiva en infrarrojo.}
+  \label{fig:fig50}
+\end{figure}
+Colocar la fuente\footnote{Esta fuente se elaboro con un diodo led infrarrojo de 850 nm y un encapsulado epoxi de 3 mm.} emisora de fotones infrarrojos con la red de difración de 100 lineas por milímetro, frente a ella colocar el modulo motorizado \texttt{infraROSSI} a 45 cm de la fuente emisora, como se muestra en la figura \ref{fig:fig1}.\\\\
+Abrir una terminal de GNU-Linux y escribir \texttt{infrarossi}, oprimir enter y la clave de superusuario, luego de abrir el programa debe oprimir el botón\texttt{on}, esperar que se empareje el bluetooth, una vez emparejado el bluetooth el programa desplegara un tercer menú ver figura \ref{fig:fig2}, oprimir el botón de difracción y esperar que el programa tome los datos necesarios.\\\\
+Luego de capturar los datos aparecerá la gráfica de los datos, oprima doble click izquierdo en el máximo de interferencia y sin soltar el cursor lleve la linea al siguiente máximo de interferencia,  suelte el botón del cursor e inmediatamente  aparecerá la gráfica con el análisis de longitud de onda infrarroja del diodo, tal como se muestra en la figura \ref{fig:fig3}\,.\\\\
+Ahora el programa \texttt{FREEinfraROSSY}, llama al script \texttt{Estadis2.py} que se encuentra en el anexo E20\,\ref{app:appE20} pagina \pageref{app:appE20}\,; el cual realiza un análisis estadísticos de los datos midiendo la distancia que hay entre cada patrón de interferencia constructiva como se observa en la gráfica\,\ref{fig:fig3}\,; y, predice el error porcentual en la aproximación realizando la diferencia del dato suministrado por el fabricante\,\footnote{Enlace a la hoja de datos del diodo led emisor infrarrojo de \texttt{850 nm} suministrada por el fabricante online \url{http://www.betlux.com/product/LED_lamp/infrared\%20diodo/BL-L314IR.PDF}} del diodo led emisor infrarrojo y la encontrada en el experimento de difracción con una rejilla de \texttt{100 lineas/mm}.\\\\
+Este experimento se realizo \texttt{9} veces, obteniendo los resultados que se muestran en la tabla \ref{tab:tab1}\,. La longitud de onda promedio de los datos en la tabla \ref{tab:tab1} es $851.77 nm$  dando un error porcentual de $0.209\%$ de la longitud de onda suministrada por el fabricante.
+%===========================SEECCION ATENUACION======================
+\subsubsection{Atenuación}
+Colocar el sensor de electro-recepción activa junto con el control de avance y el control de hardware en el vehículo motorizado \texttt{infraROSSI} como se observa en la figura \ref{fig:fig51}.
+% =============================0 FIGURA Transiciones con radiación entre una banda y los estados de impureza.
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/ch,ca,ea.png}
+  \caption{Montaje modulo motorizado \texttt{infraROSSI} para el laboratorio de atenuación y absorción.}
+  \label{fig:fig51}
+\end{figure}\\
+Los esquemas de pines de las partes utilizadas para el montaje se muestran en las figuras \ref{fig:fig48} , \ref{fig:fig49}  y \ref{fig:fig52} ; se debe conectar el pin  ch1 con el pin  ea4, el pin  ch3 con el pin  ca9, el pin de ch4 con el pin  ea2, el pin ch7 con el pin ca2, el pin ch8 con el pin ca1, el pin ca5 con el pin ea1, el pin ca6 con el pin ea3, por ultimo el pin ca7 y el pin ca8 son las conexiones al motor.\\\\
+% =============================Esqueema Pin3.
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8.0cm, height=6.0cm]{img/ESQ_4.png}
+  \caption{Esquema de pines del sensor de electro-recepción activa en infrarrojo.}
+  \label{fig:fig52}
+\end{figure}\\
+Situar el vehículo motorizado \texttt{infraROSSI} a una distancia de 30 cm del espejo como se muestra en la figura \ref{fig:fig4}; el espejo debe estar perpendicular a la parte frontal del vehículo. Abrir una terminal de GNU-Linux y escribir infrarossi, oprimir enter y la clave de superusuario, luego de abrir el programa como se muestra en la figura \ref{fig:fig3}, debe oprimir el botón \texttt{on}\,, esperar que se empareje el bluetooth, una vez emparejado el modulo bluetooth, el programa desplegara un tercer menú, oprimir el botón de atenuación y esperar que el programa tome los datos necesarios.\\\\
+Ahora el software de control \texttt{FREEinfraROSSI} le envía vía bluetooth la señal de avanzar y capturar datos al vehículo motorizado \texttt{infraROSSI} el cual avanza \texttt{2 milímetros} por cada paso, recolecta \texttt{140 datos} por cada avance enviándolos vía bluetooth al ordenador en donde el software de control realiza un análisis estadístico de los mismos, cuando termina este análisis envía una señal al modulo motorizado \texttt{infraROSSI} vía bluetooth, indicándole que avance nuevamente y repita el proceso, esto lo realiza \texttt{117 veces} hasta  avanzar una distancia de \texttt{30 centímetros}; una vez terminado de recoger todos los datos realiza una estadística sobre toda la muestra de estos datos capturados. \\\\
+El programa \texttt{FREEinfraROSSI} después de recoger los datos realiza un análisis estadístico de los mismos, según \cite{ostle1981estadistica}\,``un ajuste lineal de una función exponencial de la forma $Y^{*} = aX^{b}$, siendo $Y$ la intensidad irradiada, $a$ la amplitud, $X$ la distancia de avance,  $b$ el valor del exponente de atenuación, $Y^{*}$ es el valor esperado de la variable física; aplicando logaritmo natural para linealizar se obtiene:\\
+\begin{equation}
+ln ( Y^{*}) = ln (a) + bln(X)  \cdots \Longrightarrow V^{*} = A + bU\label{eq:eq31},
+\end{equation} 
+donde $V^{*}$ es $ln(Y^{*})$, $A $ es el $ln(a)$ y $U$ es igual al $ln(X)$. \\\\
+La suma de  todos los errores debe ser diferentes a cero $\sum e \neq 0$. \\
+El exponente de ajuste b se halla con la varianza de $U$ sobre $V$  dividida entre la varianza de $U$ sobre $U$, obteniendo\\
+\begin{equation}
+b = \frac{S_{UV}}{S^{2} _{U}} =  \frac{\frac{1}{n} \sum_{i=1}^{n} UV - \bar{U} \bar{V}}{\frac{1}{n} \sum _{i=1}^{n} U^{2} - \bar{U}^2}\label{eq:eq32},
+\end{equation}
+ahora el valor de A sera igual al valor medio del logaritmo de la variable física $\bar{V}$ menos el valor de la multiplicación entre el exponente $b$ y el valor medio del logaritmo de la variable experimental:\\
+\begin{equation}
+A = \bar{V} -b\bar{U}\label{eq:eq33},
+\end{equation}
+deshaciendo el logaritmo de $A$  se obtiene el valor de la amplitud a:\\
+\begin{equation}
+a = antiln(A) = antiln(\bar{V} - b\bar{U})\label{eq:eq34},
+\end{equation}
+de modo que el ajuste efectuado es:\\
+\begin{equation}
+Y^{*} =  aX^{b}  = [antiln(\bar{V} - b\bar{U})]*X^{ \left(\frac{\frac{1}{n} \sum_{i=1}^{n} UV - \bar{U} \bar{V}}{\frac{1}{n} \sum _{i=1}^{n} U^{2} - \bar{U}^{2}}\right)}\label{eq:eq35},
+\end{equation}
+la bondad del ajuste es el error cuadrático medio o $ECM$ y es igual a: \\
+\begin{equation}
+ECM = \frac{\sum_{i=1}^{n}e_{i}^{2}}{n}\label{eq:eq36},
+\end{equation}
+siendo $e_{i}$ cada una de las diferencias entre las variables físicas y los valores estimados para las variables físicas $e_{i} = Y_{i} - Y^{*}_{i}$; al haber transformado la variable física ya no se minimiza $\sum e^{2}$ sino $\sum (ln(Y) - ln(Y^{*}))^{2}$, de ahí que $\sum e \neq 0$."\\\\
+Luego de este análisis estadístico, aparece la gráfica de estos, la cual se aprecia en la figura \ref{fig:fig5}, esta ya contiene el análisis estadístico y arroja el valor del exponente que debe tener la distancia; los datos del experimento de atenuación están en puntos azules, la gráfica estimada estadísticamente esta en lineas azules, la gráfica teórica son las lineas de color rojo. \\\\
+La gráfica de análisis y los datos capturados se almacenan dentro del archivo llamado Carpetas/Atenuacion con la fecha y hora del análisis de datos.\\\\
+De los datos que se muestran en la tabla \ref{tab:tab2} se obtiene la amplitud de la función densidad promedio de flujo fotónico reflejada sobre el espejo y que incide sobre el diodo led infrarrojo la cual tiene un valor de $0.000259$   $[W][m^{2}]$, por lo que se considera este valor como la amplitud ideal para la función intensidad., también se obtiene el valor del exponente que acompaña a la distancia debido al decaimiento de esta densidad de energía sobre el espacio el cual tiene un valor promedio de  $-1.906$\, que esta muy cercano al predicho por la teoría el cual es $-2$, con un error en su estimación de $4.7 \%$, lo cual indica que el decaimiento en la densidad de flujo electromagnético que atraviesa una superficie en la unidad de tiempo, que a su vez se refleja y por ende que llega al sistema detector del modulo motorizado infraROSSI, decrece con el cuadrado de la distancia.\\\\
+El promedio del error cuadrático medio en los datos obtenidos por el experimentador en la tabla \ref{tab:tab2}\,, indican que $ 11.286 x 10^{-5} \%$ de estos no pueden ser explicados por este modelo físico-matemático, dejando solamente un $99.9998 \%$ de fiabilidad en el ajuste estadístico, utilizado por el software \texttt{FREEinfraROSSI}\,.\\
+%================================absorcion=================================0
+\subsubsection{Absorción}
+Colocar el sensor de electro-recepción activa junto con el control de avance y el control de hardware en el vehículo motorizado \texttt{infraROSSI} como se observa en la figura \ref{fig:fig51}\,. Los esquemas de pines de las partes utilizadas para el montaje se muestran en las figuras \ref{fig:fig48}\,, \ref{fig:fig49}  y \ref{fig:fig52}\,; se debe conectar el pin  ch1 con el pin  ea4, el pin  ch3 con el pin  ca9, el pin de ch4 con el pin  ea2, el pin ch7 con el pin ca2, el pin ch8 con el pin ca1, el pin ca5 con el pin ea1, el pin ca6 con el pin ea3, por ultimo el pin ca7 y el pin ca8 son las conexiones al motor.\\\\
+Situar el vehículo motorizado \texttt{infraROSSI} a una distancia de 30 cm de la muestra (octavo de cartulina) tal como se muestra en la figura \ref{fig:fig6}, la muestra debe estar perpendicular a la parte frontal del vehículo. Abrir una terminal de GNU-Linux y escribir  \texttt{infrarossi}, oprimir enter y la clave de superusuario, luego de abrir el programa debe oprimir el botónon, esperar que se empareje el bluetooth, una vez emparejado el modulo bluetooth, el programa desplegara un tercer menú como se obserba en la figura \ref{fig:fig2}, oprimir el botón de absorción y esperar que el programa tome los datos necesarios.\\\\
+Ahora el software de control \texttt{FREEinfraROSSI} le envía vía bluetooth la señal de avanzar y capturar datos al vehículo motorizado \texttt{infraROSSI} el cual avanza \texttt{2 milímetros} por cada paso, recolecta \texttt{140 datos} por cada avance enviándolos vía bluetooth al ordenador en donde el software de control realiza un análisis estadístico de los mismos, cuando termina este análisis envía una señal al modulo motorizado \texttt{infraROSSI} vía bluetooth, indicándole que avance nuevamente y repita el proceso, esto lo realiza \texttt{117 veces} hasta  avanzar una distancia de \texttt{30 centímetros}; una vez terminado de recoger todos los datos realiza una estadística sobre toda la muestra de estos datos capturados. \\\\
+El programa \texttt{FREEinfraROSSI} después de recoger los datos realiza un análisis estadístico de los mismos, según \cite{ostle1981estadistica}\, utilizando las ecuaciones \ref{eq:eq34}\,, \ref{eq:eq35} y \ref{eq:eq36}\,.\\\\
+Este análisis se realizo previamente con un espejo, el cual deja como patrón de referencia o de intensidad ideal, el  valor medio de $0.000259 X ^{-2} \mu W/m^{2}$  que se muestra en la figura \ref{fig:fig5}\,; el programa calcula un valor estimado para los datos de la siguiente manera: la intensidad transmitida $I_{T}$ debe ser igual a la intensidad ideal $I_{ideal}$ menos la intensidad que mide el sensor $I_{real}$.
+\begin{center}
+$I_{t} = I_{ideal} - I_{real}$
+\end {center}
+El factor de perdida en la intensidad $T$ debe ser igual al cociente de la intensidad $I_{t}$ y la intensidad ideal $I_{ideal}$
+\begin{center}
+$T=\frac{I_{T}}{I_{ideal}} $
+\end{center}
+por lo tanto el promedio en el factor de perdida debe ser igual a la transmitancia o mejor dicho a la energía que se transmitió a la muestra,  
+\begin{center}
+$\bar{T} = \sum{T_{i}}/N$
+\end{center} 
+como la reflectancia es igual a $R = 1 - T $ (ecuación \ref{eq:eq22}), el valor de la amplitud $a$, debe ser igual:
+\begin{center}
+ $ a = (1 - \bar{T}) (0.000259)$
+\end{center}
+por lo que ahora la intensidad estimada en la figura \ref{fig:fig5} con la etiqueta $Exp$, en función del inverso de la distancia, disminuye con la reflectancia $R$: 
+\begin{center}
+ $ I^{*} = (1 - \bar{T}) (0.000259) X^{-2}$
+\end{center}
+después de este análisis el software \texttt{FREEinfraROSSI}  realiza la gráfica mostrando en ella (figura \ref{fig:fig7}) la intensidad ideal $I_{ideal}(x)$, la intensidad estimada debido a la reflectancia $I^{*}$ y el factor de transmitancia o factor de caída en la intensida $F_{p}$.\\\\
+En la tabla \ref{tab:tab3} se muestra  la función intensidad $\bf{a}$ en $[W][m^{2}]$, estimado por el software \texttt{FREEinfraROSSI}, para cada una de las diferentes muestras del mismo material de cartulina pero diferentes pigmentos; la cartulina en la cual hubo más transmitancia fue la de color negro, pues el \texttt{86.84\%} de intensidad de la luz incidente sobre ella fue transmitida al material, llegando solo un \texttt{13.16\%} de esta al sensor; ahora la muestra que mayor reflectancia tuvo fue la de color rojo pues el \texttt{18.08\%} de la intensidad lumínica llego al sensor, indicando que solo el \texttt{81.92\%} de esta fue transmitida al material de muestra.
+
+%=================sección de cconclusiones ========================
+%\balance
+\section{CONCLUSIONES}
+\begin{enumerate}
+\item[*] Se detalla el diseño y montaje de un vehículo motorizado con transmisión electromagnética, sensores de \texttt{electro-recepción} \texttt{activa-pasiva}, con comunicación bluetooth desde un ordenador equipado con un sistema operativo \texttt{GNU-Linux}\, y el modulo motorizado con hardware libre, para el estudio e ilustración de las propiedades de difracción, atenuación, absorción  y fenómenos ondulatorios de las ondas electromagnéticas en el espectro infrarrojo de dicha radiación.
+\item[*] El software de este proyecto obtuvo la licencia GPL3 otorgada por la \texttt{FREE SOFTWARE FOUNDATION}\, para el desarrollo de software libre; por lo que cualquier persona puede tener acceso al software de control \texttt{FREEinfraROSSI}, y empezar a utilizarlo sin ninguna restricción o modificar los scripts citando siempre al autor original de los mismos. 
+\item[*] Se detalla el uso del software de control \texttt{FREEinfraROSSI}\,, diseñado con herramientas libres del proyecto \texttt{GNU-Linux}\,\footnote{Enlace al proyecto \texttt{GNU-Linux} [online] \url{https://www.gnu.org/gnu/linux-and-gnu}} a través de las distribuciones basadas en Debian\footnote{Debian \url{https://www.debian.org/}}\, como lo es \texttt{UBUNTU 14.04LTS}\footnote{UBUNTU14.04LTS [online] \url{http://www.ubuntu.com/}} y \texttt{Linux MINT 17.2}\footnote{\texttt{Linux MINT 17.2} [online] \url{https://linuxmint.com/}} entre otras; para la manipulación del vehículo motorizado y sus diferentes sensores de \texttt{electro-recepción}, con alojamiento en la \texttt{red} a través del enlace [en linea] \url{https://github.com/Diego-debian/Free-infrarossi}\,, el cual brinda al usuario del software el soporte técnico a través de actualizaciones del mismo como se piensa para la versión \texttt{1.1} del software \texttt{FREEinfraROSSI} donde se incluirá nuevos módulos y laboratorios para facilitar la enseñanza en física, en el aula de clase a través de las nuevas tecnologías de la información para la enseñanza en ciencias, tambien para ampliar el rango de cubrimiento del programa \texttt{FREEinfraROSSI} a distribuciones \texttt{GNU-Linux} brindando soporte a los sistemas operativos basados en \texttt{ARCH Linux}\footnote{Enlace [online] \url{https://www.archlinux.org/}}  y \texttt{RED HAT} como lo es \texttt{Fedora} y \texttt{CentOS}; para mayor información, ver nuevas actualizaciones y proyectos futuros [online] \url{https://github.com/Diego-debian}\,.\\
+\item[*] El vehículo motorizado \texttt{infraROSSI} y su software de control \texttt{FREEinfraROSSI} ilustran de manera cuantitativa y cualitativa fenómenos ondulatorios como la difracción e interferencia de las ondas electromagnéticas, calculando de manera aproximada su longitud de onda $\lambda$, con error inferior al $4\%$, como se muestra en la gráfica \ref{fig:fig3}\,.  La longitud de onda media del experimento que se muestra en la tabla \ref{tab:tab1}\,, es de $\bar{\lambda}_{exp}$\,\texttt{= 851.77 nm}, la cual difiere en \texttt{1.77 nm} del dato de la longitud de onda del diodo led emisor infrarrojo de \texttt{850 nm} según especificaciones del fabricante\footnote{Hoja de datos del led emisor infrarrojo (\texttt{850nm}) suministrada por el fabricante [online] \url{http://www.betlux.com/product/LED_lamp/infrared\%20diodo/BL-L314IR.PDF}}\,.\\
+\item[*] El vehículo motorizado \texttt{infraROSSI} y su software de control \texttt{FREEinfraROSSI} ilustran de manera cuantitativa y cualitativa fenómenos ondulatorios y corpusculares  de la radiación electromagnética como la atenuación con el inverso del cuadrado de la distancia, la radiansa, la irradiansa, fenómenos de transporte e inyección y su análisis estadístico, calculando de una manera aproximada el exponente que acompaña a la atenuación debido a la distancia de propagación del flujo de energía radiante producida en el diodo emisor infrarrojo como se muestra en la gráfica \ref{fig:fig5}\,; la amplitud del valor medio de la función intensidad como se muestra en la tabla \ref{tab:tab2} es \texttt{0.000259}\,$[W][m^{2}]$, por lo que se considera este valor como la amplitud ideal para la función intensidad; el valor medio en el factor de atenuación de la distancia es \texttt{-1.906} que esta muy cercano al predicho por la teoría el cual es \texttt{-2}\,, con un error en su estimación de \texttt{4.7 \%}\,, lo cual indica que el decaimiento en la densidad de flujo electromagnético que atraviesa una superficie en la unidad de tiempo, que a su vez se refleja y por ende que llega al sistema detector del modulo motorizado \texttt{infraROSSI}, decrece con el cuadrado de la distancia.
+\item[*] El vehículo motorizado \texttt{infraROSSI} y su software de control ilustran de manera cuantitativa y cualitativa fenómenos ondulatorios y corpusculares  de la radiación electromagnética como la atenuación con el inverso del cuadrado de la distancia, la radiansa, la irradiancia, fenómenos de transporte e  inyección, calculando el factor de perdida de intensidad en el sensor de \texttt{electro-recepción} activa del vehículo motorizado \texttt{infraROSSI} y de esta manera predice los valores de reflectancia y transmitancia del material estudiado como se muestra en las gráficas \ref{fig:fig8}\, \ref{fig:fig9} y \ref{fig:fig7}\,. Según la tabla \ref{tab:tab3} la muestra en la cual hubo mayor transmitancia, es la cartulina de color negro, pues el \texttt{86.84\%} de intensidad de la luz incidente sobre ella fue transmitida al material, llegando solo un \texttt{13.16\%} de esta radiación al sensor de \texttt{electro-recepción} activa del modulo \texttt{infraROSSI}\,; según la tabla \ref{tab:tab3} la muestra que mayor reflectancia tuvo es la de color rojo pues el \texttt{18.08\%} de la intensidad lumínica llego al sensor, indicando que solo el \texttt{81.92\%} de esta radiación fue transmitida al material de muestra; el error cuadrático medio indica que solo el \texttt{0.000004197\%} del experimento no se explica con este modelo \texttt{físico-matemático}, dejando un \texttt{99.9999958\%} de fiabilidad en el ajuste estadístico utilizado en este trabajo.
+\item[*] Se elaboran cuatro artículos de carácter \texttt{científico-didáctico} titulados ``Diseño de una fuente emisora de fotones en el espectro infrarrojo para el montaje del experimento ilustrativo de la difracción con el software \texttt{FREEinfraROSSI} y el vehículo motorizado \texttt{infraROSSI}'' en el anexo A.\,\ref{app:appA} pagina \pageref{app:appA}\,; ``Calculo de la longitud de onda de la radiación de un diodo led infrarrojo, utilizando el modulo motorizado \texttt{infraROSSI} y su software de control \texttt{FREEinfraROSSI}'' en el anexo B.\,\ref{app:appB} pagina \pageref{app:appB}\,; ``Ilustración de la ley de decaimiento  de la densidad de flujo de radiación con el cuadrado inverso de la distancia de separación a la fuente; utilizando el modulo motorizado \texttt{infraROSSI} y su software de control \texttt{FREEinfraROSSI}'' en el anexo C.\,\ref{app:appC} pagina \pageref{app:appC}\,; ``Calculo del factor de perdida de la densidad de flujo de radiación emitida por un diodo led emisor infrarrojo, cuando esta radiación interactúa con la matería; utilizando el modulo motorizado \texttt{infraROSSI} y su software de control \texttt{FREEinfraROSSI}'' anexo D.\ref{app:appD} pagina \pageref{app:appD}; los cuales están en proceso de publicación en la revista brasileña de divulgación científica \texttt{ENSINO DE FÍSICA}\footnote{Para mayor información [on line] \url{http://www.scielo.br/scielo.php?script=sci_serial&pid=1806-1117&lng=en&nrm=iso}} y se espera su pronta publicación.
+\item[*] El software de control \texttt{FREEinfraROSSI} es \texttt{freeSOFTWARE} y \texttt{openSOURCE} como se observa en el anexo E. \ref{app:appE} pagina \pageref{app:appE}\,, pues según \cite{behlendorf1999open}\,``el uso de software de fuentes abiertas en la educación contribuye a formar personas libres, independientes, críticas y autónomas; permite enseñar con herramientas adaptadas a la realidad del alumnado, crea una comunidad de conocimiento compartido; favorece en la persona la libertad de elección tecnológica; evoluciona rápidamente y permite una eficaz solución de los problemas; permite ahorrar costes en la implantación, el mantenimiento y la gestión de los centros educativos; facilita que los alumnos dispongan en su casa de las mismas herramientas educativas que utilizan en su centro educativo, y de forma \texttt{100\%} legal; garantiza la seguridad; potencia la innovación de productos y servicios a través de empresas locales; en definitiva, el software de fuentes abiertas es un modelo educativo en sí mismo; libre, democrático, sostenible y tecnológicamente competitivo, y la opción ideal para el uso de la tecnología en el aula de clase y la enseñanza en ciencias.''
+\item[*] El modulo \texttt{infraROSSI} esta en estudio de viabilidad del tramite de  patente a través de la superintendencia de industria y comercio de Colombia online  \url{http://www.sic.gov.co/}, esperando poder obtener una patente de diseño del vehículo.
+\item[*] Los costos para la realización de este proyecto se detallan en la tabla \ref{tab:tab6} del anexo F. \ref{app:appF} pagina \pageref{app:appF}\,, son de \texttt{89 dolares},  el software es gratuito y  libre de ser operado por cualquier persona; estos costos convierten a este proyecto en el más económico en latino América  para el estudio e \texttt{ilustración} de los fenómenos \texttt{físicos} de \texttt{difracción, atenuación y absorción} de las ondas \texttt{electromagnéticas} en el espectro infrarrojo; no se tiene referencia alguna de otro proyecto que ilustre estas propiedades,  que sea software libre, hardware libre y de bajo costo.\\
+\end{enumerate}
+
+
+\bibliographystyle{apacite}
+\bibliography{referencias}
+%\clearpage
+%\nobalance
+
+\include{app/appA}
+\include{app/appB}
+\include{app/appC}
+\include{app/appD}
+\include{app/appE}
+%\begin{landscape} 
+\include{app/appF}
+%\end{landscape}
+
+%\includeonly
+%\endinput
+\end{document}
+
