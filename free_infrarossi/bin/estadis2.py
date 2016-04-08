@@ -9,8 +9,8 @@
 # Autor: 
 # Universidad  Distrital Francisco Jose  
 # Grupo de fisica e informatica
-# Diego Alberto Parra Garzón 
 # Dr Julian Andres Salamanca Bernal
+# Diego Alberto Parra Garzón 
 # Colombia, Bogota D.C.
 from matplotlib.widgets import  RectangleSelector
 from numpy import *
@@ -29,7 +29,7 @@ class Estadistica:
 #	self.f= np.loadtxt('datos/dats1.dat')
 	self.x , self.ym = np.loadtxt('datos/dats1.dat', unpack=True,  usecols=[0,1])
 #	self.x , self.y = np.loadtxt('dats1.dat', unpack=True,  usecols=[0,1])
-	self.y = self.ym/10
+	self.y = self.ym*10
 	self.n = np.size(self.x)
 	self.k = np.ceil(1 + np.log2(self.n)) # comando ceil redondea el numero al mayor entero
 	self.c = np.sort(self.y) #comando sort guarda los datos de y
@@ -57,8 +57,8 @@ class Estadistica:
 	        print(' RectangleSelector activated.')
 	        toggle_selector.RS.set_active(True)
 
-	pl.xlabel('Distancia [m]')
-	pl.ylabel('Intensidad [microW]')
+	pl.xlabel('Distancia [cm]')
+	pl.ylabel('Intensidad [micro W]')
         pl.title('LONGITUD DE ONDA DIODO INFRARROJO \n')
 	fig = figure
 	ax = subplot(111)
@@ -83,9 +83,9 @@ class Estadistica:
 	tetharad = math.atan(x/y)
 	tethagra = math.degrees(tetharad)
 	sintetha= math.sin(tetharad)
-	self.lamda = round((2*d*sintetha)*10**(9),2)
-	self.error = round(pow(pow(800-self.lamda,2),0.5), 2)
-	self.error1 = round(pow(pow(100-self.lamda*100/800, 2), 0.5), 3)
+	self.lamda = round((2*d*sintetha)*10**(9),0)
+	self.error = round(pow(pow(850-self.lamda,2),0.5), 2)
+	self.error1 = round(pow(pow(100-self.lamda*100/850, 2), 0.5), 3)
 	print tethagra, "\n ", sintetha
 	print "la longitud de onda aproximada para el diodo infrarrojo es",  self.lamda	, "nanometros, con un error de ", self.error1 , " %" 
 
@@ -97,6 +97,9 @@ class Estadistica:
 	pl.title('Datos Capturados  \n')
 	pl.xlabel('Distancia [m]')
 	pl.ylabel('Intensidad [W]')
+ 	pl.ylim(0, 0.001) 
+        pl.plot([self.xinicial/100, self.xinicial/100], [0, 0.0005], '-')
+        pl.plot([self.xfinal/100, self.xfinal/100], [0, 0.0005], '-')
 #	pl.ylim(0, 0.02) 
 
     def Grafica2(self):
@@ -105,24 +108,25 @@ class Estadistica:
         pl.title('Patrones de Interferencia \n')
  	pl.xlabel('Distancia [m]')
 	pl.ylabel('Intensidad [W]')
-	pl.text(0.001, 0.0000030, r' x1 = ' + str(self.xinicial/100))
-	pl.text(0.001, 0.0000025, r' x2 = ' + str(self.xfinal/100))
-	pl.text(0.001, 0.0000020, r' x2-x1 = ' + str(self.distancia/100))
-# 	pl.ylim(0, 0.036) 
-        pl.plot([self.xinicial/100, self.xinicial/100], [0, 0.000005], '-')
-        pl.plot([self.xfinal/100, self.xfinal/100], [0, 0.000005], '-')
+	pl.text(0.001, 0.0008, r' x1 = ' + str(self.xinicial/100))
+	pl.text(0.001, 0.0006, r' x2 = ' + str(self.xfinal/100))
+	pl.text(0.001, 0.0004, r' x2-x1 = ' + str(self.distancia/100))
+ 	pl.ylim(0, 0.001) 
+        pl.plot([self.xinicial/100, self.xinicial/100], [0, 0.0005], '-')
+        pl.plot([self.xfinal/100, self.xfinal/100], [0, 0.0005], '-')
         pl.plot(self.x1, self.y1, 'o--')
 #	pl.ylim(0, 0.022) 
 
     def Grafica3(self):
 	pl.subplot(212)
         pl.plot(self.x1, self.y1, 'o--')
-        pl.plot([self.xinicial/100, self.xinicial/100], [0, 0.000005], '-')
-        pl.plot([self.xfinal/100, self.xfinal/100], [0, 0.000005], '-')
+ 	pl.ylim(0, 0.001) 
+        pl.plot([self.xinicial/100, self.xinicial/100], [0, 0.0005], '-')
+        pl.plot([self.xfinal/100, self.xfinal/100], [0, 0.0005], '-')
 #        pl.plot([self.xinicial/100, self.xfinal/100], [0, 0.0000000001], '-')
-	pl.text(0.001, 0.0000030, r' Distancia entre asintotas '+str(self.distancia/100) + '[m] ')
-	pl.text(0.001, 0.0000025, r' m:1 Lamda IRE =' +  str(self.lamda) + ' [nm} +/- ' + str(self.error) + ' [nm]')
-	pl.text(0.001, 0.0000020, r' Error porcentual  ' + str(self.error1) + ' %')
+	pl.text(0.001, 0.0008, r' m:1 Lamda IRE =' +  str(self.lamda) + ' [nm} +/- ' + str(self.error) + ' [nm]')
+	pl.text(0.001, 0.0006, r' Distancia entre asintotas '+str(self.distancia/100) + '[m] ')
+	pl.text(0.001, 0.0004, r' Error porcentual  ' + str(self.error1) + ' %')
 # 	pl.ylim(0, 0.022) 
 	pl.xlabel('Distancia [m]')
 	pl.ylabel('Intensidad [W]')

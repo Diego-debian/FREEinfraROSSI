@@ -1,4 +1,4 @@
-infrarr#/usr/bin/python
+#/usr/bin/python
 #!*-* coding:utf-8 *-* 
 # Este script es sofware libre. Puede redistribuirlo y/o modificarlo bajo 
 # los terminos de la licencia pública general de GNU, según es publicada 

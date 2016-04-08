@@ -46,7 +46,7 @@ class App:
         #Paso en centimetros pausada 3 = 0,27
         #Paso en centimetros pausada 4 = 0,245
         #Paso en centimetros pausada 5 = 0.213
-        for n in range (0, 117): 
+        for n in range (0, 94): 
             os.system('rm datos/dat.dat')
             #time.sleep(2)
             arduino= serial.Serial(self.puerta, 9600)
@@ -57,13 +57,13 @@ class App:
             arduino.close()
             arduino=serial.Serial(self.puerta, 9600)
             time.sleep(2)
-            arduino.write('zz')
+            arduino.write('hh')
             for i in range(0, 140):
                 arduino=serial.Serial(self.puerta, 9600)
                 archi = open('datos/dat.dat', 'a+')
                 time.sleep(0.00005)
                 x = arduino.readline()
-                z = 0.21367*2*(140 - n)
+                z = 0.21367*n
                 xo = str(z)
                 yo = str(x)
                 print "paso numero", n

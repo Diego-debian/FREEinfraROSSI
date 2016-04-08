@@ -54,7 +54,7 @@ save -ascii 'datos/b.dat' b;
 save -ascii 'datos/ECM.dat' ECM;
 save -ascii 'datos/Yest.dat' Yest;
 #------------------------------segundo calculo-----------------------------
-Vteo = 0.000277 * (X .^(-2))
+Vteo = 0.000259 * (X .^(-2))
 q1 = [0.01:0.001:5];
 Pprueba = (Y .* Y)/125 #---------- Potencia en el diodo
 Voltaje_entrante = 100*(Y ./ Vteo)
@@ -65,10 +65,10 @@ sT = sum(T);
 Tp = sT / z1;
 Trasmitancia = Tp
 Reflectancia = 1 - Tp
-EEp= (Reflectancia)*(0.000277);
+EEp= (Reflectancia)*(0.000259);
 densidad_voltaje = EEp
 Voltaje_aproximado = (EEp)*(X .^(-2)); 
-BX = (0.000277)*(q1 .^(-2));
+BX = (0.000259)*(q1 .^(-2));
 BY = EEp * (q1 .^(-2));
 V_estimado = EEp*(X .^(-2));
 error1 = Y .- V_estimado;

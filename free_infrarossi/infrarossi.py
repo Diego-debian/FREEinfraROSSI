@@ -86,7 +86,7 @@ class App:
 #------------------------------------- Funcion limpiar pantalla ---------------------------------------------------
         def Reset():
 	    tkMessageBox.showinfo("Infrarossi", message= "! Limpiando, por favor espere ¡")
-	    os.system("rm MAC.txt MACD.txt puerto.txt conexion.txt direccion.txt")
+	    os.system("rm MAC.txt MACD.txt puerto.txt conexion.txt direccion.txt datos/dats1.dat")
 	    os.system("sh bin/d_Blu.sh &")
 	    os.system("python infrarossi.py &")
 	    os.system("rm MAC.txt MACD.txt puerto.txt")
